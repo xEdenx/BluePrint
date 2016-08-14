@@ -1,9 +1,9 @@
 package com.tneciv.dribbble.module.main;
 
-import android.content.Context;
-
 import com.tneciv.dribbble.base.BasePresenterImpl;
-import com.tneciv.dribbble.entity.StoryEntity;
+import com.tneciv.dribbble.common.UserService;
+import com.tneciv.dribbble.common.ApiServiceFactory;
+import com.tneciv.dribbble.entity.UserEntity;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -14,19 +14,18 @@ import rx.Subscriber;
  */
 
 class MainPresenter extends BasePresenterImpl implements MainContract.Presenter {
-    private Context mContext;
     private MainContract.View mView;
 
-    MainPresenter(Context context, MainContract.View view) {
-        this.mContext = context;
+    MainPresenter(MainContract.View view) {
         this.mView = view;
         mView.setPresenter(this);
     }
 
     @Override
     public void start() {
-        final Observable<StoryEntity> storyRx = getRestService().getStoryRx(8863);
-        addSubscription(storyRx, new Subscriber<StoryEntity>() {
+        final UserService apiService = ApiServiceFactory.getInstance().create(UserService.class);
+        final Observable<UserEntity> user = apiService.getUser("simplebits");
+        addSubscription(user, new Subscriber<UserEntity>() {
             @Override
             public void onCompleted() {
 
@@ -34,12 +33,12 @@ class MainPresenter extends BasePresenterImpl implements MainContract.Presenter 
 
             @Override
             public void onError(Throwable e) {
-
+                mView.showResponse(e.getMessage());
             }
 
             @Override
-            public void onNext(StoryEntity storyEntity) {
-                mView.showResponse(storyEntity.toString());
+            public void onNext(UserEntity userEntity) {
+                mView.showResponse(userEntity.toString());
             }
         });
 

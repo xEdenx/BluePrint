@@ -1,8 +1,5 @@
 package com.tneciv.dribbble.base;
 
-import com.tneciv.dribbble.common.RestClient;
-import com.tneciv.dribbble.common.RestService;
-
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -12,16 +9,15 @@ import rx.subscriptions.CompositeSubscription;
 /**
  * Created by Tneciv
  * on 2016-08-14 23:21 .
- * Presenter 公共方法及属性集合
+ * Presenter 公共方法及属性集合，与 BasePresenter 无关，供 *Presenter 继承
  */
 
 public class BasePresenterImpl {
     private CompositeSubscription mCompositeSubscription;
-    private RestService restService = RestClient.retrofit().create(RestService.class);
 
     /**
-     * RxJava取消注册，以避免内存泄露
-     * call when onDestory or detachView
+     * RxJava 取消注册，以避免内存泄露
+     * call in Activity.onDestory() or Fragment.detachView()
      */
     protected void onUnsubscribe() {
         if (mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {
@@ -39,7 +35,4 @@ public class BasePresenterImpl {
                 .subscribe(subscriber));
     }
 
-    protected RestService getRestService() {
-        return this.restService;
-    }
 }
