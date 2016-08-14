@@ -10,10 +10,14 @@ import com.tneciv.dribbble.base.BaseView;
 
 public interface MainContract {
     interface View extends BaseView<Presenter> {
+        void openLoadingView();
 
+        void hideLoadingView();
+
+        void showResponse(String response);
     }
 
     interface Presenter extends BasePresenter {
-
+        void unSubscribe();
     }
 }
