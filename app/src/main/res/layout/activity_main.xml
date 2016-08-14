@@ -12,7 +12,18 @@
     tools:context="com.tneciv.dribbble.module.main.MainActivity">
 
     <TextView
+        android:id="@+id/tv_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"/>
+
+    <Button
+        android:id="@+id/btn_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tv_result"
+        android:layout_marginTop="20dp"
+        android:text="click"/>
 </RelativeLayout>
