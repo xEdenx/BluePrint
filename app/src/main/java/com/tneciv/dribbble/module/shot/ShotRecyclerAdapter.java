@@ -2,6 +2,8 @@ package com.tneciv.dribbble.module.shot;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,7 +45,8 @@ public class ShotRecyclerAdapter extends RecyclerView.Adapter<ShotRecyclerAdapte
     public void onBindViewHolder(MyViewHolder holder, int position) {
         ShotEntity entity = list.get(position);
         Log.d("adapter", "position: create" + position);
-        holder.result.setText(entity.getDescription());
+        Spanned spanned = Html.fromHtml(entity.getDescription() + "");
+        holder.result.setText(spanned);
     }
 
     @Override

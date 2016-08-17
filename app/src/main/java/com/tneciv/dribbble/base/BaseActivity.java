@@ -1,28 +1,28 @@
 package com.tneciv.dribbble.base;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.tneciv.dribbble.R;
-import com.tneciv.dribbble.module.main.MainActivity;
-import com.tneciv.dribbble.module.other.OtherActivity;
+import com.tneciv.dribbble.module.main.MainFragment;
+import com.tneciv.dribbble.module.other.OtherFragment;
+import com.tneciv.dribbble.module.shot.ShotFragment;
+import com.tneciv.dribbble.module.shot.ShotPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,10 +42,6 @@ public abstract class BaseActivity extends AppCompatActivity
     protected FrameLayout contentFrame;
     @BindView(R.id.fab_add_task)
     protected FloatingActionButton fab;
-    @BindView(R.id.viewpager)
-    protected ViewPager viewPager;
-    @BindView(R.id.tabLayout)
-    protected TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,35 +62,20 @@ public abstract class BaseActivity extends AppCompatActivity
 
         initView();
 
-        initViewPager();
-
         initFragment();
 
     }
 
     protected void initView() {
         if (fab != null) {
-            fab.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    /**
-     * @Override to init viewPager
-     */
-    protected void initViewPager() {
-        if (viewPager != null) {
-            viewPager.setVisibility(View.GONE);
-        }
-
-        if (tabLayout != null) {
-            tabLayout.setVisibility(View.GONE);
+            fab.setVisibility(View.GONE);
         }
     }
 
     protected abstract void initFragment();
 
     protected static void addFragmentToActivity(@NonNull FragmentManager fragmentManager,
-                                             @NonNull Fragment fragment) {
+                                                @NonNull Fragment fragment) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.contentFrame, fragment);
         transaction.commit();
@@ -130,13 +111,16 @@ public abstract class BaseActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent intent = new Intent(this, OtherActivity.class);
-            startActivity(intent);
+            replaceFragment(new MainFragment());
+            Log.d("BaseActivity", "mainFragment click");
         } else if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            replaceFragment(new OtherFragment());
+            Log.d("BaseActivity", "otherFragment click");
         } else if (id == R.id.nav_slideshow) {
-
+            ShotFragment shotFragment = new ShotFragment();
+            replaceFragment(shotFragment);
+            new ShotPresenter(shotFragment);
+            Log.d("BaseActivity", "shotFragment click");
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
@@ -149,4 +133,14 @@ public abstract class BaseActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void replaceFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .addToBackStack(fragment.toString())
+                .replace(R.id.contentFrame, fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
+    }
+
 }

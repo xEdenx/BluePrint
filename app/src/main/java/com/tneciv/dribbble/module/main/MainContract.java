@@ -8,7 +8,7 @@ import com.tneciv.dribbble.base.BaseView;
  * on 2016-08-14 16:00 .
  */
 
-public interface MainContract {
+interface MainContract {
     interface View extends BaseView<Presenter> {
         void showResponse(String response);
     }

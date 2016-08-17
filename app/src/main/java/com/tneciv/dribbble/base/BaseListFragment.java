@@ -35,7 +35,12 @@ public abstract class BaseListFragment extends Fragment implements SwipeRefreshL
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         ButterKnife.bind(this, view);
-        //initRecyclerView();
+
+        int colorAccent = getResources().getColor(R.color.colorAccent);
+        int colorPrimary = getResources().getColor(R.color.colorPrimary);
+        int colorPrimaryDark = getResources().getColor(R.color.colorPrimaryDark);
+        refreshLayout.setColorSchemeColors(colorAccent, colorPrimary, colorPrimaryDark);
+
         return view;
     }
 

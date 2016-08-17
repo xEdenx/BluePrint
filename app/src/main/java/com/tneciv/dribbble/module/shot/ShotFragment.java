@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 
-import com.tneciv.dribbble.R;
 import com.tneciv.dribbble.base.BaseListFragment;
 import com.tneciv.dribbble.entity.ShotEntity;
 
@@ -28,10 +27,6 @@ public class ShotFragment extends BaseListFragment implements ShotContract.View 
     @Override
     public void onResume() {
         super.onResume();
-        final int colorAccent = getResources().getColor(R.color.colorAccent);
-        final int colorPrimary = getResources().getColor(R.color.colorPrimary);
-        final int colorPrimaryDark = getResources().getColor(R.color.colorPrimaryDark);
-        refreshLayout.setColorSchemeColors(colorAccent, colorPrimary, colorPrimaryDark);
         refreshLayout.setRefreshing(true);
         mPresenter.start();
     }
@@ -46,7 +41,8 @@ public class ShotFragment extends BaseListFragment implements ShotContract.View 
 
     @Override
     public void onRefresh() {
-        Log.d("ShotFragment", "haha");
+        refreshLayout.setRefreshing(true);
+        mPresenter.start();
     }
 
     @Override
@@ -57,9 +53,8 @@ public class ShotFragment extends BaseListFragment implements ShotContract.View 
     @Override
     public void showList(ShotEntity[] shotEntities) {
         refreshLayout.setRefreshing(false);
-        List<ShotEntity> entityList = Arrays.asList(shotEntities);
         list.clear();
-        list.addAll(entityList);
+        list.addAll(Arrays.asList(shotEntities));
         recyclerAdapter.notifyDataSetChanged();
         Log.d("shotEntities:" + list.size(), "ShotFragment");
     }
