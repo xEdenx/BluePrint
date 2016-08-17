@@ -23,8 +23,8 @@ class MainPresenter extends BasePresenterImpl implements MainContract.Presenter 
 
     @Override
     public void start() {
-        final UserService apiService = ApiServiceFactory.getInstance().create(UserService.class);
-        final Observable<UserEntity> user = apiService.getUser("simplebits");
+        UserService apiService = ApiServiceFactory.getInstance().create(UserService.class);
+        Observable<UserEntity> user = apiService.getUser("simplebits");
         addSubscription(user, new Subscriber<UserEntity>() {
             @Override
             public void onCompleted() {

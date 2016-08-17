@@ -3,10 +3,10 @@ package com.tneciv.dribbble.module.main;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.tneciv.dribbble.R;
@@ -21,12 +21,14 @@ public class MainFragment extends Fragment implements MainContract.View {
 
     @BindView(R.id.tv_result)
     TextView tvResult;
-    @BindView(R.id.btn)
-    Button btn;
     private MainContract.Presenter mPresenter;
 
-    public MainFragment() {
-        // Required empty public constructor
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
@@ -41,16 +43,12 @@ public class MainFragment extends Fragment implements MainContract.View {
         mPresenter.unSubscribe();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
-        ButterKnife.bind(this, view);
-        return view;
+    public MainFragment() {
     }
 
     @Override
     public void showResponse(String response) {
+        Log.d("MainFragment", response);
         tvResult.setText(response);
     }
 

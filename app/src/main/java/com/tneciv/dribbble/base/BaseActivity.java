@@ -1,13 +1,16 @@
 package com.tneciv.dribbble.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,9 +21,17 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.tneciv.dribbble.R;
+import com.tneciv.dribbble.module.main.MainActivity;
+import com.tneciv.dribbble.module.other.OtherActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+/**
+ * Created by Tneciv
+ * on 2016-08-14 15:58 .
+ * Abstract BaseActivity with DrawerLayout
+ */
 
 public abstract class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,6 +42,10 @@ public abstract class BaseActivity extends AppCompatActivity
     protected FrameLayout contentFrame;
     @BindView(R.id.fab_add_task)
     protected FloatingActionButton fab;
+    @BindView(R.id.viewpager)
+    protected ViewPager viewPager;
+    @BindView(R.id.tabLayout)
+    protected TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +64,36 @@ public abstract class BaseActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        fab.setVisibility(View.INVISIBLE);
+        initView();
+
+        initViewPager();
 
         initFragment();
 
     }
 
+    protected void initView() {
+        if (fab != null) {
+            fab.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    /**
+     * @Override to init viewPager
+     */
+    protected void initViewPager() {
+        if (viewPager != null) {
+            viewPager.setVisibility(View.GONE);
+        }
+
+        if (tabLayout != null) {
+            tabLayout.setVisibility(View.GONE);
+        }
+    }
+
     protected abstract void initFragment();
 
-    public static void addFragmentToActivity(@NonNull FragmentManager fragmentManager,
+    protected static void addFragmentToActivity(@NonNull FragmentManager fragmentManager,
                                              @NonNull Fragment fragment) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.contentFrame, fragment);
@@ -94,9 +130,11 @@ public abstract class BaseActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent intent = new Intent(this, OtherActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
