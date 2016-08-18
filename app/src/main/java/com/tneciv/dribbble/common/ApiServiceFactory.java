@@ -18,8 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiServiceFactory {
 
     private static final String BASE_API_URL = "https://api.dribbble.com/v1/";
-    public static final String TOKEN = "Bearer 2074bbbaf8bae6866417a528f69780929ab6c61732473096719ef4cf210ea3be";
-    public static final String ssTOKEN = "Authorization: Bearer 2074bbbaf8bae6866417a528f69780929ab6c61732473096719ef4cf210ea3be";
+    private static final String TOKEN = "Bearer 2074bbbaf8bae6866417a528f69780929ab6c61732473096719ef4cf210ea3be";
     private static volatile Retrofit defaultInstance;
 
     private ApiServiceFactory() throws InstantiationException {
@@ -39,7 +38,7 @@ public class ApiServiceFactory {
                      */
                     if (BuildConfig.DEBUG) {
                         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-                        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+                        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
                         builder.addInterceptor(loggingInterceptor);
                     }
 

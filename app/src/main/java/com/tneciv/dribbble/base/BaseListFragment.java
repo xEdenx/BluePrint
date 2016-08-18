@@ -3,6 +3,7 @@ package com.tneciv.dribbble.base;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,6 +28,9 @@ public abstract class BaseListFragment extends Fragment implements SwipeRefreshL
     @BindView(R.id.refreshLayout)
     public SwipeRefreshLayout refreshLayout;
 
+    public int currentPage;
+    public int totalRecord;
+
     public BaseListFragment() {
     }
 
@@ -36,24 +40,19 @@ public abstract class BaseListFragment extends Fragment implements SwipeRefreshL
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         ButterKnife.bind(this, view);
 
-        int colorAccent = getResources().getColor(R.color.colorAccent);
-        int colorPrimary = getResources().getColor(R.color.colorPrimary);
-        int colorPrimaryDark = getResources().getColor(R.color.colorPrimaryDark);
+        int colorAccent = ContextCompat.getColor(getActivity(), R.color.colorAccent);
+        int colorPrimary = ContextCompat.getColor(getActivity(), R.color.colorPrimary);
+        int colorPrimaryDark = ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark);
         refreshLayout.setColorSchemeColors(colorAccent, colorPrimary, colorPrimaryDark);
+
+        refreshLayout.setOnRefreshListener(this);
+        recyclerView.setHasFixedSize(true);
+
+        initRecyclerView();
 
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        initRecyclerView();
-    }
-
     protected abstract void initRecyclerView();
 
-    @Override
-    public void onRefresh() {
-
-    }
 }

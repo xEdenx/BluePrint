@@ -40,7 +40,6 @@ dependencies {
     compile "com.jakewharton:butterknife:${project.ext.butterknifeVersion}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${project.ext.butterknifeVersion}"
 
-    compile "com.squareup.okhttp3:okhttp:${project.ext.okhttpVersion}"
     compile "com.squareup.okhttp3:logging-interceptor:${project.ext.okhttpVersion}"
     compile "com.squareup.retrofit2:retrofit:${project.ext.retrofitVersion}"
     compile "com.squareup.retrofit2:converter-gson:${project.ext.retrofitVersion}"
