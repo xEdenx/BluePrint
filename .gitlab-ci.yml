@@ -1,24 +1,13 @@
-language: android
-android:
-  components:
-    # Uncomment the lines below if you want to
-    # use the latest revision of Android SDK Tools
-    - platform-tools
-    - tools
+before_script:
+  - apt-get --quiet update --yes
+  - apt-get --quiet install --yes wget tar unzip openjdk-8-jdk lib32stdc++6 lib32z1
+  - wget --quiet --output-document=android-sdk.tgz https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
+  - tar --extract --gzip --file=android-sdk.tgz
+  - echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter platform-tools,tools,build-tools-24.0.1,android-24,extra-android-m2repository
+  - wget --quiet --output-document=gradle.zip https://services.gradle.org/distributions/gradle-2.13-bin.zip
+  - unzip -q gradle.zip
+  - export ANDROID_HOME=$PWD/android-sdk-linux
 
-    # The BuildTools version used by your project
-    - build-tools-24.0.1
-
-    # The SDK version used to compile your project
-    - android-24
-
-    # Additional components
-    - extra-google-m2repository
-    - extra-android-m2repository
-    - extra-android-support
-
-  licenses:
-     - 'android-sdk-license-.+'
-
-script:
-  - ./gradlew assembleRelease
+test:
+  script:
+    - gradle-2.13/bin/gradle build
