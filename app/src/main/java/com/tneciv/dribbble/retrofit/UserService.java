@@ -1,4 +1,4 @@
-package com.tneciv.dribbble.common;
+package com.tneciv.dribbble.retrofit;
 
 import com.tneciv.dribbble.entity.UserEntity;
 

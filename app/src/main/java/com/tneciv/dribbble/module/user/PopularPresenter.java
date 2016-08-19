@@ -1,8 +1,8 @@
 package com.tneciv.dribbble.module.user;
 
 import com.tneciv.dribbble.base.BasePresenterImpl;
-import com.tneciv.dribbble.common.UserService;
-import com.tneciv.dribbble.common.ApiServiceFactory;
+import com.tneciv.dribbble.retrofit.UserService;
+import com.tneciv.dribbble.retrofit.ApiServiceFactory;
 import com.tneciv.dribbble.entity.UserEntity;
 
 import rx.Observable;

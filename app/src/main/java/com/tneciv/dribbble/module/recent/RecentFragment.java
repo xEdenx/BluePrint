@@ -3,7 +3,6 @@ package com.tneciv.dribbble.module.recent;
 
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.tneciv.dribbble.R;
 import com.tneciv.dribbble.base.BaseListFragment;
 import com.tneciv.dribbble.entity.ShotEntity;
 
@@ -48,6 +47,13 @@ public class RecentFragment extends BaseListFragment implements RecentContract.V
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        mPresenter.unSubscribe();
+        recyclerAdapter = null;
+    }
+
+    @Override
     public void onRefresh() {
         showLoading();
         mPresenter.start();
@@ -82,7 +88,6 @@ public class RecentFragment extends BaseListFragment implements RecentContract.V
 
     @Override
     public void showEmptyView() {
-        setEmptyView(R.layout.nav_header_base);
     }
 
     @Override
@@ -90,5 +95,6 @@ public class RecentFragment extends BaseListFragment implements RecentContract.V
         currentPage = position / PAGE_SIZE + 1;
         mPresenter.loadMore(currentPage, PAGE_SIZE, totalRecord);
     }
+
 
 }

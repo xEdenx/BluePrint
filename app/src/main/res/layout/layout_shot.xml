@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_16dp">
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/userAvatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/dribbble"
+            app:layout_constraintBottom_toTopOf="@+id/shotImageContent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_constraintBottom_creator="1"
+            tools:layout_constraintTop_creator="1"/>
+
+        <ImageView
+            android:id="@+id/shotImageContent"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_marginTop="80dp"
+            android:background="@color/primaryLight"
+            android:scaleType="centerCrop"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_constraintTop_creator="1"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="18dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="5dp"
+            android:maxLines="1"
+            android:text="NameIsHereNaNameIsHereNaNameIsHereNaNameIsHereNaNameIsHereNa"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/userAvatar"
+            app:layout_constraintLeft_toRightOf="@+id/userAvatar"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/userAvatar"
+            app:layout_constraintVertical_bias="0.52"
+            tools:layout_constraintBottom_creator="1"
+            tools:layout_constraintLeft_creator="1"
+            tools:layout_constraintRight_creator="1"
+            tools:layout_constraintTop_creator="1"/>
+
+        <TextView
+            android:id="@+id/views"
+            android:layout_width="63dp"
+            android:layout_height="33dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginRight="48dp"
+            android:layout_marginTop="16dp"
+            android:text="views"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/comments"
+            app:layout_constraintRight_toLeftOf="@+id/likes"
+            app:layout_constraintTop_toBottomOf="@+id/shotImageContent"
+            app:layout_constraintVertical_bias="0.0"/>
+
+        <TextView
+            android:id="@+id/likes"
+            android:layout_width="62dp"
+            android:layout_height="33dp"
+            android:layout_marginEnd="48dp"
+            android:layout_marginRight="48dp"
+            android:layout_marginTop="16dp"
+            android:text="likes"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/comments"
+            app:layout_constraintRight_toLeftOf="@+id/comments"
+            app:layout_constraintTop_toBottomOf="@+id/shotImageContent"/>
+
+        <TextView
+            android:id="@+id/comments"
+            android:layout_width="60dp"
+            android:layout_height="33dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:text="comments"
+            android:textStyle="bold"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shotImageContent"/>
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

@@ -1,4 +1,4 @@
-package com.tneciv.dribbble.recent;
+package com.tneciv.dribbble.module.recent;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

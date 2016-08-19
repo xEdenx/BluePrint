@@ -16,10 +16,10 @@ import java.util.List;
 
 public abstract class BaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-    private Context mContext;
-    private LayoutInflater mInflater;
+    protected Context mContext;
+    protected LayoutInflater mInflater;
     protected List<T> dataList;
-    private PaginationListener mListener;
+    protected PaginationListener mListener;
 
     public BaseRecyclerAdapter(Context context, List<T> entities) {
         this.mContext = context;

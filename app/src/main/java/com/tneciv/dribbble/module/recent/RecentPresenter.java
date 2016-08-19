@@ -1,8 +1,8 @@
 package com.tneciv.dribbble.module.recent;
 
 import com.tneciv.dribbble.base.BasePresenterImpl;
-import com.tneciv.dribbble.common.ApiServiceFactory;
-import com.tneciv.dribbble.common.ShotService;
+import com.tneciv.dribbble.retrofit.ApiServiceFactory;
+import com.tneciv.dribbble.retrofit.ShotService;
 import com.tneciv.dribbble.entity.ShotEntity;
 
 import java.util.HashMap;
@@ -29,7 +29,7 @@ public class RecentPresenter extends BasePresenterImpl implements RecentContract
     @Override
     public void start() {
         HashMap<String, String> options = new HashMap<>();
-        options.put("sort", "recent");
+        options.put("sort", "views");
         options.put("page", "1");
         options.put("per_page", String.valueOf(PAGE_SIZE));
         getShotList(options);
@@ -41,7 +41,7 @@ public class RecentPresenter extends BasePresenterImpl implements RecentContract
         if (currentPage > totalRecord / pageSize) {
             mView.showLoading();
             HashMap<String, String> options = new HashMap<>();
-            options.put("sort", "recent");
+            options.put("sort", "views");
             options.put("page", String.valueOf(currentPage));
             options.put("per_page", String.valueOf(pageSize));
             getShotList(options);
@@ -71,6 +71,11 @@ public class RecentPresenter extends BasePresenterImpl implements RecentContract
                 mView.showList(shotEntities);
             }
         });
+    }
+
+    @Override
+    public void unSubscribe() {
+        super.onUnsubscribe();
     }
 
 }

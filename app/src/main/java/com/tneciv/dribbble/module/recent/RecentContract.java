@@ -26,5 +26,7 @@ interface RecentContract {
         void loadMore(int currentPage, int pageSize, int totalRecord);
 
         void getShotList(Map<String, String> options);
+
+        void unSubscribe();
     }
 }

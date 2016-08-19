@@ -404,15 +404,15 @@ public class ShotEntity implements Parcelable {
     }
 
     public static class ImagesBean {
-        private Object hidpi;
+        private String hidpi;
         private String normal;
         private String teaser;
 
-        public Object getHidpi() {
+        public String getHidpi() {
             return hidpi;
         }
 
-        public void setHidpi(Object hidpi) {
+        public void setHidpi(String hidpi) {
             this.hidpi = hidpi;
         }
 
