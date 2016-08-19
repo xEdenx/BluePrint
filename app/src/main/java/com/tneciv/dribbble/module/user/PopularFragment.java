@@ -1,4 +1,4 @@
-package com.tneciv.dribbble.module.main;
+package com.tneciv.dribbble.module.user;
 
 
 import android.os.Bundle;
@@ -17,11 +17,11 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PopularFragment extends Fragment implements MainContract.View {
+public class PopularFragment extends Fragment implements PopularContract.View {
 
     @BindView(R.id.tv_result)
     TextView tvResult;
-    private MainContract.Presenter mPresenter;
+    private PopularContract.Presenter mPresenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,7 +53,7 @@ public class PopularFragment extends Fragment implements MainContract.View {
     }
 
     @Override
-    public void setPresenter(MainContract.Presenter presenter) {
+    public void setPresenter(PopularContract.Presenter presenter) {
         mPresenter = presenter;
     }
 }

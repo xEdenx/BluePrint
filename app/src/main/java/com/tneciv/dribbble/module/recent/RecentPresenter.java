@@ -1,6 +1,4 @@
-package com.tneciv.dribbble.module.shot;
-
-import android.util.Log;
+package com.tneciv.dribbble.module.recent;
 
 import com.tneciv.dribbble.base.BasePresenterImpl;
 import com.tneciv.dribbble.common.ApiServiceFactory;
@@ -19,12 +17,11 @@ import static com.tneciv.dribbble.common.Constants.PAGE_SIZE;
  * Created by Tneciv
  * on 2016-08-17 18:20 .
  */
-public class ShotPresenter extends BasePresenterImpl implements ShotContract.Presenter {
+public class RecentPresenter extends BasePresenterImpl implements RecentContract.Presenter {
 
+    private RecentContract.View mView;
 
-    private ShotContract.View mView;
-
-    public ShotPresenter(ShotContract.View mView) {
+    public RecentPresenter(RecentContract.View mView) {
         this.mView = mView;
         mView.setPresenter(this);
     }
@@ -39,18 +36,16 @@ public class ShotPresenter extends BasePresenterImpl implements ShotContract.Pre
     }
 
     @Override
-    public void loadMore(int position, int currentPage, int pageSize, int totalRecord) {
+    public void loadMore(int currentPage, int pageSize, int totalRecord) {
 
-        if (currentPage > totalRecord / PAGE_SIZE) {
+        if (currentPage > totalRecord / pageSize) {
+            mView.showLoading();
             HashMap<String, String> options = new HashMap<>();
             options.put("sort", "recent");
             options.put("page", String.valueOf(currentPage));
-            options.put("per_page", String.valueOf(PAGE_SIZE));
-            mView.showLoading();
+            options.put("per_page", String.valueOf(pageSize));
             getShotList(options);
         }
-
-        Log.d("ShotFragment", "position:" + position + ", currentPage:" + currentPage + ", PAGE_SIZE:" + PAGE_SIZE + ", totalRecord:" + totalRecord);
 
     }
 
@@ -67,6 +62,7 @@ public class ShotPresenter extends BasePresenterImpl implements ShotContract.Pre
             @Override
             public void onError(Throwable e) {
                 mView.hideLoading();
+                mView.showEmptyView();
             }
 
             @Override
@@ -76,4 +72,5 @@ public class ShotPresenter extends BasePresenterImpl implements ShotContract.Pre
             }
         });
     }
+
 }

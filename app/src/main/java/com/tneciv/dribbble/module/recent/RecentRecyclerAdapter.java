@@ -1,4 +1,4 @@
-package com.tneciv.dribbble.module.shot;
+package com.tneciv.dribbble.module.recent;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -22,9 +22,9 @@ import butterknife.ButterKnife;
  * on 2016-08-19 15:05 .
  */
 
-class ShotRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, ShotRecyclerAdapter.ItemViewHolder> {
+class RecentRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecentRecyclerAdapter.ItemViewHolder> {
 
-    ShotRecyclerAdapter(Context context, List<ShotEntity> entities) {
+    RecentRecyclerAdapter(Context context, List<ShotEntity> entities) {
         super(context, entities);
     }
 

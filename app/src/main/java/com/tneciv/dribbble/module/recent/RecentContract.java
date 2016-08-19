@@ -1,4 +1,4 @@
-package com.tneciv.dribbble.module.shot;
+package com.tneciv.dribbble.module.recent;
 
 import com.tneciv.dribbble.base.BasePresenter;
 import com.tneciv.dribbble.base.BaseView;
@@ -11,17 +11,19 @@ import java.util.Map;
  * on 2016-08-14 16:00 .
  */
 
-interface ShotContract {
+interface RecentContract {
     interface View extends BaseView<Presenter> {
         void showList(ShotEntity[] shotEntities);
 
         void showLoading();
 
         void hideLoading();
+
+        void showEmptyView();
     }
 
     interface Presenter extends BasePresenter {
-        void loadMore(int position, int currentPage, int pageSize, int totalRecord);
+        void loadMore(int currentPage, int pageSize, int totalRecord);
 
         void getShotList(Map<String, String> options);
     }

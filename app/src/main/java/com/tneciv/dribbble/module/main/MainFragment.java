@@ -4,14 +4,18 @@ package com.tneciv.dribbble.module.main;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.tneciv.dribbble.R;
-import com.tneciv.dribbble.module.shot.ShotFragment;
-import com.tneciv.dribbble.module.shot.ShotPresenter;
+import com.tneciv.dribbble.module.recent.RecentFragment;
+import com.tneciv.dribbble.module.recent.RecentPresenter;
+import com.tneciv.dribbble.module.user.PopularFragment;
+import com.tneciv.dribbble.module.user.PopularPresenter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +26,6 @@ import butterknife.ButterKnife;
 
 public class MainFragment extends Fragment {
 
-
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
     @BindView(R.id.viewPager)
@@ -30,30 +33,6 @@ public class MainFragment extends Fragment {
 
     public MainFragment() {
     }
-
-    /*
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private String mParam1;
-    private String mParam2;
-    public static MainFragment newInstance(String param1, String param2) {
-    MainFragment fragment = new MainFragment();
-    Bundle args = new Bundle();
-    args.putString(ARG_PARAM1, param1);
-    args.putString(ARG_PARAM2, param2);
-    fragment.setArguments(args);
-    return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-    */
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,17 +46,41 @@ public class MainFragment extends Fragment {
     }
 
     private void initViewPager() {
-        Fragment[] fragments = {new ShotFragment(), new PopularFragment()};
+        Fragment[] fragments = {new RecentFragment(), new PopularFragment()};
         List<Fragment> fragmentList = Arrays.asList(fragments);
-        String[] titles = {"AAA", "BBB"};
-        MainPagerAdapter pagerAdapter = new MainPagerAdapter(getChildFragmentManager(), fragmentList, titles);
+        int[] tabIcons = {R.drawable.ic_explore, R.drawable.ic_extension};
+        PagerAdapter pagerAdapter = new PagerAdapter(getChildFragmentManager(), fragmentList);
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setupWithViewPager(viewPager);
 
-        new ShotPresenter((ShotFragment) pagerAdapter.getItem(0));
-        new MainPresenter((PopularFragment) pagerAdapter.getItem(1));
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            tabLayout.getTabAt(i).setIcon(tabIcons[i]);
+        }
+
+        new RecentPresenter((RecentFragment) pagerAdapter.getItem(0));
+        new PopularPresenter((PopularFragment) pagerAdapter.getItem(1));
+    }
+
+    class PagerAdapter extends FragmentStatePagerAdapter {
+
+        private List<Fragment> fragmentList;
+
+        PagerAdapter(FragmentManager fm, List<Fragment> list) {
+            super(fm);
+            this.fragmentList = list;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentList.size();
+        }
     }
 
 }

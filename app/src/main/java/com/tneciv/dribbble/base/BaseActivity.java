@@ -21,8 +21,8 @@ import android.widget.FrameLayout;
 import com.tneciv.dribbble.R;
 import com.tneciv.dribbble.module.main.MainFragment;
 import com.tneciv.dribbble.module.other.OtherFragment;
-import com.tneciv.dribbble.module.shot.ShotFragment;
-import com.tneciv.dribbble.module.shot.ShotPresenter;
+import com.tneciv.dribbble.module.recent.RecentFragment;
+import com.tneciv.dribbble.module.recent.RecentPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -117,10 +117,10 @@ public abstract class BaseActivity extends AppCompatActivity
             replaceFragment(new OtherFragment());
             Log.d("BaseActivity", "otherFragment click");
         } else if (id == R.id.nav_slideshow) {
-            ShotFragment shotFragment = new ShotFragment();
-            replaceFragment(shotFragment);
-            new ShotPresenter(shotFragment);
-            Log.d("BaseActivity", "shotFragment click");
+            RecentFragment recentFragment = new RecentFragment();
+            replaceFragment(recentFragment);
+            new RecentPresenter(recentFragment);
+            Log.d("BaseActivity", "recentFragment click");
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

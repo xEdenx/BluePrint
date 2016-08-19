@@ -1,4 +1,4 @@
-package com.tneciv.dribbble.module.main;
+package com.tneciv.dribbble.module.user;
 
 import com.tneciv.dribbble.base.BasePresenter;
 import com.tneciv.dribbble.base.BaseView;
@@ -8,7 +8,7 @@ import com.tneciv.dribbble.base.BaseView;
  * on 2016-08-14 16:00 .
  */
 
-interface MainContract {
+interface PopularContract {
     interface View extends BaseView<Presenter> {
         void showResponse(String response);
     }

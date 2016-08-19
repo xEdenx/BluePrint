@@ -1,4 +1,4 @@
-package com.tneciv.dribbble.module.main;
+package com.tneciv.dribbble.module.user;
 
 import com.tneciv.dribbble.base.BasePresenterImpl;
 import com.tneciv.dribbble.common.UserService;
@@ -13,10 +13,10 @@ import rx.Subscriber;
  * on 2016-08-14 16:02 .
  */
 
-class MainPresenter extends BasePresenterImpl implements MainContract.Presenter {
-    private MainContract.View mView;
+public class PopularPresenter extends BasePresenterImpl implements PopularContract.Presenter {
+    private PopularContract.View mView;
 
-    MainPresenter(MainContract.View view) {
+    public PopularPresenter(PopularContract.View view) {
         this.mView = view;
         mView.setPresenter(this);
     }

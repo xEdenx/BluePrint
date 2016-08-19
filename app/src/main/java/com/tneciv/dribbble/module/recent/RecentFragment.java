@@ -1,9 +1,9 @@
-package com.tneciv.dribbble.module.shot;
+package com.tneciv.dribbble.module.recent;
 
 
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.tneciv.dribbble.R;
 import com.tneciv.dribbble.base.BaseListFragment;
 import com.tneciv.dribbble.entity.ShotEntity;
 
@@ -15,13 +15,15 @@ import static com.tneciv.dribbble.common.Constants.PAGE_SIZE;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by Tneciv
+ * on 2016-08-14 16:00 .
+ * A fragment to show shots list .
  */
-public class ShotFragment extends BaseListFragment implements ShotContract.View, ShotRecyclerAdapter.PaginationListener {
+public class RecentFragment extends BaseListFragment implements RecentContract.View, RecentRecyclerAdapter.PaginationListener {
 
-    private ShotContract.Presenter mPresenter;
+    private RecentContract.Presenter mPresenter;
     private List<ShotEntity> list;
-    private ShotRecyclerAdapter recyclerAdapter;
+    private RecentRecyclerAdapter recyclerAdapter;
 
     private boolean isCreated;
 
@@ -33,13 +35,13 @@ public class ShotFragment extends BaseListFragment implements ShotContract.View,
         }
     }
 
-    public ShotFragment() {
+    public RecentFragment() {
     }
 
     @Override
     protected void initRecyclerView() {
         list = new ArrayList<>();
-        recyclerAdapter = new ShotRecyclerAdapter(getActivity(), list);
+        recyclerAdapter = new RecentRecyclerAdapter(getActivity(), list);
         recyclerAdapter.addPaginationListener(this);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -52,7 +54,7 @@ public class ShotFragment extends BaseListFragment implements ShotContract.View,
     }
 
     @Override
-    public void setPresenter(ShotContract.Presenter presenter) {
+    public void setPresenter(RecentContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -79,9 +81,14 @@ public class ShotFragment extends BaseListFragment implements ShotContract.View,
     }
 
     @Override
+    public void showEmptyView() {
+        setEmptyView(R.layout.nav_header_base);
+    }
+
+    @Override
     public void onLoad(int position) {
         currentPage = position / PAGE_SIZE + 1;
-        mPresenter.loadMore(position, currentPage, PAGE_SIZE, totalRecord);
+        mPresenter.loadMore(currentPage, PAGE_SIZE, totalRecord);
     }
 
 }
