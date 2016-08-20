@@ -23,10 +23,9 @@ interface RecentContract {
     }
 
     interface Presenter extends BasePresenter {
-        void loadMore(int currentPage, int pageSize, int totalRecord);
+        void loadMore(int currentPage, int pageSize, int totalRecord, String sortType);
 
         void getShotList(Map<String, String> options);
 
-        void unSubscribe();
     }
 }

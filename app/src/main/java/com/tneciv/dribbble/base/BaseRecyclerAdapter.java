@@ -42,7 +42,7 @@ public abstract class BaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder>
     public void onBindViewHolder(VH holder, int position) {
         bindItemView(holder, position);
         if (mListener != null) {
-            mListener.onLoad(position + 1);
+            mListener.onChange(position + 1);
         }
     }
 
@@ -51,11 +51,14 @@ public abstract class BaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder>
     }
 
     public void removePaginationListener() {
+        this.mInflater = null;
+        this.mContext = null;
         this.mListener = null;
     }
 
+    @FunctionalInterface
     public interface PaginationListener {
-        void onLoad(int position);
+        void onChange(int position);
     }
 
 }

@@ -43,7 +43,7 @@ class RecentRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecentRecycl
         holder.comments.setText(checkInteger(entity.getComments_count()));
         holder.likes.setText(checkInteger(entity.getLikes_count()));
         holder.name.setText(name);
-        holder.views.setText(checkInteger(entity.getLikes_count()));
+        holder.views.setText(checkInteger(entity.getViews_count()));
         if (!TextUtils.isEmpty(avatarUrl)) {
             Picasso.with(mContext).load(avatarUrl).transform(new CircleTransform()).into(holder.userAvatar);
         }

@@ -22,7 +22,7 @@ public class PopularPresenter extends BasePresenterImpl implements PopularContra
     }
 
     @Override
-    public void start() {
+    public void subscribe() {
         UserService apiService = ApiServiceFactory.getInstance().create(UserService.class);
         Observable<UserEntity> user = apiService.getUser("simplebits");
         addSubscription(user, new Subscriber<UserEntity>() {
@@ -45,7 +45,7 @@ public class PopularPresenter extends BasePresenterImpl implements PopularContra
     }
 
     @Override
-    public void unSubscribe() {
+    public void unsubscribe() {
         super.onUnsubscribe();
     }
 }

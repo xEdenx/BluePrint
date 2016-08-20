@@ -7,5 +7,7 @@ package com.tneciv.dribbble.base;
  */
 
 public interface BasePresenter {
-    void start();
+    void subscribe();
+
+    void unsubscribe();
 }

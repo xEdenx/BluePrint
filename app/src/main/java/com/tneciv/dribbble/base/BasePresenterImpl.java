@@ -20,13 +20,14 @@ public class BasePresenterImpl {
      * RxJava 取消注册，以避免内存泄露
      * call in Activity.onDestory() or Fragment.detachView()
      */
-    public void onUnsubscribe() {
+    protected void onUnsubscribe() {
         if (mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {
             mCompositeSubscription.unsubscribe();
+            mCompositeSubscription.clear();
         }
     }
 
-    public  <T> void addSubscription(Observable<T> observable, Subscriber<T> subscriber) {
+    protected <T> void addSubscription(Observable<T> observable, Subscriber<T> subscriber) {
         if (mCompositeSubscription == null) {
             mCompositeSubscription = new CompositeSubscription();
         }

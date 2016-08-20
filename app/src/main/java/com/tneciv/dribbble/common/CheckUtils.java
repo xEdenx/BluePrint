@@ -8,6 +8,7 @@ import android.text.TextUtils;
  */
 
 public class CheckUtils {
+
     public static String checkString(String str) {
         if (TextUtils.isEmpty(str)) {
             return "NA";
@@ -23,4 +24,5 @@ public class CheckUtils {
     public static String checkInteger(int integer) {
         return integer + "";
     }
+
 }

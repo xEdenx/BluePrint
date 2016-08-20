@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.tneciv.dribbble.common.Constants.PAGE_SIZE;
+import static com.tneciv.dribbble.common.Constants.SORT_TYPE_VIEWS;
 
 
 /**
@@ -49,14 +50,15 @@ public class RecentFragment extends BaseListFragment implements RecentContract.V
     @Override
     public void onDetach() {
         super.onDetach();
-        mPresenter.unSubscribe();
+        mPresenter.unsubscribe();
+        recyclerAdapter.removePaginationListener();
         recyclerAdapter = null;
     }
 
     @Override
     public void onRefresh() {
         showLoading();
-        mPresenter.start();
+        mPresenter.subscribe();
     }
 
     @Override
@@ -91,9 +93,9 @@ public class RecentFragment extends BaseListFragment implements RecentContract.V
     }
 
     @Override
-    public void onLoad(int position) {
+    public void onChange(int position) {
         currentPage = position / PAGE_SIZE + 1;
-        mPresenter.loadMore(currentPage, PAGE_SIZE, totalRecord);
+        mPresenter.loadMore(currentPage, PAGE_SIZE, totalRecord, SORT_TYPE_VIEWS);
     }
 
 

@@ -34,13 +34,13 @@ public class PopularFragment extends Fragment implements PopularContract.View {
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.start();
+        mPresenter.subscribe();
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mPresenter.unSubscribe();
+        mPresenter.unsubscribe();
     }
 
     public PopularFragment() {

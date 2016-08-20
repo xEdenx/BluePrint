@@ -14,6 +14,5 @@ interface PopularContract {
     }
 
     interface Presenter extends BasePresenter {
-        void unSubscribe();
     }
 }

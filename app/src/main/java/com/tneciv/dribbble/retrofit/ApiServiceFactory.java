@@ -42,6 +42,9 @@ public class ApiServiceFactory {
                         builder.addInterceptor(loggingInterceptor);
                     }
 
+                    /**
+                     * Okhttp 请求拦截器
+                     */
                     Interceptor mTokenInterceptor = chain -> {
                         Request originalRequest = chain.request();
                         Request authorised = originalRequest.newBuilder()

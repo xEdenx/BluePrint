@@ -3,6 +3,7 @@ package com.tneciv.dribbble;
 import android.app.Application;
 
 import com.squareup.leakcanary.LeakCanary;
+import com.tneciv.dribbble.common.IMMLeaks;
 
 /**
  * Created by Tneciv
@@ -14,5 +15,6 @@ public class BluePrintApp extends Application {
     public void onCreate() {
         super.onCreate();
         LeakCanary.install(this);
+        IMMLeaks.fixFocusedViewLeak(this);
     }
 }
