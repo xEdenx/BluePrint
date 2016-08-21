@@ -28,6 +28,7 @@ public class PopularFragment extends Fragment implements PopularContract.View {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_popular, container, false);
         ButterKnife.bind(this, view);
+
         return view;
     }
 

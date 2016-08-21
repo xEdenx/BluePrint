@@ -1,10 +1,13 @@
 package com.tneciv.blueprint.base;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,10 +50,18 @@ public abstract class BaseListFragment extends Fragment implements SwipeRefreshL
 
         refreshLayout.setOnRefreshListener(this);
         recyclerView.setHasFixedSize(true);
-
+        initView();
         initRecyclerView();
 
         return view;
+    }
+
+    protected void initView() {
+
+    }
+
+    protected ActionBar getToolbar(Activity activity) {
+        return ((AppCompatActivity) activity).getSupportActionBar();
     }
 
     protected abstract void initRecyclerView();

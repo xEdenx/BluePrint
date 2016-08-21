@@ -31,7 +31,6 @@ import static com.tneciv.blueprint.common.CheckUtils.friendlyTime;
 
 class RecentRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecentRecyclerAdapter.ItemViewHolder> {
 
-
     RecentRecyclerAdapter(Context context, List<ShotEntity> entities) {
         super(context, entities);
     }
@@ -44,6 +43,16 @@ class RecentRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecentRecycl
         String avatarUrl = entity.getUser().getAvatar_url();
         String updatedAt = convert2LocalTime(entity.getUpdated_at());
         updatedAt = friendlyTime(updatedAt);
+        int attachmentsCount = entity.getAttachments_count();
+
+        if (attachmentsCount == 0) {
+            holder.attachImg.setVisibility(View.GONE);
+            holder.attactCount.setVisibility(View.GONE);
+        } else {
+            holder.attachImg.setVisibility(View.VISIBLE);
+            holder.attactCount.setVisibility(View.VISIBLE);
+            holder.attactCount.setText(checkInteger(attachmentsCount));
+        }
 
         holder.title.setText(checkString(entity.getTitle()));
         holder.name.setText(checkString(entity.getUser().getName()));
@@ -61,7 +70,7 @@ class RecentRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecentRecycl
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = inflateItemView(R.layout.layout_shot, parent);
+        View itemView = inflateItemView(R.layout.layout_shot_item, parent);
         return new ItemViewHolder(itemView);
     }
 
@@ -83,6 +92,10 @@ class RecentRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecentRecycl
         TextView title;
         @BindView(R.id.updateTime)
         TextView updateTime;
+        @BindView(R.id.attachImg)
+        ImageView attachImg;
+        @BindView(R.id.attactCount)
+        TextView attactCount;
 
         ItemViewHolder(View itemView) {
             super(itemView);
