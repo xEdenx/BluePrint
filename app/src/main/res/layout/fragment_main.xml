@@ -3,7 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="com.tneciv.dribbble.module.main.MainFragment">
+              tools:context=".module.main.MainFragment">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
