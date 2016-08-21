@@ -3,13 +3,46 @@
                                               android:id="@+id/refreshLayout"
                                               android:layout_width="match_parent"
                                               android:layout_height="match_parent"
-                                              tools:context=".module.other.OtherFragment">
+                                              tools:context=".module.other.EmptyFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/margin_16dp"
-        android:scrollbars="vertical"/>
+        android:orientation="vertical">
+
+        <com.tneciv.blueprint.widget.BluePrintRecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/margin_16dp"
+            android:scrollbars="vertical"/>
+
+        <RelativeLayout
+            android:id="@+id/emptyView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/emptyImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_empty_light"/>
+
+            <Button
+                android:id="@+id/btnEmpty"
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emptyImg"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:text="empty ..."/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </android.support.v4.widget.SwipeRefreshLayout>

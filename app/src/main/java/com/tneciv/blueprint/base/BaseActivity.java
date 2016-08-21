@@ -21,7 +21,8 @@ import android.widget.FrameLayout;
 
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.module.main.MainFragment;
-import com.tneciv.blueprint.module.other.OtherFragment;
+import com.tneciv.blueprint.module.other.EmptyFragment;
+import com.tneciv.blueprint.module.other.EmptyPresenter;
 import com.tneciv.blueprint.module.recent.RecentFragment;
 import com.tneciv.blueprint.module.recent.RecentPresenter;
 
@@ -122,8 +123,10 @@ public abstract class BaseActivity extends AppCompatActivity
             replaceFragment(new MainFragment());
             Log.d("BaseActivity", "mainFragment click");
         } else if (id == R.id.nav_gallery) {
-            replaceFragment(new OtherFragment());
-            Log.d("BaseActivity", "otherFragment click");
+            EmptyFragment emptyFragment = new EmptyFragment();
+            replaceFragment(emptyFragment);
+            new EmptyPresenter(emptyFragment);
+            Log.d("BaseActivity", "emptyFragment click");
         } else if (id == R.id.nav_slideshow) {
             RecentFragment recentFragment = new RecentFragment();
             replaceFragment(recentFragment);

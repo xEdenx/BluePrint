@@ -7,11 +7,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.tneciv.blueprint.R;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -19,8 +17,6 @@ import butterknife.ButterKnife;
  */
 public class PopularFragment extends Fragment implements PopularContract.View {
 
-    @BindView(R.id.tv_result)
-    TextView tvResult;
     private PopularContract.Presenter mPresenter;
 
     @Override
@@ -50,7 +46,6 @@ public class PopularFragment extends Fragment implements PopularContract.View {
     @Override
     public void showResponse(String response) {
         Log.d("PopularFragment", response);
-        tvResult.setText(response);
     }
 
     @Override

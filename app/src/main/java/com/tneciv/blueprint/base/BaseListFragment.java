@@ -8,12 +8,15 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.tneciv.blueprint.R;
+import com.tneciv.blueprint.widget.BluePrintRecyclerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,9 +30,13 @@ import butterknife.ButterKnife;
 public abstract class BaseListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.recyclerView)
-    public RecyclerView recyclerView;
+    public BluePrintRecyclerView recyclerView;
     @BindView(R.id.refreshLayout)
     public SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.emptyView)
+    public RelativeLayout emptyView;
+    @BindView(R.id.btnEmpty)
+    public Button btnEmpty;
 
     public int currentPage;
     public int totalRecord;
@@ -50,6 +57,7 @@ public abstract class BaseListFragment extends Fragment implements SwipeRefreshL
 
         refreshLayout.setOnRefreshListener(this);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setEmptyView(emptyView);
         initView();
         initRecyclerView();
 
@@ -57,7 +65,8 @@ public abstract class BaseListFragment extends Fragment implements SwipeRefreshL
     }
 
     protected void initView() {
-
+        btnEmpty.setText("loading ...");
+        btnEmpty.setOnClickListener(view -> Toast.makeText(getActivity(), "oh ...", Toast.LENGTH_SHORT).show());
     }
 
     protected ActionBar getToolbar(Activity activity) {

@@ -1,8 +1,9 @@
-package com.tneciv.blueprint.module.recent;
+package com.tneciv.blueprint.module.other;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,7 +11,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.tneciv.blueprint.R;
-import com.tneciv.blueprint.base.BaseRecyclerAdapter;
 import com.tneciv.blueprint.entity.ShotEntity;
 import com.tneciv.blueprint.widget.CircleTransform;
 
@@ -26,18 +26,30 @@ import static com.tneciv.blueprint.common.CheckUtils.friendlyTime;
 
 /**
  * Created by Tneciv
- * on 2016-08-19 15:05 .
+ * on 2016-08-21 23:18 .
  */
 
-class RecentRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecentRecyclerAdapter.ItemViewHolder> {
+public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> {
 
-    RecentRecyclerAdapter(Context context, List<ShotEntity> entities) {
-        super(context, entities);
+    public List<ShotEntity> list;
+    private Context mContext;
+
+    public EmptyAdapter(Context context, List<ShotEntity> attractions) {
+        super();
+        mContext = context;
+        list = attractions;
     }
 
     @Override
-    protected void bindItemView(ItemViewHolder holder, int position) {
-        ShotEntity entity = dataList.get(position);
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        View view = inflater.inflate(R.layout.layout_shot_item, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        ShotEntity entity = list.get(position);
         String imageHidpi = entity.getImages().getHidpi();
         String imageNormal = entity.getImages().getNormal();
         String avatarUrl = entity.getUser().getAvatar_url();
@@ -75,12 +87,16 @@ class RecentRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecentRecycl
     }
 
     @Override
-    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = inflateItemView(R.layout.layout_shot_item, parent);
-        return new ItemViewHolder(itemView);
+    public long getItemId(int position) {
+        return position;
     }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder {
+    @Override
+    public int getItemCount() {
+        return list == null ? 0 : list.size();
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.userAvatar)
         ImageView userAvatar;
@@ -103,10 +119,11 @@ class RecentRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecentRecycl
         @BindView(R.id.attactCount)
         TextView attactCount;
 
-        ItemViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+
     }
 
 }
