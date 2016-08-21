@@ -13,7 +13,3 @@
 # TODO
 
 * Too many things ...
-
-# LICENSE
-
-
