@@ -22,6 +22,8 @@ android:
 
   licenses:
      - 'android-sdk-license-.+'
+     - 'android-sdk-preview-license-.+'
+     - 'google-gdk-license-.+'
 
 script:
   - ./gradlew assembleRelease
