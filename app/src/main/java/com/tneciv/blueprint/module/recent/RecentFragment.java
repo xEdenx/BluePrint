@@ -52,7 +52,6 @@ public class RecentFragment extends BaseListFragment implements RecentContract.V
         super.onDetach();
         mPresenter.unsubscribe();
         recyclerAdapter.removePaginationListener();
-        recyclerAdapter = null;
     }
 
     @Override

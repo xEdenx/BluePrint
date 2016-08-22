@@ -57,7 +57,7 @@ public abstract class BaseListFragment extends Fragment implements SwipeRefreshL
 
         refreshLayout.setOnRefreshListener(this);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setEmptyView(emptyView);
+
         initView();
         initRecyclerView();
 
@@ -65,6 +65,7 @@ public abstract class BaseListFragment extends Fragment implements SwipeRefreshL
     }
 
     protected void initView() {
+        recyclerView.setEmptyView(emptyView);
         btnEmpty.setText("loading ...");
         btnEmpty.setOnClickListener(view -> Toast.makeText(getActivity(), "oh ...", Toast.LENGTH_SHORT).show());
     }
