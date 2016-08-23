@@ -1,6 +1,7 @@
 language: android
 
-jdk: oraclejdk8
+jdk:
+  - oraclejdk8
 
 android:
   components:
@@ -27,3 +28,8 @@ android:
 
 script:
   - ./gradlew assembleRelease
+
+cache:
+  directories:
+    - $HOME/.m2
+    - $HOME/.gradle
