@@ -22,9 +22,12 @@ android:
     - extra-android-support
 
   licenses:
-     - 'android-sdk-license-.+'
-     - 'android-sdk-preview-license-.+'
-     - 'google-gdk-license-.+'
+    - 'android-sdk-license-.+'
+    - 'android-sdk-preview-license-.+'
+    - 'google-gdk-license-.+'
+
+notifications:
+  email: false
 
 script:
   - ./gradlew assembleRelease
