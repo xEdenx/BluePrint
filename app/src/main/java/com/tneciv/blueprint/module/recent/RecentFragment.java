@@ -56,7 +56,7 @@ public class RecentFragment extends BaseListFragment implements RecentContract.V
 
     @Override
     public void onRefresh() {
-        showLoading();
+        //showLoading();
         mPresenter.subscribe();
     }
 
@@ -88,7 +88,7 @@ public class RecentFragment extends BaseListFragment implements RecentContract.V
     }
 
     @Override
-    public void showEmptyView() {
+    public void showError() {
     }
 
     @Override

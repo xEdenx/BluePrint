@@ -19,13 +19,12 @@ interface RecentContract {
 
         void hideLoading();
 
-        void showEmptyView();
+        void showError();
     }
 
     interface Presenter extends BasePresenter {
         void loadMore(int currentPage, int pageSize, int totalRecord, String sortType);
 
         void getShotList(Map<String, String> options);
-
     }
 }

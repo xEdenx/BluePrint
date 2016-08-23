@@ -47,7 +47,6 @@ public class RecentPresenter extends BasePresenterImpl implements RecentContract
     @Override
     public void loadMore(int currentPage, int pageSize, int totalRecord, String sortType) {
         if (currentPage > totalRecord / pageSize) {
-            mView.showLoading();
             Map<String, String> options = new HashMap<>();
             options.put(SORT, sortType);
             options.put(PAGE, String.valueOf(currentPage));
@@ -58,6 +57,7 @@ public class RecentPresenter extends BasePresenterImpl implements RecentContract
 
     @Override
     public void getShotList(Map<String, String> options) {
+        mView.showLoading();
         ShotService shotService = ApiServiceFactory.getInstance().create(ShotService.class);
         Observable<ShotEntity[]> shotList = shotService.getShotListWithQueryMap(options);
         super.addSubscription(shotList, new Subscriber<ShotEntity[]>() {
@@ -69,7 +69,7 @@ public class RecentPresenter extends BasePresenterImpl implements RecentContract
             @Override
             public void onError(Throwable e) {
                 mView.hideLoading();
-                mView.showEmptyView();
+                mView.showError();
             }
 
             @Override
