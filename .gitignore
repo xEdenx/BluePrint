@@ -46,7 +46,6 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 ### Android template
 # Built application files
-*.ap_
 
 
 # Java class files
@@ -98,3 +97,5 @@ _book
 *.epub
 *.mobi
 *.pdf
+
+*.apk

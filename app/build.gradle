@@ -4,26 +4,53 @@ apply from: "../common/constants.gradle"
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
+
     defaultConfig {
         applicationId "com.tneciv.blueprint"
         minSdkVersion 14
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode 20160823
+        versionName "0.01-β"
         jackOptions {
             enabled true
         }
     }
+
+    signingConfigs {
+        debug {
+            // No debug config
+        }
+        release {
+            storeFile file("D:\\Workplace\\Android\\com.tneciv.jks")
+            storePassword "superdemo"
+            keyAlias "com.tneciv"
+            keyPassword "superdemo"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        // def app name
+        project.archivesBaseName = "BluePrint";
+
+        // add versionname to apk
+        applicationVariants.all { variant ->
+            variant.outputs.each { output ->
+                def oldFile = output.outputFile
+                output.outputFile = new File(oldFile.parent, oldFile.name.replace(".apk", "-" + defaultConfig.versionName + ".apk"))
+            }
+        }
     }
+
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
