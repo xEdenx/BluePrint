@@ -1,6 +1,8 @@
-package com.tneciv.blueprint.module.recent;
+package com.tneciv.blueprint.module.list;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,13 +13,16 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.base.BaseRecyclerAdapter;
+import com.tneciv.blueprint.common.Constants;
 import com.tneciv.blueprint.entity.ShotEntity;
+import com.tneciv.blueprint.module.shot.ShotActivity;
 import com.tneciv.blueprint.widget.CircleTransform;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.tneciv.blueprint.common.CheckUtils.checkInteger;
 import static com.tneciv.blueprint.common.CheckUtils.checkString;
@@ -29,9 +34,9 @@ import static com.tneciv.blueprint.common.CheckUtils.friendlyTime;
  * on 2016-08-19 15:05 .
  */
 
-class RecentRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecentRecyclerAdapter.ItemViewHolder> {
+class ListRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, ListRecyclerAdapter.ItemViewHolder> {
 
-    RecentRecyclerAdapter(Context context, List<ShotEntity> entities) {
+    ListRecyclerAdapter(Context context, List<ShotEntity> entities) {
         super(context, entities);
     }
 
@@ -107,6 +112,18 @@ class RecentRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecentRecycl
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+
+        @OnClick(R.id.cardView)
+        void gotoDetail(View view) {
+            int position = getLayoutPosition();
+            ShotEntity entity = dataList.get(position);
+            Intent intent = new Intent(view.getContext(), ShotActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(Constants.SHOT_ENTITY, entity);
+            intent.putExtras(bundle);
+            view.getContext().startActivity(intent);
+        }
+
     }
 
 }

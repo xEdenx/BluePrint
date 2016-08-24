@@ -1,7 +1,7 @@
-package com.tneciv.blueprint.module.recent;
+package com.tneciv.blueprint.module.list;
 
-import com.tneciv.blueprint.base.BasePresenter;
-import com.tneciv.blueprint.base.BaseView;
+import com.tneciv.blueprint.BasePresenter;
+import com.tneciv.blueprint.BaseView;
 import com.tneciv.blueprint.entity.ShotEntity;
 
 import java.util.Map;
@@ -11,7 +11,7 @@ import java.util.Map;
  * on 2016-08-14 16:00 .
  */
 
-interface RecentContract {
+interface ListContract {
     interface View extends BaseView<Presenter> {
         void showList(ShotEntity[] shotEntities);
 

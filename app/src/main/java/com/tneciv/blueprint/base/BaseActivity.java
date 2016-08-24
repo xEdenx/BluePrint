@@ -22,8 +22,8 @@ import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.module.main.MainFragment;
 import com.tneciv.blueprint.module.other.EmptyFragment;
 import com.tneciv.blueprint.module.other.EmptyPresenter;
-import com.tneciv.blueprint.module.recent.RecentFragment;
-import com.tneciv.blueprint.module.recent.RecentPresenter;
+import com.tneciv.blueprint.module.list.ListFragment;
+import com.tneciv.blueprint.module.list.ListPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -121,10 +121,10 @@ public abstract class BaseActivity extends AppCompatActivity
             new EmptyPresenter(emptyFragment);
             Log.d("BaseActivity", "emptyFragment click");
         } else if (id == R.id.nav_slideshow) {
-            RecentFragment recentFragment = new RecentFragment();
-            replaceFragment(recentFragment);
-            new RecentPresenter(recentFragment);
-            Log.d("BaseActivity", "recentFragment click");
+            ListFragment listFragment = new ListFragment();
+            replaceFragment(listFragment);
+            new ListPresenter(listFragment);
+            Log.d("BaseActivity", "listFragment click");
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

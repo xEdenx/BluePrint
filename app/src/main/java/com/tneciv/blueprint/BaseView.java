@@ -1,4 +1,4 @@
-package com.tneciv.blueprint.base;
+package com.tneciv.blueprint;
 
 /**
  * Created by Tneciv

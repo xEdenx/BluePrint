@@ -1,7 +1,7 @@
 package com.tneciv.blueprint.module.other;
 
-import com.tneciv.blueprint.base.BasePresenter;
-import com.tneciv.blueprint.base.BaseView;
+import com.tneciv.blueprint.BasePresenter;
+import com.tneciv.blueprint.BaseView;
 import com.tneciv.blueprint.entity.ShotEntity;
 
 import java.util.Map;

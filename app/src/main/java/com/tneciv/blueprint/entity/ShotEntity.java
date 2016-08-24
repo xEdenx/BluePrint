@@ -10,32 +10,33 @@ import java.util.List;
  * on 2016-08-15 18:17 .
  */
 public class ShotEntity implements Parcelable {
+
     /**
-     * id : 471756
-     * title : Sasquatch
-     * description : <p>Quick, messy, five minute sketch of something that might become a fictional something.</p>
+     * id : 2916467
+     * title : BOLD icons
+     * description : <p>More visual exploration for the upcoming BOLD landingpage. 2x for full view.</p>
      * width : 400
      * height : 300
-     * images : {"hidpi":null,"normal":"https://d13yacurqjgara.cloudfront.net/users/1/screenshots/471756/sasquatch.png","teaser":"https://d13yacurqjgara.cloudfront.net/users/1/screenshots/471756/sasquatch_teaser.png"}
-     * views_count : 4372
-     * likes_count : 149
-     * comments_count : 27
+     * images : {"hidpi":"https://d13yacurqjgara.cloudfront.net/users/78594/screenshots/2916467/bold.png","normal":"https://d13yacurqjgara.cloudfront.net/users/78594/screenshots/2916467/bold_1x.png","teaser":"https://d13yacurqjgara.cloudfront.net/users/78594/screenshots/2916467/bold_teaser.png"}
+     * views_count : 1198
+     * likes_count : 80
+     * comments_count : 2
      * attachments_count : 0
-     * rebounds_count : 2
-     * buckets_count : 8
-     * created_at : 2012-03-15T01:52:33Z
-     * updated_at : 2012-03-15T02:12:57Z
-     * html_url : https://dribbble.com/shots/471756-Sasquatch
-     * attachments_url : https://api.dribbble.com/v1/shots/471756/attachments
-     * buckets_url : https://api.dribbble.com/v1/shots/471756/buckets
-     * comments_url : https://api.dribbble.com/v1/shots/471756/comments
-     * likes_url : https://api.dribbble.com/v1/shots/471756/likes
-     * projects_url : https://api.dribbble.com/v1/shots/471756/projects
-     * rebounds_url : https://api.dribbble.com/v1/shots/471756/rebounds
+     * rebounds_count : 0
+     * buckets_count : 1
+     * created_at : 2016-08-23T07:31:34Z
+     * updated_at : 2016-08-23T15:04:32Z
+     * html_url : https://dribbble.com/shots/2916467-BOLD-icons
+     * attachments_url : https://api.dribbble.com/v1/shots/2916467/attachments
+     * buckets_url : https://api.dribbble.com/v1/shots/2916467/buckets
+     * comments_url : https://api.dribbble.com/v1/shots/2916467/comments
+     * likes_url : https://api.dribbble.com/v1/shots/2916467/likes
+     * projects_url : https://api.dribbble.com/v1/shots/2916467/projects
+     * rebounds_url : https://api.dribbble.com/v1/shots/2916467/rebounds
      * animated : false
-     * tags : ["fiction","sasquatch","sketch","wip"]
-     * user : {"id":1,"name":"Dan Cederholm","username":"simplebits","html_url":"https://dribbble.com/simplebits","avatar_url":"https://d13yacurqjgara.cloudfront.net/users/1/avatars/normal/dc.jpg?1371679243","bio":"Co-founder &amp; designer of <a href=\"https://dribbble.com/dribbble\">@Dribbble<\/a>. Principal of SimpleBits. Aspiring clawhammer banjoist.","location":"Salem, MA","links":{"web":"http://simplebits.com","twitter":"https://twitter.com/simplebits"},"buckets_count":10,"comments_received_count":3395,"followers_count":29262,"followings_count":1728,"likes_count":34954,"likes_received_count":27568,"projects_count":8,"rebounds_received_count":504,"shots_count":214,"teams_count":1,"can_upload_shot":true,"type":"Player","pro":true,"buckets_url":"https://dribbble.com/v1/users/1/buckets","followers_url":"https://dribbble.com/v1/users/1/followers","following_url":"https://dribbble.com/v1/users/1/following","likes_url":"https://dribbble.com/v1/users/1/likes","shots_url":"https://dribbble.com/v1/users/1/shots","teams_url":"https://dribbble.com/v1/users/1/teams","created_at":"2009-07-08T02:51:22Z","updated_at":"2014-02-22T17:10:33Z"}
-     * team : {"id":39,"name":"Dribbble","username":"dribbble","html_url":"https://dribbble.com/dribbble","avatar_url":"https://d13yacurqjgara.cloudfront.net/users/39/avatars/normal/apple-flat-precomposed.png?1388527574","bio":"Show and tell for designers. This is Dribbble on Dribbble.","location":"Salem, MA","links":{"web":"http://dribbble.com","twitter":"https://twitter.com/dribbble"},"buckets_count":1,"comments_received_count":2037,"followers_count":25011,"followings_count":6120,"likes_count":44,"likes_received_count":15811,"members_count":7,"projects_count":4,"rebounds_received_count":416,"shots_count":91,"can_upload_shot":true,"type":"Team","pro":false,"buckets_url":"https://dribbble.com/v1/users/39/buckets","followers_url":"https://dribbble.com/v1/users/39/followers","following_url":"https://dribbble.com/v1/users/39/following","likes_url":"https://dribbble.com/v1/users/39/likes","members_url":"https://dribbble.com/v1/teams/39/members","shots_url":"https://dribbble.com/v1/users/39/shots","team_shots_url":"https://dribbble.com/v1/users/39/teams","created_at":"2009-08-18T18:34:31Z","updated_at":"2014-02-14T22:32:11Z"}
+     * tags : ["bold","corporate","icons","iconset","illustration","logo","pattern","vector"]
+     * user : {"id":78594,"name":"Jonas","username":"jonassoeder","html_url":"https://dribbble.com/jonassoeder","avatar_url":"https://d13yacurqjgara.cloudfront.net/users/78594/avatars/normal/62aaf21908d793e27c5c57ab1600b4b0.png?1425409078","bio":"","location":"Berlin","links":{"twitter":"https://twitter.com/jonassoeder"},"buckets_count":3,"comments_received_count":3005,"followers_count":12743,"followings_count":992,"likes_count":59081,"likes_received_count":54918,"projects_count":7,"rebounds_received_count":48,"shots_count":196,"teams_count":1,"can_upload_shot":true,"type":"Player","pro":false,"buckets_url":"https://api.dribbble.com/v1/users/78594/buckets","followers_url":"https://api.dribbble.com/v1/users/78594/followers","following_url":"https://api.dribbble.com/v1/users/78594/following","likes_url":"https://api.dribbble.com/v1/users/78594/likes","projects_url":"https://api.dribbble.com/v1/users/78594/projects","shots_url":"https://api.dribbble.com/v1/users/78594/shots","teams_url":"https://api.dribbble.com/v1/users/78594/teams","created_at":"2011-11-25T09:39:38Z","updated_at":"2016-08-23T15:04:32Z"}
+     * team : {"id":828269,"name":"FCKN BOLD","username":"fcknbold","html_url":"https://dribbble.com/fcknbold","avatar_url":"https://d13yacurqjgara.cloudfront.net/users/828269/avatars/normal/974c65ebdaea8961587d2d0a524dc001.png?1470310320","bio":"People. Design. Product. That&#39;s it.","location":"Berlin, Germany","links":{"twitter":"https://twitter.com/fcknbold"},"buckets_count":0,"comments_received_count":0,"followers_count":127,"followings_count":4,"likes_count":5,"likes_received_count":0,"projects_count":0,"rebounds_received_count":0,"shots_count":8,"can_upload_shot":true,"type":"Team","pro":false,"buckets_url":"https://api.dribbble.com/v1/users/828269/buckets","followers_url":"https://api.dribbble.com/v1/users/828269/followers","following_url":"https://api.dribbble.com/v1/users/828269/following","likes_url":"https://api.dribbble.com/v1/users/828269/likes","projects_url":"https://api.dribbble.com/v1/users/828269/projects","shots_url":"https://api.dribbble.com/v1/users/828269/shots","created_at":"2015-04-24T09:52:38Z","updated_at":"2016-08-23T15:07:33Z","members_count":6,"members_url":"https://api.dribbble.com/v1/teams/828269/members","team_shots_url":"https://api.dribbble.com/v1/teams/828269/shots"}
      */
 
     private int id;
@@ -44,9 +45,9 @@ public class ShotEntity implements Parcelable {
     private int width;
     private int height;
     /**
-     * hidpi : null
-     * normal : https://d13yacurqjgara.cloudfront.net/users/1/screenshots/471756/sasquatch.png
-     * teaser : https://d13yacurqjgara.cloudfront.net/users/1/screenshots/471756/sasquatch_teaser.png
+     * hidpi : https://d13yacurqjgara.cloudfront.net/users/78594/screenshots/2916467/bold.png
+     * normal : https://d13yacurqjgara.cloudfront.net/users/78594/screenshots/2916467/bold_1x.png
+     * teaser : https://d13yacurqjgara.cloudfront.net/users/78594/screenshots/2916467/bold_teaser.png
      */
 
     private ImagesBean images;
@@ -67,110 +68,75 @@ public class ShotEntity implements Parcelable {
     private String rebounds_url;
     private boolean animated;
     /**
-     * id : 1
-     * name : Dan Cederholm
-     * username : simplebits
-     * html_url : https://dribbble.com/simplebits
-     * avatar_url : https://d13yacurqjgara.cloudfront.net/users/1/avatars/normal/dc.jpg?1371679243
-     * bio : Co-founder &amp; designer of <a href="https://dribbble.com/dribbble">@Dribbble</a>. Principal of SimpleBits. Aspiring clawhammer banjoist.
-     * location : Salem, MA
-     * links : {"web":"http://simplebits.com","twitter":"https://twitter.com/simplebits"}
-     * buckets_count : 10
-     * comments_received_count : 3395
-     * followers_count : 29262
-     * followings_count : 1728
-     * likes_count : 34954
-     * likes_received_count : 27568
-     * projects_count : 8
-     * rebounds_received_count : 504
-     * shots_count : 214
+     * id : 78594
+     * name : Jonas
+     * username : jonassoeder
+     * html_url : https://dribbble.com/jonassoeder
+     * avatar_url : https://d13yacurqjgara.cloudfront.net/users/78594/avatars/normal/62aaf21908d793e27c5c57ab1600b4b0.png?1425409078
+     * bio :
+     * location : Berlin
+     * links : {"twitter":"https://twitter.com/jonassoeder"}
+     * buckets_count : 3
+     * comments_received_count : 3005
+     * followers_count : 12743
+     * followings_count : 992
+     * likes_count : 59081
+     * likes_received_count : 54918
+     * projects_count : 7
+     * rebounds_received_count : 48
+     * shots_count : 196
      * teams_count : 1
      * can_upload_shot : true
      * type : Player
-     * pro : true
-     * buckets_url : https://dribbble.com/v1/users/1/buckets
-     * followers_url : https://dribbble.com/v1/users/1/followers
-     * following_url : https://dribbble.com/v1/users/1/following
-     * likes_url : https://dribbble.com/v1/users/1/likes
-     * shots_url : https://dribbble.com/v1/users/1/shots
-     * teams_url : https://dribbble.com/v1/users/1/teams
-     * created_at : 2009-07-08T02:51:22Z
-     * updated_at : 2014-02-22T17:10:33Z
+     * pro : false
+     * buckets_url : https://api.dribbble.com/v1/users/78594/buckets
+     * followers_url : https://api.dribbble.com/v1/users/78594/followers
+     * following_url : https://api.dribbble.com/v1/users/78594/following
+     * likes_url : https://api.dribbble.com/v1/users/78594/likes
+     * projects_url : https://api.dribbble.com/v1/users/78594/projects
+     * shots_url : https://api.dribbble.com/v1/users/78594/shots
+     * teams_url : https://api.dribbble.com/v1/users/78594/teams
+     * created_at : 2011-11-25T09:39:38Z
+     * updated_at : 2016-08-23T15:04:32Z
      */
 
     private UserBean user;
     /**
-     * id : 39
-     * name : Dribbble
-     * username : dribbble
-     * html_url : https://dribbble.com/dribbble
-     * avatar_url : https://d13yacurqjgara.cloudfront.net/users/39/avatars/normal/apple-flat-precomposed.png?1388527574
-     * bio : Show and tell for designers. This is Dribbble on Dribbble.
-     * location : Salem, MA
-     * links : {"web":"http://dribbble.com","twitter":"https://twitter.com/dribbble"}
-     * buckets_count : 1
-     * comments_received_count : 2037
-     * followers_count : 25011
-     * followings_count : 6120
-     * likes_count : 44
-     * likes_received_count : 15811
-     * members_count : 7
-     * projects_count : 4
-     * rebounds_received_count : 416
-     * shots_count : 91
+     * id : 828269
+     * name : FCKN BOLD
+     * username : fcknbold
+     * html_url : https://dribbble.com/fcknbold
+     * avatar_url : https://d13yacurqjgara.cloudfront.net/users/828269/avatars/normal/974c65ebdaea8961587d2d0a524dc001.png?1470310320
+     * bio : People. Design. Product. That&#39;s it.
+     * location : Berlin, Germany
+     * links : {"twitter":"https://twitter.com/fcknbold"}
+     * buckets_count : 0
+     * comments_received_count : 0
+     * followers_count : 127
+     * followings_count : 4
+     * likes_count : 5
+     * likes_received_count : 0
+     * projects_count : 0
+     * rebounds_received_count : 0
+     * shots_count : 8
      * can_upload_shot : true
      * type : Team
      * pro : false
-     * buckets_url : https://dribbble.com/v1/users/39/buckets
-     * followers_url : https://dribbble.com/v1/users/39/followers
-     * following_url : https://dribbble.com/v1/users/39/following
-     * likes_url : https://dribbble.com/v1/users/39/likes
-     * members_url : https://dribbble.com/v1/teams/39/members
-     * shots_url : https://dribbble.com/v1/users/39/shots
-     * team_shots_url : https://dribbble.com/v1/users/39/teams
-     * created_at : 2009-08-18T18:34:31Z
-     * updated_at : 2014-02-14T22:32:11Z
+     * buckets_url : https://api.dribbble.com/v1/users/828269/buckets
+     * followers_url : https://api.dribbble.com/v1/users/828269/followers
+     * following_url : https://api.dribbble.com/v1/users/828269/following
+     * likes_url : https://api.dribbble.com/v1/users/828269/likes
+     * projects_url : https://api.dribbble.com/v1/users/828269/projects
+     * shots_url : https://api.dribbble.com/v1/users/828269/shots
+     * created_at : 2015-04-24T09:52:38Z
+     * updated_at : 2016-08-23T15:07:33Z
+     * members_count : 6
+     * members_url : https://api.dribbble.com/v1/teams/828269/members
+     * team_shots_url : https://api.dribbble.com/v1/teams/828269/shots
      */
 
     private TeamBean team;
     private List<String> tags;
-
-    protected ShotEntity(Parcel in) {
-        id = in.readInt();
-        title = in.readString();
-        description = in.readString();
-        width = in.readInt();
-        height = in.readInt();
-        views_count = in.readInt();
-        likes_count = in.readInt();
-        comments_count = in.readInt();
-        attachments_count = in.readInt();
-        rebounds_count = in.readInt();
-        buckets_count = in.readInt();
-        created_at = in.readString();
-        updated_at = in.readString();
-        html_url = in.readString();
-        attachments_url = in.readString();
-        buckets_url = in.readString();
-        comments_url = in.readString();
-        likes_url = in.readString();
-        projects_url = in.readString();
-        rebounds_url = in.readString();
-        animated = in.readByte() != 0;
-        tags = in.createStringArrayList();
-    }
-
-    public static final Creator<ShotEntity> CREATOR = new Creator<ShotEntity>() {
-        @Override
-        public ShotEntity createFromParcel(Parcel in) {
-            return new ShotEntity(in);
-        }
-
-        @Override
-        public ShotEntity[] newArray(int size) {
-            return new ShotEntity[size];
-        }
-    };
 
     public int getId() {
         return id;
@@ -372,38 +338,7 @@ public class ShotEntity implements Parcelable {
         this.tags = tags;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(id);
-        parcel.writeString(title);
-        parcel.writeString(description);
-        parcel.writeInt(width);
-        parcel.writeInt(height);
-        parcel.writeInt(views_count);
-        parcel.writeInt(likes_count);
-        parcel.writeInt(comments_count);
-        parcel.writeInt(attachments_count);
-        parcel.writeInt(rebounds_count);
-        parcel.writeInt(buckets_count);
-        parcel.writeString(created_at);
-        parcel.writeString(updated_at);
-        parcel.writeString(html_url);
-        parcel.writeString(attachments_url);
-        parcel.writeString(buckets_url);
-        parcel.writeString(comments_url);
-        parcel.writeString(likes_url);
-        parcel.writeString(projects_url);
-        parcel.writeString(rebounds_url);
-        parcel.writeByte((byte) (animated ? 1 : 0));
-        parcel.writeStringList(tags);
-    }
-
-    public static class ImagesBean {
+    public static class ImagesBean implements Parcelable {
         private String hidpi;
         private String normal;
         private String teaser;
@@ -431,9 +366,42 @@ public class ShotEntity implements Parcelable {
         public void setTeaser(String teaser) {
             this.teaser = teaser;
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.hidpi);
+            dest.writeString(this.normal);
+            dest.writeString(this.teaser);
+        }
+
+        public ImagesBean() {
+        }
+
+        protected ImagesBean(Parcel in) {
+            this.hidpi = in.readString();
+            this.normal = in.readString();
+            this.teaser = in.readString();
+        }
+
+        public static final Creator<ImagesBean> CREATOR = new Creator<ImagesBean>() {
+            @Override
+            public ImagesBean createFromParcel(Parcel source) {
+                return new ImagesBean(source);
+            }
+
+            @Override
+            public ImagesBean[] newArray(int size) {
+                return new ImagesBean[size];
+            }
+        };
     }
 
-    public static class UserBean {
+    public static class UserBean implements Parcelable {
         private int id;
         private String name;
         private String username;
@@ -442,8 +410,7 @@ public class ShotEntity implements Parcelable {
         private String bio;
         private String location;
         /**
-         * web : http://simplebits.com
-         * twitter : https://twitter.com/simplebits
+         * twitter : https://twitter.com/jonassoeder
          */
 
         private LinksBean links;
@@ -464,6 +431,7 @@ public class ShotEntity implements Parcelable {
         private String followers_url;
         private String following_url;
         private String likes_url;
+        private String projects_url;
         private String shots_url;
         private String teams_url;
         private String created_at;
@@ -669,6 +637,14 @@ public class ShotEntity implements Parcelable {
             this.likes_url = likes_url;
         }
 
+        public String getProjects_url() {
+            return projects_url;
+        }
+
+        public void setProjects_url(String projects_url) {
+            this.projects_url = projects_url;
+        }
+
         public String getShots_url() {
             return shots_url;
         }
@@ -701,17 +677,8 @@ public class ShotEntity implements Parcelable {
             this.updated_at = updated_at;
         }
 
-        public static class LinksBean {
-            private String web;
+        public static class LinksBean implements Parcelable {
             private String twitter;
-
-            public String getWeb() {
-                return web;
-            }
-
-            public void setWeb(String web) {
-                this.web = web;
-            }
 
             public String getTwitter() {
                 return twitter;
@@ -720,10 +687,126 @@ public class ShotEntity implements Parcelable {
             public void setTwitter(String twitter) {
                 this.twitter = twitter;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.twitter);
+            }
+
+            public LinksBean() {
+            }
+
+            protected LinksBean(Parcel in) {
+                this.twitter = in.readString();
+            }
+
+            public static final Creator<LinksBean> CREATOR = new Creator<LinksBean>() {
+                @Override
+                public LinksBean createFromParcel(Parcel source) {
+                    return new LinksBean(source);
+                }
+
+                @Override
+                public LinksBean[] newArray(int size) {
+                    return new LinksBean[size];
+                }
+            };
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(this.id);
+            dest.writeString(this.name);
+            dest.writeString(this.username);
+            dest.writeString(this.html_url);
+            dest.writeString(this.avatar_url);
+            dest.writeString(this.bio);
+            dest.writeString(this.location);
+            dest.writeParcelable(this.links, flags);
+            dest.writeInt(this.buckets_count);
+            dest.writeInt(this.comments_received_count);
+            dest.writeInt(this.followers_count);
+            dest.writeInt(this.followings_count);
+            dest.writeInt(this.likes_count);
+            dest.writeInt(this.likes_received_count);
+            dest.writeInt(this.projects_count);
+            dest.writeInt(this.rebounds_received_count);
+            dest.writeInt(this.shots_count);
+            dest.writeInt(this.teams_count);
+            dest.writeByte(this.can_upload_shot ? (byte) 1 : (byte) 0);
+            dest.writeString(this.type);
+            dest.writeByte(this.pro ? (byte) 1 : (byte) 0);
+            dest.writeString(this.buckets_url);
+            dest.writeString(this.followers_url);
+            dest.writeString(this.following_url);
+            dest.writeString(this.likes_url);
+            dest.writeString(this.projects_url);
+            dest.writeString(this.shots_url);
+            dest.writeString(this.teams_url);
+            dest.writeString(this.created_at);
+            dest.writeString(this.updated_at);
+        }
+
+        public UserBean() {
+        }
+
+        protected UserBean(Parcel in) {
+            this.id = in.readInt();
+            this.name = in.readString();
+            this.username = in.readString();
+            this.html_url = in.readString();
+            this.avatar_url = in.readString();
+            this.bio = in.readString();
+            this.location = in.readString();
+            this.links = in.readParcelable(LinksBean.class.getClassLoader());
+            this.buckets_count = in.readInt();
+            this.comments_received_count = in.readInt();
+            this.followers_count = in.readInt();
+            this.followings_count = in.readInt();
+            this.likes_count = in.readInt();
+            this.likes_received_count = in.readInt();
+            this.projects_count = in.readInt();
+            this.rebounds_received_count = in.readInt();
+            this.shots_count = in.readInt();
+            this.teams_count = in.readInt();
+            this.can_upload_shot = in.readByte() != 0;
+            this.type = in.readString();
+            this.pro = in.readByte() != 0;
+            this.buckets_url = in.readString();
+            this.followers_url = in.readString();
+            this.following_url = in.readString();
+            this.likes_url = in.readString();
+            this.projects_url = in.readString();
+            this.shots_url = in.readString();
+            this.teams_url = in.readString();
+            this.created_at = in.readString();
+            this.updated_at = in.readString();
+        }
+
+        public static final Creator<UserBean> CREATOR = new Creator<UserBean>() {
+            @Override
+            public UserBean createFromParcel(Parcel source) {
+                return new UserBean(source);
+            }
+
+            @Override
+            public UserBean[] newArray(int size) {
+                return new UserBean[size];
+            }
+        };
     }
 
-    public static class TeamBean {
+    public static class TeamBean implements Parcelable {
         private int id;
         private String name;
         private String username;
@@ -732,8 +815,7 @@ public class ShotEntity implements Parcelable {
         private String bio;
         private String location;
         /**
-         * web : http://dribbble.com
-         * twitter : https://twitter.com/dribbble
+         * twitter : https://twitter.com/fcknbold
          */
 
         private LinksBean links;
@@ -743,7 +825,6 @@ public class ShotEntity implements Parcelable {
         private int followings_count;
         private int likes_count;
         private int likes_received_count;
-        private int members_count;
         private int projects_count;
         private int rebounds_received_count;
         private int shots_count;
@@ -754,11 +835,13 @@ public class ShotEntity implements Parcelable {
         private String followers_url;
         private String following_url;
         private String likes_url;
-        private String members_url;
+        private String projects_url;
         private String shots_url;
-        private String team_shots_url;
         private String created_at;
         private String updated_at;
+        private int members_count;
+        private String members_url;
+        private String team_shots_url;
 
         public int getId() {
             return id;
@@ -872,14 +955,6 @@ public class ShotEntity implements Parcelable {
             this.likes_received_count = likes_received_count;
         }
 
-        public int getMembers_count() {
-            return members_count;
-        }
-
-        public void setMembers_count(int members_count) {
-            this.members_count = members_count;
-        }
-
         public int getProjects_count() {
             return projects_count;
         }
@@ -960,12 +1035,12 @@ public class ShotEntity implements Parcelable {
             this.likes_url = likes_url;
         }
 
-        public String getMembers_url() {
-            return members_url;
+        public String getProjects_url() {
+            return projects_url;
         }
 
-        public void setMembers_url(String members_url) {
-            this.members_url = members_url;
+        public void setProjects_url(String projects_url) {
+            this.projects_url = projects_url;
         }
 
         public String getShots_url() {
@@ -974,14 +1049,6 @@ public class ShotEntity implements Parcelable {
 
         public void setShots_url(String shots_url) {
             this.shots_url = shots_url;
-        }
-
-        public String getTeam_shots_url() {
-            return team_shots_url;
-        }
-
-        public void setTeam_shots_url(String team_shots_url) {
-            this.team_shots_url = team_shots_url;
         }
 
         public String getCreated_at() {
@@ -1000,17 +1067,32 @@ public class ShotEntity implements Parcelable {
             this.updated_at = updated_at;
         }
 
-        public static class LinksBean {
-            private String web;
+        public int getMembers_count() {
+            return members_count;
+        }
+
+        public void setMembers_count(int members_count) {
+            this.members_count = members_count;
+        }
+
+        public String getMembers_url() {
+            return members_url;
+        }
+
+        public void setMembers_url(String members_url) {
+            this.members_url = members_url;
+        }
+
+        public String getTeam_shots_url() {
+            return team_shots_url;
+        }
+
+        public void setTeam_shots_url(String team_shots_url) {
+            this.team_shots_url = team_shots_url;
+        }
+
+        public static class LinksBean implements Parcelable {
             private String twitter;
-
-            public String getWeb() {
-                return web;
-            }
-
-            public void setWeb(String web) {
-                this.web = web;
-            }
 
             public String getTwitter() {
                 return twitter;
@@ -1019,6 +1101,201 @@ public class ShotEntity implements Parcelable {
             public void setTwitter(String twitter) {
                 this.twitter = twitter;
             }
+
+            @Override
+            public int describeContents() {
+                return 0;
+            }
+
+            @Override
+            public void writeToParcel(Parcel dest, int flags) {
+                dest.writeString(this.twitter);
+            }
+
+            public LinksBean() {
+            }
+
+            protected LinksBean(Parcel in) {
+                this.twitter = in.readString();
+            }
+
+            public static final Creator<LinksBean> CREATOR = new Creator<LinksBean>() {
+                @Override
+                public LinksBean createFromParcel(Parcel source) {
+                    return new LinksBean(source);
+                }
+
+                @Override
+                public LinksBean[] newArray(int size) {
+                    return new LinksBean[size];
+                }
+            };
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(this.id);
+            dest.writeString(this.name);
+            dest.writeString(this.username);
+            dest.writeString(this.html_url);
+            dest.writeString(this.avatar_url);
+            dest.writeString(this.bio);
+            dest.writeString(this.location);
+            dest.writeParcelable(this.links, flags);
+            dest.writeInt(this.buckets_count);
+            dest.writeInt(this.comments_received_count);
+            dest.writeInt(this.followers_count);
+            dest.writeInt(this.followings_count);
+            dest.writeInt(this.likes_count);
+            dest.writeInt(this.likes_received_count);
+            dest.writeInt(this.projects_count);
+            dest.writeInt(this.rebounds_received_count);
+            dest.writeInt(this.shots_count);
+            dest.writeByte(this.can_upload_shot ? (byte) 1 : (byte) 0);
+            dest.writeString(this.type);
+            dest.writeByte(this.pro ? (byte) 1 : (byte) 0);
+            dest.writeString(this.buckets_url);
+            dest.writeString(this.followers_url);
+            dest.writeString(this.following_url);
+            dest.writeString(this.likes_url);
+            dest.writeString(this.projects_url);
+            dest.writeString(this.shots_url);
+            dest.writeString(this.created_at);
+            dest.writeString(this.updated_at);
+            dest.writeInt(this.members_count);
+            dest.writeString(this.members_url);
+            dest.writeString(this.team_shots_url);
+        }
+
+        public TeamBean() {
+        }
+
+        protected TeamBean(Parcel in) {
+            this.id = in.readInt();
+            this.name = in.readString();
+            this.username = in.readString();
+            this.html_url = in.readString();
+            this.avatar_url = in.readString();
+            this.bio = in.readString();
+            this.location = in.readString();
+            this.links = in.readParcelable(LinksBean.class.getClassLoader());
+            this.buckets_count = in.readInt();
+            this.comments_received_count = in.readInt();
+            this.followers_count = in.readInt();
+            this.followings_count = in.readInt();
+            this.likes_count = in.readInt();
+            this.likes_received_count = in.readInt();
+            this.projects_count = in.readInt();
+            this.rebounds_received_count = in.readInt();
+            this.shots_count = in.readInt();
+            this.can_upload_shot = in.readByte() != 0;
+            this.type = in.readString();
+            this.pro = in.readByte() != 0;
+            this.buckets_url = in.readString();
+            this.followers_url = in.readString();
+            this.following_url = in.readString();
+            this.likes_url = in.readString();
+            this.projects_url = in.readString();
+            this.shots_url = in.readString();
+            this.created_at = in.readString();
+            this.updated_at = in.readString();
+            this.members_count = in.readInt();
+            this.members_url = in.readString();
+            this.team_shots_url = in.readString();
+        }
+
+        public static final Creator<TeamBean> CREATOR = new Creator<TeamBean>() {
+            @Override
+            public TeamBean createFromParcel(Parcel source) {
+                return new TeamBean(source);
+            }
+
+            @Override
+            public TeamBean[] newArray(int size) {
+                return new TeamBean[size];
+            }
+        };
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.title);
+        dest.writeString(this.description);
+        dest.writeInt(this.width);
+        dest.writeInt(this.height);
+        dest.writeParcelable(this.images, flags);
+        dest.writeInt(this.views_count);
+        dest.writeInt(this.likes_count);
+        dest.writeInt(this.comments_count);
+        dest.writeInt(this.attachments_count);
+        dest.writeInt(this.rebounds_count);
+        dest.writeInt(this.buckets_count);
+        dest.writeString(this.created_at);
+        dest.writeString(this.updated_at);
+        dest.writeString(this.html_url);
+        dest.writeString(this.attachments_url);
+        dest.writeString(this.buckets_url);
+        dest.writeString(this.comments_url);
+        dest.writeString(this.likes_url);
+        dest.writeString(this.projects_url);
+        dest.writeString(this.rebounds_url);
+        dest.writeByte(this.animated ? (byte) 1 : (byte) 0);
+        dest.writeParcelable(this.user, flags);
+        dest.writeParcelable(this.team, flags);
+        dest.writeStringList(this.tags);
+    }
+
+    public ShotEntity() {
+    }
+
+    protected ShotEntity(Parcel in) {
+        this.id = in.readInt();
+        this.title = in.readString();
+        this.description = in.readString();
+        this.width = in.readInt();
+        this.height = in.readInt();
+        this.images = in.readParcelable(ImagesBean.class.getClassLoader());
+        this.views_count = in.readInt();
+        this.likes_count = in.readInt();
+        this.comments_count = in.readInt();
+        this.attachments_count = in.readInt();
+        this.rebounds_count = in.readInt();
+        this.buckets_count = in.readInt();
+        this.created_at = in.readString();
+        this.updated_at = in.readString();
+        this.html_url = in.readString();
+        this.attachments_url = in.readString();
+        this.buckets_url = in.readString();
+        this.comments_url = in.readString();
+        this.likes_url = in.readString();
+        this.projects_url = in.readString();
+        this.rebounds_url = in.readString();
+        this.animated = in.readByte() != 0;
+        this.user = in.readParcelable(UserBean.class.getClassLoader());
+        this.team = in.readParcelable(TeamBean.class.getClassLoader());
+        this.tags = in.createStringArrayList();
+    }
+
+    public static final Parcelable.Creator<ShotEntity> CREATOR = new Parcelable.Creator<ShotEntity>() {
+        @Override
+        public ShotEntity createFromParcel(Parcel source) {
+            return new ShotEntity(source);
+        }
+
+        @Override
+        public ShotEntity[] newArray(int size) {
+            return new ShotEntity[size];
+        }
+    };
 }

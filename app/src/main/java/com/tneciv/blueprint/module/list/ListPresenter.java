@@ -1,4 +1,4 @@
-package com.tneciv.blueprint.module.recent;
+package com.tneciv.blueprint.module.list;
 
 import com.tneciv.blueprint.base.BasePresenterImpl;
 import com.tneciv.blueprint.entity.ShotEntity;
@@ -21,11 +21,11 @@ import static com.tneciv.blueprint.common.Constants.SORT_TYPE_VIEWS;
  * Created by Tneciv
  * on 2016-08-17 18:20 .
  */
-public class RecentPresenter extends BasePresenterImpl implements RecentContract.Presenter {
+public class ListPresenter extends BasePresenterImpl implements ListContract.Presenter {
 
-    private RecentContract.View mView;
+    private ListContract.View mView;
 
-    public RecentPresenter(RecentContract.View view) {
+    public ListPresenter(ListContract.View view) {
         this.mView = view;
         mView.setPresenter(this);
     }

@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.tneciv.blueprint.R;
-import com.tneciv.blueprint.module.recent.RecentFragment;
-import com.tneciv.blueprint.module.recent.RecentPresenter;
+import com.tneciv.blueprint.module.list.ListFragment;
+import com.tneciv.blueprint.module.list.ListPresenter;
 import com.tneciv.blueprint.module.user.PopularFragment;
 import com.tneciv.blueprint.module.user.PopularPresenter;
 
@@ -46,7 +46,7 @@ public class MainFragment extends Fragment {
     }
 
     private void initViewPager() {
-        Fragment[] fragments = {new RecentFragment(), new PopularFragment()};
+        Fragment[] fragments = {new ListFragment(), new PopularFragment()};
         List<Fragment> fragmentList = Arrays.asList(fragments);
         int[] tabIcons = {R.drawable.ic_explore, R.drawable.ic_extension};
         PagerAdapter pagerAdapter = new PagerAdapter(getChildFragmentManager(), fragmentList);
@@ -59,7 +59,7 @@ public class MainFragment extends Fragment {
             tabLayout.getTabAt(i).setIcon(tabIcons[i]);
         }
 
-        new RecentPresenter((RecentFragment) pagerAdapter.getItem(0));
+        new ListPresenter((ListFragment) pagerAdapter.getItem(0));
         new PopularPresenter((PopularFragment) pagerAdapter.getItem(1));
     }
 

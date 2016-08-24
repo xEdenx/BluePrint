@@ -12,4 +12,5 @@ public class Constants {
     public static final String SORT = "sort";
     public static final String SORT_TYPE_VIEWS = "views";
     public static final String SORT_TYPE_RECENT = "recent";
+    public static final String SHOT_ENTITY = "ShotEntity";
 }

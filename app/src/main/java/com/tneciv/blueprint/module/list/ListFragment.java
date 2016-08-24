@@ -1,4 +1,4 @@
-package com.tneciv.blueprint.module.recent;
+package com.tneciv.blueprint.module.list;
 
 
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,11 +19,11 @@ import static com.tneciv.blueprint.common.Constants.SORT_TYPE_VIEWS;
  * on 2016-08-14 16:00 .
  * A fragment to show shots list .
  */
-public class RecentFragment extends BaseListFragment implements RecentContract.View, RecentRecyclerAdapter.PaginationListener {
+public class ListFragment extends BaseListFragment implements ListContract.View, ListRecyclerAdapter.PaginationListener {
 
-    private RecentContract.Presenter mPresenter;
+    private ListContract.Presenter mPresenter;
     private List<ShotEntity> list;
-    private RecentRecyclerAdapter recyclerAdapter;
+    private ListRecyclerAdapter recyclerAdapter;
 
     private boolean isCreated;
 
@@ -35,13 +35,13 @@ public class RecentFragment extends BaseListFragment implements RecentContract.V
         }
     }
 
-    public RecentFragment() {
+    public ListFragment() {
     }
 
     @Override
     protected void initRecyclerView() {
         list = new ArrayList<>();
-        recyclerAdapter = new RecentRecyclerAdapter(getActivity(), list);
+        recyclerAdapter = new ListRecyclerAdapter(getActivity(), list);
         recyclerAdapter.addPaginationListener(this);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -56,12 +56,11 @@ public class RecentFragment extends BaseListFragment implements RecentContract.V
 
     @Override
     public void onRefresh() {
-        //showLoading();
         mPresenter.subscribe();
     }
 
     @Override
-    public void setPresenter(RecentContract.Presenter presenter) {
+    public void setPresenter(ListContract.Presenter presenter) {
         mPresenter = presenter;
     }
 

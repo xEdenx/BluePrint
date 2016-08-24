@@ -1,6 +1,6 @@
 project.ext.supportLibraryVersion = '24.2.0'
 project.ext.leakcanaryVersion = '1.4-beta2'
 project.ext.okhttpVersion = '3.4.1'
-project.ext.butterknifeVersion = '8.1.0'
+project.ext.butterknifeVersion = '8.3.0'
 project.ext.retrofitVersion = '2.1.0'
 project.ext.constraintVersion = '1.0.0-alpha7'
