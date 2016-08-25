@@ -21,9 +21,12 @@ public interface ShotService {
     @GET("shots")
     Observable<ShotEntity[]> getShotListWithQueryMap(@QueryMap Map<String, String> options);
 
+    @GET("shots/{id}")
+    Observable<ShotEntity> getShot(@Path("id") int id);
+
     @POST("shots")
-    Observable<ShotEntity> createBucket(@Field("name") String name, @Field("description") String desc);
+    Observable<ShotEntity> createShot(@Field("name") String name, @Field("description") String desc);
 
     @PUT("shots/{id}")
-    Observable<ShotEntity> updateBucket(@Path("id") int bucketId, @Field("name") String name, @Field("description") String desc);
+    Observable<ShotEntity> updateShot(@Path("id") int bucketId, @Field("name") String name, @Field("description") String desc);
 }
