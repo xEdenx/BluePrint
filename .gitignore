@@ -99,3 +99,6 @@ _book
 *.pdf
 
 *.apk
+
+/common/signing.properties
+/common/token.properties

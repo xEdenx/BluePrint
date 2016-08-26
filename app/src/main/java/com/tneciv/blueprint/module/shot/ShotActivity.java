@@ -1,5 +1,6 @@
 package com.tneciv.blueprint.module.shot;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -68,11 +70,21 @@ public class ShotActivity extends AppCompatActivity implements ShotContract.View
     }
 
     private void handleIntent() {
+        final Intent intent = getIntent();
+
         if (this.getIntent() != null) {
-            this.mShotEntity = getIntent().getParcelableExtra(Constants.SHOT_ENTITY);
+            this.mShotEntity = intent.getParcelableExtra(Constants.SHOT_ENTITY);
         } else {
-            mPresenter.loadData(shotId);
+            //mPresenter.loadData(shotId);
         }
+
+        if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_VIEW)) {
+            final String url = intent.getDataString();
+            if (!TextUtils.isEmpty(url)) {
+                Log.d("ShotActivity url", url);
+            }
+        }
+
     }
 
     private void initView() {

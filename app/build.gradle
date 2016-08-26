@@ -1,16 +1,17 @@
 apply plugin: 'com.android.application'
 apply from: "../common/constants.gradle"
+apply from: "../common/release.gradle"
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion "24.0.2"
 
     defaultConfig {
         applicationId "com.tneciv.blueprint"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 24
-        versionCode 20160823
-        versionName "0.01-β"
+        versionCode createDate()
+        versionName "0.02-β"
         jackOptions {
             enabled true
         }
@@ -18,15 +19,15 @@ android {
 
     signingConfigs {
         debug {
-            // No debug config
         }
         release {
-            storeFile file("D:\\Workplace\\Android\\com.tneciv.jks")
-            storePassword "superdemo"
-            keyAlias "com.tneciv"
-            keyPassword "superdemo"
+            storeFile
+            storePassword
+            keyAlias
+            keyPassword
         }
     }
+    getSigningProperties()
 
     buildTypes {
         release {
@@ -41,7 +42,7 @@ android {
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
                 def oldFile = output.outputFile
-                output.outputFile = new File(oldFile.parent, oldFile.name.replace(".apk", "-" + defaultConfig.versionName + ".apk"))
+                output.outputFile = new File(oldFile.parent, oldFile.name.replace(".apk", "-" + defaultConfig.versionName + "-" + defaultConfig.versionCode + ".apk"))
             }
         }
     }
