@@ -55,7 +55,6 @@ android {
 }
 
 dependencies {
-
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
     compile "com.android.support:appcompat-v7:${project.ext.supportLibraryVersion}"
@@ -85,4 +84,6 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.6'
 
     testCompile 'junit:junit:4.12'
+
+    compile project(':widget')
 }
