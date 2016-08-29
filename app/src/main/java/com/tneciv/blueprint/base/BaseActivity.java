@@ -22,7 +22,7 @@ import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.module.list.ListFragment;
 import com.tneciv.blueprint.module.list.ListPresenter;
 import com.tneciv.blueprint.module.main.MainFragment;
-import com.tneciv.blueprint.module.other.EmptyFragment;
+import com.tneciv.blueprint.module.shot.EmptyFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

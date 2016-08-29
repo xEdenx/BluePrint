@@ -1,4 +1,4 @@
-package com.tneciv.blueprint.module.other;
+package com.tneciv.blueprint.module.shot;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -43,29 +43,6 @@ public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         ShotEntity entity = list.get(position);
         holder.likes.setText(entity.getId() + "sss");
-        //String imageHidpi = entity.getImages().getHidpi();
-        //String imageNormal = entity.getImages().getNormal();
-        //String avatarUrl = entity.getUser().getAvatar_url();
-        //String updatedAt = convert2LocalTime(entity.getUpdated_at());
-        //updatedAt = friendlyTime(updatedAt);
-        //int attachmentsCount = entity.getAttachments_count();
-        //
-        //if (attachmentsCount == 0) {
-        //    holder.attachImg.setVisibility(View.GONE);
-        //    holder.attactCount.setVisibility(View.GONE);
-        //} else {
-        //    holder.attachImg.setVisibility(View.VISIBLE);
-        //    holder.attactCount.setVisibility(View.VISIBLE);
-        //    holder.attactCount.setText(checkInteger(attachmentsCount));
-        //}
-        //
-        //holder.title.setText(checkString(entity.getTitle()));
-        //holder.name.setText(checkString(entity.getUser().getName()));
-        //holder.updateTime.setText(checkString(updatedAt));
-        //holder.comments.setText(checkInteger(entity.getComments_count()));
-        //holder.likes.setText(checkInteger(entity.getLikes_count()));
-        //holder.views.setText(checkInteger(entity.getViews_count()));
-
     }
 
     @Override

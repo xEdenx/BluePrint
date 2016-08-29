@@ -24,7 +24,6 @@
         </activity>
         <activity
             android:name=".module.shot.ShotActivity"
-            android:label="@string/title_activity_shot"
             android:parentActivityName=".module.main.MainActivity"
             android:theme="@style/TransTheme">
             <meta-data
