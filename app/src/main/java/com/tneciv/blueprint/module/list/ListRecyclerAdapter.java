@@ -18,6 +18,7 @@ import com.tneciv.blueprint.base.BaseRecyclerAdapter;
 import com.tneciv.blueprint.common.Constants;
 import com.tneciv.blueprint.entity.ShotEntity;
 import com.tneciv.blueprint.module.shot.ShotActivity;
+import com.tneciv.blueprint.widget.CircleTransform;
 
 import java.util.List;
 
@@ -70,6 +71,7 @@ class ListRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, ListRecyclerAd
             Glide.with(mContext)
                     .load(avatarUrl)
                     .error(R.drawable.dribbble)
+                    .transform(new CircleTransform(mContext))
                     .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                     .into(holder.userAvatar);
         }
