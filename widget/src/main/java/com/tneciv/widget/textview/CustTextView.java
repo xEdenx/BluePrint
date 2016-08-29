@@ -80,9 +80,35 @@ public class CustTextView extends View {
         canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), mPaint);
 
         mPaint.setColor(mTextColor);
-        canvas.drawText(mText, getMeasuredWidth() / 2, getMeasuredHeight() / 2, mPaint);
+        canvas.drawText(mText, getWidth() / 2 - mRect.width() / 2, getHeight() / 2 + mRect.height() / 2, mPaint);
 
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        int width, height;
+
+        if (widthMode == MeasureSpec.EXACTLY) {
+            width = widthSize;
+        } else {
+            mPaint.setTextSize(mTextSize);
+            mPaint.getTextBounds(mText, 0, mText.length(), mRect);
+            width = getPaddingLeft() + mRect.width() + getPaddingRight();
+        }
+
+        if (heightMode == MeasureSpec.EXACTLY) {
+            height = heightSize;
+        } else {
+            mPaint.setTextSize(mTextSize);
+            mPaint.getTextBounds(mText, 0, mText.length(), mRect);
+            height = getPaddingTop() + mRect.height() + getPaddingBottom();
+        }
+
+        setMeasuredDimension(width, height);
+    }
 
 }

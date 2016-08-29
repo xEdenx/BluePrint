@@ -2,17 +2,14 @@ package com.tneciv.blueprint.module.other;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.entity.ShotEntity;
-import com.tneciv.blueprint.widget.CircleTransform;
 
 import java.util.List;
 
@@ -72,18 +69,7 @@ public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> 
         holder.comments.setText(checkInteger(entity.getComments_count()));
         holder.likes.setText(checkInteger(entity.getLikes_count()));
         holder.views.setText(checkInteger(entity.getViews_count()));
-        if (!TextUtils.isEmpty(avatarUrl)) {
-            Picasso.with(mContext).load(avatarUrl)
-                    .transform(new CircleTransform())
-                    .error(R.drawable.dribbble)
-                    .into(holder.userAvatar);
-        }
-        if (!TextUtils.isEmpty(imageNormal)) {
-            Picasso.with(mContext)
-                    .load(TextUtils.isEmpty(imageHidpi) ? imageNormal : imageHidpi)
-                    .error(R.drawable.dribbble)
-                    .into(holder.shotImageContent);
-        }
+
     }
 
     @Override

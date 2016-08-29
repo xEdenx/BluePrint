@@ -10,13 +10,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.base.BaseRecyclerAdapter;
 import com.tneciv.blueprint.common.Constants;
 import com.tneciv.blueprint.entity.ShotEntity;
 import com.tneciv.blueprint.module.shot.ShotActivity;
-import com.tneciv.blueprint.widget.CircleTransform;
 
 import java.util.List;
 
@@ -66,16 +67,18 @@ class ListRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, ListRecyclerAd
         holder.likes.setText(checkInteger(entity.getLikes_count()));
         holder.views.setText(checkInteger(entity.getViews_count()));
         if (!TextUtils.isEmpty(avatarUrl)) {
-            Picasso.with(mContext).load(avatarUrl)
-                    .transform(new CircleTransform())
+            Glide.with(mContext)
+                    .load(avatarUrl)
                     .error(R.drawable.dribbble)
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                     .into(holder.userAvatar);
         }
         if (!TextUtils.isEmpty(imageNormal)) {
-            Picasso.with(mContext)
+            Glide.with(mContext)
                     .load(TextUtils.isEmpty(imageHidpi) ? imageNormal : imageHidpi)
                     .error(R.drawable.dribbble)
-                    .into(holder.shotImageContent);
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .into(new GlideDrawableImageViewTarget(holder.shotImageContent, 5));
         }
     }
 
