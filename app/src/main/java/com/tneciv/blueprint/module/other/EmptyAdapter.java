@@ -16,11 +16,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.tneciv.blueprint.common.CheckUtils.checkInteger;
-import static com.tneciv.blueprint.common.CheckUtils.checkString;
-import static com.tneciv.blueprint.common.CheckUtils.convert2LocalTime;
-import static com.tneciv.blueprint.common.CheckUtils.friendlyTime;
-
 /**
  * Created by Tneciv
  * on 2016-08-21 23:18 .
@@ -47,28 +42,29 @@ public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         ShotEntity entity = list.get(position);
-        String imageHidpi = entity.getImages().getHidpi();
-        String imageNormal = entity.getImages().getNormal();
-        String avatarUrl = entity.getUser().getAvatar_url();
-        String updatedAt = convert2LocalTime(entity.getUpdated_at());
-        updatedAt = friendlyTime(updatedAt);
-        int attachmentsCount = entity.getAttachments_count();
-
-        if (attachmentsCount == 0) {
-            holder.attachImg.setVisibility(View.GONE);
-            holder.attactCount.setVisibility(View.GONE);
-        } else {
-            holder.attachImg.setVisibility(View.VISIBLE);
-            holder.attactCount.setVisibility(View.VISIBLE);
-            holder.attactCount.setText(checkInteger(attachmentsCount));
-        }
-
-        holder.title.setText(checkString(entity.getTitle()));
-        holder.name.setText(checkString(entity.getUser().getName()));
-        holder.updateTime.setText(checkString(updatedAt));
-        holder.comments.setText(checkInteger(entity.getComments_count()));
-        holder.likes.setText(checkInteger(entity.getLikes_count()));
-        holder.views.setText(checkInteger(entity.getViews_count()));
+        holder.likes.setText(entity.getId() + "sss");
+        //String imageHidpi = entity.getImages().getHidpi();
+        //String imageNormal = entity.getImages().getNormal();
+        //String avatarUrl = entity.getUser().getAvatar_url();
+        //String updatedAt = convert2LocalTime(entity.getUpdated_at());
+        //updatedAt = friendlyTime(updatedAt);
+        //int attachmentsCount = entity.getAttachments_count();
+        //
+        //if (attachmentsCount == 0) {
+        //    holder.attachImg.setVisibility(View.GONE);
+        //    holder.attactCount.setVisibility(View.GONE);
+        //} else {
+        //    holder.attachImg.setVisibility(View.VISIBLE);
+        //    holder.attactCount.setVisibility(View.VISIBLE);
+        //    holder.attactCount.setText(checkInteger(attachmentsCount));
+        //}
+        //
+        //holder.title.setText(checkString(entity.getTitle()));
+        //holder.name.setText(checkString(entity.getUser().getName()));
+        //holder.updateTime.setText(checkString(updatedAt));
+        //holder.comments.setText(checkInteger(entity.getComments_count()));
+        //holder.likes.setText(checkInteger(entity.getLikes_count()));
+        //holder.views.setText(checkInteger(entity.getViews_count()));
 
     }
 
