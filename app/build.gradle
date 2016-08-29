@@ -88,4 +88,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     compile project(':widget')
+    compile('com.github.florent37:materialviewpager:1.2.0@aar') {
+        transitive = true
+    }
 }

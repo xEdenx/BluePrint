@@ -1,22 +1,25 @@
 package com.tneciv.blueprint.module.shot;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 
+import com.github.florent37.materialviewpager.MaterialViewPager;
+import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.tneciv.blueprint.R;
-import com.tneciv.blueprint.common.Constants;
-import com.tneciv.blueprint.entity.ShotEntity;
+import com.tneciv.blueprint.module.other.EmptyFragment;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ShotActivity extends AppCompatActivity implements ShotContract.View {
+public class ShotActivity extends AppCompatActivity {
 
-    private ShotContract.Presenter mPresenter;
-    private ShotEntity mShotEntity;
-    private int shotId;
+    @BindView(R.id.materialViewPager)
+    MaterialViewPager viewPager;
+    private Toolbar mToolbar;
+    private PagerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,51 +28,67 @@ public class ShotActivity extends AppCompatActivity implements ShotContract.View
         ButterKnife.bind(this);
 
         initView();
-        new ShotPresenter(this);
-        handleIntent();
+        //handleIntent();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mPresenter.unsubscribe();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        showResult(mShotEntity);
     }
 
-    private void handleIntent() {
-        final Intent intent = getIntent();
-
-        if (this.getIntent() != null) {
-            this.mShotEntity = intent.getParcelableExtra(Constants.SHOT_ENTITY);
-        } else {
-            //mPresenter.loadData(shotId);
-        }
-
-        if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_VIEW)) {
-            final String url = intent.getDataString();
-            if (!TextUtils.isEmpty(url)) {
-                Log.d("ShotActivity url", url);
-            }
-        }
-
-    }
+    //private void handleIntent() {
+    //    Intent intent = getIntent();
+    //
+    //    if (this.getIntent() != null) {
+    //        this.mShotEntity = intent.getParcelableExtra(Constants.SHOT_ENTITY);
+    //    } else {
+    //        //mPresenter.loadData(shotId);
+    //    }
+    //
+    //    if (intent.getAction() != null && intent.getAction().equals(Intent.ACTION_VIEW)) {
+    //        String url = intent.getDataString();
+    //        if (!TextUtils.isEmpty(url)) {
+    //            Log.d("ShotActivity url", url);
+    //        }
+    //    }
+    //
+    //}
 
     private void initView() {
+        mToolbar = viewPager.getToolbar();
+        if (mToolbar != null) {
+            setSupportActionBar(mToolbar);
+        }
+        String[] titles = {"aaa"};
+        EmptyFragment fragment = new EmptyFragment();
+        Fragment[] fragments = {fragment};
 
-    }
+        //mAdapter = new PagerAdapter(getSupportFragmentManager(), titles, Arrays.asList(fragments));
+        viewPager.getViewPager().setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public Fragment getItem(int position) {
+                return new EmptyFragment();
+            }
 
-    @Override
-    public void setPresenter(ShotContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
+            @Override
+            public int getCount() {
+                return 2;
+            }
 
-    @Override
-    public void showResult(ShotEntity entity) {
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return "sasdasd";
+            }
+        });
 
+        viewPager.setMaterialViewPagerListener(page -> HeaderDesign.fromColorResAndUrl(R.color.accent_color,
+                "http://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2014/06/wallpaper_51.jpg"));
+        viewPager.getViewPager().setOffscreenPageLimit(viewPager.getViewPager().getAdapter().getCount());
+        viewPager.getPagerTitleStrip().setViewPager(viewPager.getViewPager());
     }
 }

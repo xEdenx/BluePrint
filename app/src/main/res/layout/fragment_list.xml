@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+                android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_empty_light"/>
 
             <Button
@@ -37,8 +38,7 @@
                 android:layout_below="@+id/emptyImg"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/margin_16dp"
-                android:text="empty ..."/>
+                android:layout_marginTop="@dimen/margin_16dp"/>
 
         </RelativeLayout>
 

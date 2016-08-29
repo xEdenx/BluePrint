@@ -26,7 +26,7 @@
             android:name=".module.shot.ShotActivity"
             android:label="@string/title_activity_shot"
             android:parentActivityName=".module.main.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/TransTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.tneciv.blueprint.module.main.MainActivity"/>
@@ -55,7 +55,8 @@
                     android:scheme="https"/>
             </intent-filter>
         </activity>
-        <activity android:name=".CustActivity">
+        <activity
+            android:name=".CustActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -66,7 +67,7 @@
         <meta-data
             android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
             android:value="GlideModule"/>
-        
+
     </application>
 
 </manifest>
