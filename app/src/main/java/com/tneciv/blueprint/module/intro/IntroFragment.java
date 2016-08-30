@@ -4,19 +4,42 @@ package com.tneciv.blueprint.module.intro;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.common.Constants;
 import com.tneciv.blueprint.entity.ShotEntity;
+import com.tneciv.blueprint.widget.CircleTransform;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+import static com.tneciv.blueprint.common.CheckUtils.checkString;
+import static com.tneciv.blueprint.common.CheckUtils.friendlyTime;
 
 /**
  * A fragment to show shot info in ShotActivity .
  */
 public class IntroFragment extends Fragment {
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.desc)
+    TextView desc;
+    @BindView(R.id.avatr)
+    ImageView avatar;
+    @BindView(R.id.userName)
+    TextView userName;
+    @BindView(R.id.createTime)
+    TextView createTime;
+    @BindView(R.id.userDesc)
+    TextView userDesc;
     private ShotEntity mShotEntity;
 
     @Override
@@ -30,7 +53,9 @@ public class IntroFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_intro, container, false);
+        View view = inflater.inflate(R.layout.fragment_intro, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
@@ -51,7 +76,17 @@ public class IntroFragment extends Fragment {
     }
 
     private void showInfo(ShotEntity entity) {
-        Toast.makeText(getActivity(), entity.getTitle() + "", Toast.LENGTH_SHORT).show();
+        title.setText(checkString(entity.getTitle()));
+        createTime.setText(friendlyTime(entity.getCreated_at()));
+        desc.setText(Html.fromHtml(checkString(entity.getDescription())));
+        userName.setText(entity.getUser().getName());
+        Glide.with(this)
+                .load(entity.getUser().getAvatar_url())
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .transform(new CircleTransform(getActivity()))
+                .into(avatar);
+        userDesc.setText(Html.fromHtml(checkString(entity.getUser().getBio())));
+
     }
 
 }
