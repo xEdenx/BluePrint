@@ -3,13 +3,15 @@ package com.tneciv.blueprint.module.shot;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
+import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.entity.ShotEntity;
 
@@ -26,6 +28,10 @@ public class EmptyFragment extends Fragment {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.cardContainer)
+    CardView cardContainer;
+    @BindView(R.id.scrollView)
+    ObservableScrollView mScrollView;
 
     public EmptyFragment() {
     }
@@ -43,7 +49,8 @@ public class EmptyFragment extends Fragment {
         EmptyAdapter adapter = new EmptyAdapter(getActivity(), Arrays.asList(arr));
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
+        //recyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
+        MaterialViewPagerHelper.registerScrollView(getActivity(), mScrollView, null);
         return view;
     }
 

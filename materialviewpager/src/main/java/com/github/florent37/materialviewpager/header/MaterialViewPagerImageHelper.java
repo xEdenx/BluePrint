@@ -41,8 +41,8 @@ public class MaterialViewPagerImageHelper {
 
                 //change the image when alpha=0
                 Glide.with(imageView.getContext()).load(urlImage)
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .centerCrop()
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .listener(new RequestListener<String, GlideDrawable>() {
                             @Override
                             public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
