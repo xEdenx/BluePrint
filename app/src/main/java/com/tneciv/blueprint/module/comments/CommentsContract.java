@@ -9,7 +9,7 @@ import com.tneciv.blueprint.entity.CommentEntity;
  * on 2016-08-30 14:43 .
  */
 
-interface CommentContract {
+interface CommentsContract {
     interface Presenter extends BasePresenter {
         void getComments(int shotId);
     }
@@ -20,5 +20,7 @@ interface CommentContract {
         void hideLoading();
 
         void showResult(CommentEntity[] entities);
+
+        void handleError(Throwable e);
     }
 }

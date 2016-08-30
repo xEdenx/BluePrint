@@ -13,10 +13,10 @@ import rx.Subscriber;
  * on 2016-08-30 14:47 .
  */
 
-public class CommentsPresenter extends BasePresenterImpl implements CommentContract.Presenter {
-    private CommentContract.View mView;
+public class CommentsPresenter extends BasePresenterImpl implements CommentsContract.Presenter {
+    private CommentsContract.View mView;
 
-    public CommentsPresenter(CommentContract.View mView) {
+    public CommentsPresenter(CommentsContract.View mView) {
         this.mView = mView;
         mView.setPresenter(this);
     }
@@ -45,6 +45,7 @@ public class CommentsPresenter extends BasePresenterImpl implements CommentContr
             @Override
             public void onError(Throwable e) {
                 mView.hideLoading();
+                mView.handleError(e);
             }
 
             @Override

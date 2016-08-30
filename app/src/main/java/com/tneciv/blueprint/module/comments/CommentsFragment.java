@@ -2,6 +2,7 @@ package com.tneciv.blueprint.module.comments;
 
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,7 +27,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CommentsFragment extends Fragment implements CommentContract.View {
+public class CommentsFragment extends Fragment implements CommentsContract.View {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -36,7 +37,7 @@ public class CommentsFragment extends Fragment implements CommentContract.View {
     private int shotId;
     private List<CommentEntity> mEntityList;
     private CommentsAdapter adapter;
-    private CommentContract.Presenter mPresenter;
+    private CommentsContract.Presenter mPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -87,7 +88,7 @@ public class CommentsFragment extends Fragment implements CommentContract.View {
     }
 
     @Override
-    public void setPresenter(CommentContract.Presenter presenter) {
+    public void setPresenter(CommentsContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -107,5 +108,10 @@ public class CommentsFragment extends Fragment implements CommentContract.View {
         mEntityList.clear();
         mEntityList.addAll(Arrays.asList(entities));
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void handleError(Throwable e) {
+        Snackbar.make(mScrollView, e.getMessage() + "", Snackbar.LENGTH_SHORT).setAction("refresh", v -> onResume()).show();
     }
 }
