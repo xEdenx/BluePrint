@@ -72,10 +72,10 @@ dependencies {
     releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:${project.ext.leakcanaryVersion}"
     testCompile "com.squareup.leakcanary:leakcanary-android-no-op:${project.ext.leakcanaryVersion}"
 
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'io.reactivex:rxjava:1.1.6'
 
     compile project(':widget')
     compile project(':materialviewpager')
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'io.reactivex:rxjava:1.1.6'
-    compile 'com.android.support:support-v4:24.2.0'
+
 }

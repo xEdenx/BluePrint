@@ -13,10 +13,10 @@ import rx.Subscriber;
  * on 2016-08-30 14:47 .
  */
 
-public class CommentsPresenter extends BasePresenterImpl implements CommentsContract.Presenter {
+class CommentsPresenter extends BasePresenterImpl implements CommentsContract.Presenter {
     private CommentsContract.View mView;
 
-    public CommentsPresenter(CommentsContract.View mView) {
+    CommentsPresenter(CommentsContract.View mView) {
         this.mView = mView;
         mView.setPresenter(this);
     }

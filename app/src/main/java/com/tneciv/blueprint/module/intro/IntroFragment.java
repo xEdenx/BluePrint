@@ -14,7 +14,7 @@ import com.tneciv.blueprint.common.Constants;
 import com.tneciv.blueprint.entity.ShotEntity;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A fragment to show shot info in ShotActivity .
  */
 public class IntroFragment extends Fragment {
     private ShotEntity mShotEntity;

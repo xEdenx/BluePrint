@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * A fragment to show comments in ShotActivity .
  */
 public class CommentsFragment extends Fragment implements CommentsContract.View {
 
