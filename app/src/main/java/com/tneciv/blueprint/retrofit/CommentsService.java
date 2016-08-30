@@ -12,6 +12,6 @@ import rx.Observable;
  */
 
 public interface CommentsService {
-    @GET("/shots/{shotId}/comments")
-    Observable<CommentEntity[]> getProject(@Path("shotId") int shotId);
+    @GET("shots/{shotId}/comments")
+    Observable<CommentEntity[]> getComments(@Path("shotId") int shotId);
 }

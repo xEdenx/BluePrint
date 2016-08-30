@@ -16,6 +16,7 @@ import com.tneciv.blueprint.common.Constants;
 import com.tneciv.blueprint.entity.CommentEntity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -32,7 +33,7 @@ public class CommentsFragment extends Fragment implements CommentContract.View {
     @BindView(R.id.scrollView)
     ObservableScrollView mScrollView;
 
-    private int id;
+    private int shotId;
     private List<CommentEntity> mEntityList;
     private CommentsAdapter adapter;
     private CommentContract.Presenter mPresenter;
@@ -41,9 +42,10 @@ public class CommentsFragment extends Fragment implements CommentContract.View {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            id = getArguments().getInt(Constants.SHOT_ID);
+            shotId = getArguments().getInt(Constants.SHOT_ID);
         }
         mEntityList = new ArrayList<>();
+        new CommentsPresenter(this);
     }
 
     @Override
@@ -57,6 +59,20 @@ public class CommentsFragment extends Fragment implements CommentContract.View {
         //recyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
         MaterialViewPagerHelper.registerScrollView(getActivity(), mScrollView, null);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (shotId != 0) {
+            mPresenter.getComments(shotId);
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mPresenter.unsubscribe();
     }
 
     public CommentsFragment() {
@@ -75,9 +91,21 @@ public class CommentsFragment extends Fragment implements CommentContract.View {
         mPresenter = presenter;
     }
 
+
     @Override
-    public void onDetach() {
-        super.onDetach();
-        mPresenter.unsubscribe();
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showResult(CommentEntity[] entities) {
+        mEntityList.clear();
+        mEntityList.addAll(Arrays.asList(entities));
+        adapter.notifyDataSetChanged();
     }
 }

@@ -32,6 +32,12 @@ public class IntroFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_intro, container, false);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        showInfo(mShotEntity);
+    }
+
     public IntroFragment() {
     }
 
@@ -41,6 +47,10 @@ public class IntroFragment extends Fragment {
         args.putParcelable(Constants.SHOT_ENTITY, parcelable);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    private void showInfo(ShotEntity entity) {
+
     }
 
 }
