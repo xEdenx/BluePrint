@@ -12,7 +12,7 @@
 * [Android MVP](https://github.com/googlesamples/android-architecture)
 * Material Design
 * Recyclerview with auto paging
-* Single Activity with mutiple Fragments
+* Less Activity with mutiple Fragments
 
 # PRIVIEW
 ![Imgur](http://i.imgur.com/rrYbEsem.png)
@@ -20,3 +20,5 @@
 # TODO
 
 * Too many things ...
+* Unit Test
+* Custom view
