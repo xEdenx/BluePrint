@@ -1,9 +1,8 @@
-package com.tneciv.blueprint.module.shot;
+package com.tneciv.blueprint.module.comments;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,9 +13,10 @@ import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.common.Constants;
-import com.tneciv.blueprint.entity.ShotEntity;
+import com.tneciv.blueprint.entity.CommentEntity;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,16 +25,17 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CommentsFragment extends Fragment {
+public class CommentsFragment extends Fragment implements CommentContract.View {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    @BindView(R.id.cardContainer)
-    CardView cardContainer;
     @BindView(R.id.scrollView)
     ObservableScrollView mScrollView;
 
     private int id;
+    private List<CommentEntity> mEntityList;
+    private CommentsAdapter adapter;
+    private CommentContract.Presenter mPresenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,19 +43,15 @@ public class CommentsFragment extends Fragment {
         if (getArguments() != null) {
             id = getArguments().getInt(Constants.SHOT_ID);
         }
+        mEntityList = new ArrayList<>();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.for_test, container, false);
+        View view = inflater.inflate(R.layout.fragment_comments, container, false);
         ButterKnife.bind(this, view);
-        ShotEntity dd = new ShotEntity();
-        dd.setId(111);
-        ShotEntity ss = new ShotEntity();
-        ss.setId(222);
-        ShotEntity[] arr = {dd, ss};
-        EmptyAdapter adapter = new EmptyAdapter(getActivity(), Arrays.asList(arr));
+        adapter = new CommentsAdapter(getActivity(), mEntityList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //recyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
@@ -73,4 +70,14 @@ public class CommentsFragment extends Fragment {
         return fragment;
     }
 
+    @Override
+    public void setPresenter(CommentContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mPresenter.unsubscribe();
+    }
 }

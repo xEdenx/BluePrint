@@ -14,6 +14,8 @@ import com.github.florent37.materialviewpager.header.HeaderDesign;
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.common.Constants;
 import com.tneciv.blueprint.entity.ShotEntity;
+import com.tneciv.blueprint.module.comments.CommentsFragment;
+import com.tneciv.blueprint.module.intro.IntroFragment;
 
 import java.util.Arrays;
 
