@@ -3,66 +3,74 @@ package com.tneciv.blueprint.module.shot;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.tneciv.blueprint.R;
+import com.tneciv.blueprint.common.Constants;
+import com.tneciv.blueprint.entity.ShotEntity;
+
+import java.util.Arrays;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link CommentsFragment#newInstance} factory method to
- * create an instance of this fragment.
  */
 public class CommentsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    @BindView(R.id.recyclerView)
+    RecyclerView recyclerView;
+    @BindView(R.id.cardContainer)
+    CardView cardContainer;
+    @BindView(R.id.scrollView)
+    ObservableScrollView mScrollView;
 
-
-    public CommentsFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CommentsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CommentsFragment newInstance(String param1, String param2) {
-        CommentsFragment fragment = new CommentsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private int id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            id = getArguments().getInt(Constants.SHOT_ID);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setText(R.string.hello_blank_fragment);
-        return textView;
+        View view = inflater.inflate(R.layout.for_test, container, false);
+        ButterKnife.bind(this, view);
+        ShotEntity dd = new ShotEntity();
+        dd.setId(111);
+        ShotEntity ss = new ShotEntity();
+        ss.setId(222);
+        ShotEntity[] arr = {dd, ss};
+        EmptyAdapter adapter = new EmptyAdapter(getActivity(), Arrays.asList(arr));
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //recyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
+        MaterialViewPagerHelper.registerScrollView(getActivity(), mScrollView, null);
+        return view;
+    }
+
+    public CommentsFragment() {
+    }
+
+    public static CommentsFragment newInstance(int id) {
+        CommentsFragment fragment = new CommentsFragment();
+        Bundle args = new Bundle();
+        args.putInt(Constants.SHOT_ID, id);
+        fragment.setArguments(args);
+        return fragment;
     }
 
 }

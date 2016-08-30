@@ -73,11 +73,13 @@ public class ShotActivity extends AppCompatActivity {
             setSupportActionBar(mToolbar);
             mToolbar.setTitle("");
         }
+
         String[] titles = {"intro", "comments"};
-        EmptyFragment fragment = new EmptyFragment();
-        IntroFragment introFragment = new IntroFragment();
+        IntroFragment introFragment = IntroFragment.newInstance(mShotEntity);
+        CommentsFragment fragment = CommentsFragment.newInstance(mShotEntity.getId());
         Fragment[] fragments = {introFragment, fragment};
         ShotEntity.ImagesBean images = mShotEntity.getImages();
+
         String imgUrl = !TextUtils.isEmpty(images.getHidpi()) ? images.getHidpi() : images.getNormal();
 
         mAdapter = new PagerAdapter(getSupportFragmentManager(), titles, Arrays.asList(fragments));

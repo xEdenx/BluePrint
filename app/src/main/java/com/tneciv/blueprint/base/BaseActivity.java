@@ -19,10 +19,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.tneciv.blueprint.R;
-import com.tneciv.blueprint.module.list.ListFragment;
-import com.tneciv.blueprint.module.list.ListPresenter;
 import com.tneciv.blueprint.module.main.MainFragment;
-import com.tneciv.blueprint.module.shot.EmptyFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -115,14 +112,9 @@ public abstract class BaseActivity extends AppCompatActivity
             replaceFragment(new MainFragment());
             Log.d("BaseActivity", "mainFragment click");
         } else if (id == R.id.nav_gallery) {
-            EmptyFragment emptyFragment = new EmptyFragment();
-            replaceFragment(emptyFragment);
-            Log.d("BaseActivity", "emptyFragment click");
+
         } else if (id == R.id.nav_slideshow) {
-            ListFragment listFragment = new ListFragment();
-            replaceFragment(listFragment);
-            new ListPresenter(listFragment);
-            Log.d("BaseActivity", "listFragment click");
+
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

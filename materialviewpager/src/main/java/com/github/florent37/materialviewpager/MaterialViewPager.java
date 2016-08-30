@@ -49,6 +49,8 @@ public class MaterialViewPager extends FrameLayout implements ViewPager.OnPageCh
     protected MaterialViewPager.Listener listener;
     int lastPosition = -1;
     int currentPagerState = Integer.MIN_VALUE;
+
+    // disable load head img everytime
     private boolean isLoaded;
     /**
      * the layout containing the header
