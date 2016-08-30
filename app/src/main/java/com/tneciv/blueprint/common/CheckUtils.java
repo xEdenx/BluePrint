@@ -42,7 +42,8 @@ public class CheckUtils {
     }
 
     public static String friendlyTime(String date) {
-        Date time = toDate(date);
+        String s = convert2LocalTime(date);
+        Date time = toDate(s);
         if (time == null) {
             return "Unknown";
         }

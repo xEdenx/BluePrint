@@ -28,7 +28,6 @@ import butterknife.OnClick;
 
 import static com.tneciv.blueprint.common.CheckUtils.checkInteger;
 import static com.tneciv.blueprint.common.CheckUtils.checkString;
-import static com.tneciv.blueprint.common.CheckUtils.convert2LocalTime;
 import static com.tneciv.blueprint.common.CheckUtils.friendlyTime;
 
 /**
@@ -48,8 +47,7 @@ class ListRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, ListRecyclerAd
         String imageHidpi = entity.getImages().getHidpi();
         String imageNormal = entity.getImages().getNormal();
         String avatarUrl = entity.getUser().getAvatar_url();
-        String updatedAt = convert2LocalTime(entity.getUpdated_at());
-        updatedAt = friendlyTime(updatedAt);
+        String updatedAt = friendlyTime(entity.getUpdated_at());
         int attachmentsCount = entity.getAttachments_count();
 
         if (attachmentsCount == 0) {
