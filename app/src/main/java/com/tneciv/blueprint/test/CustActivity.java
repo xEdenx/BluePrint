@@ -1,8 +1,9 @@
-package com.tneciv.blueprint;
+package com.tneciv.blueprint.test;
 
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.tneciv.blueprint.R;
 import com.tneciv.widget.textview.CustTextView;
 
 import butterknife.BindView;

@@ -54,6 +54,7 @@ public class ShotActivity extends AppCompatActivity {
         if (this.getIntent() != null) {
             this.mShotEntity = intent.getParcelableExtra(Constants.SHOT_ENTITY);
         } else {
+            // TODO: 8-30-0030 may opened by browser
             //mPresenter.loadData(shotId);
         }
 
@@ -82,7 +83,7 @@ public class ShotActivity extends AppCompatActivity {
         ViewPager pager = mViewpager.getViewPager();
 
         pager.setAdapter(mAdapter);
-        mViewpager.setMaterialViewPagerListener(page -> HeaderDesign.fromColorResAndUrl(R.color.accent_color,
+        mViewpager.setMaterialViewPagerListener(page -> HeaderDesign.fromColorResAndUrl(R.color.colorAccent,
                 imgUrl));
         pager.setOffscreenPageLimit(pager.getAdapter().getCount());
         mViewpager.getPagerTitleStrip()

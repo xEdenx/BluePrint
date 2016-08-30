@@ -6,7 +6,7 @@
     android:id="@+id/activity_cust"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tneciv.blueprint.CustActivity">
+    tools:context="com.tneciv.blueprint.test.CustActivity">
 
     <com.tneciv.widget.textview.CustTextView
         android:id="@+id/custView"
