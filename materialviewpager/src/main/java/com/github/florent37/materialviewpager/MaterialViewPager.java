@@ -49,6 +49,7 @@ public class MaterialViewPager extends FrameLayout implements ViewPager.OnPageCh
     protected MaterialViewPager.Listener listener;
     int lastPosition = -1;
     int currentPagerState = Integer.MIN_VALUE;
+    private boolean isLoaded;
     /**
      * the layout containing the header
      * default : add @layout/material_view_pager_default_header
@@ -166,6 +167,9 @@ public class MaterialViewPager extends FrameLayout implements ViewPager.OnPageCh
      * may remove Picasso
      */
     public void setImageUrl(String imageUrl, int fadeDuration) {
+        if (isLoaded) {
+            return;
+        }
         if (imageUrl != null) {
             final ImageView headerBackgroundImage = (ImageView) findViewById(R.id.materialviewpager_imageHeader);
             //if using MaterialViewPagerImageHeader
@@ -267,10 +271,13 @@ public class MaterialViewPager extends FrameLayout implements ViewPager.OnPageCh
             color = getContext().getResources().getColor(headerDesign.getColorRes());
         }
 
-        if (headerDesign.getDrawable() != null) {
-            setImageDrawable(headerDesign.getDrawable(), fadeDuration);
-        } else {
-            setImageUrl(headerDesign.getImageUrl(), fadeDuration);
+        if (position == 0) {
+            if (headerDesign.getDrawable() != null) {
+                setImageDrawable(headerDesign.getDrawable(), fadeDuration);
+            } else {
+                setImageUrl(headerDesign.getImageUrl(), fadeDuration);
+            }
+            isLoaded = true;
         }
 
         setColor(color, fadeDuration);
@@ -365,12 +372,12 @@ public class MaterialViewPager extends FrameLayout implements ViewPager.OnPageCh
         //construct the materialViewPagerHeader with subviews
         if (!isInEditMode()) {
             materialViewPagerHeader = MaterialViewPagerHeader
-                .withToolbar(mToolbar)
-                .withToolbarLayoutBackground(toolbarLayoutBackground)
-                .withPagerSlidingTabStrip(pagerTitleStripContainer)
-                .withHeaderBackground(headerBackground)
-                .withStatusBackground(findViewById(R.id.statusBackground))
-                .withLogo(logoContainer);
+                    .withToolbar(mToolbar)
+                    .withToolbarLayoutBackground(toolbarLayoutBackground)
+                    .withPagerSlidingTabStrip(pagerTitleStripContainer)
+                    .withHeaderBackground(headerBackground)
+                    .withStatusBackground(findViewById(R.id.statusBackground))
+                    .withLogo(logoContainer);
 
             //and construct the MaterialViewPagerAnimator
             //attach it to the activity to enable MaterialViewPagerHeaderView.setMaterialHeight();
@@ -423,15 +430,15 @@ public class MaterialViewPager extends FrameLayout implements ViewPager.OnPageCh
     static class SavedState extends BaseSavedState {
         //required field that makes Parcelables from a Parcel
         public static final Parcelable.Creator<SavedState> CREATOR =
-            new Parcelable.Creator<SavedState>() {
-                public SavedState createFromParcel(Parcel in) {
-                    return new SavedState(in);
-                }
+                new Parcelable.Creator<SavedState>() {
+                    public SavedState createFromParcel(Parcel in) {
+                        return new SavedState(in);
+                    }
 
-                public SavedState[] newArray(int size) {
-                    return new SavedState[size];
-                }
-            };
+                    public SavedState[] newArray(int size) {
+                        return new SavedState[size];
+                    }
+                };
         public MaterialViewPagerSettings settings;
         public float yOffset;
 

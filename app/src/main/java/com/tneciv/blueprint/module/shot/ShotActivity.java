@@ -73,9 +73,10 @@ public class ShotActivity extends AppCompatActivity {
             setSupportActionBar(mToolbar);
             mToolbar.setTitle("");
         }
-        String[] titles = {"aaa"};
+        String[] titles = {"intro", "comments"};
         EmptyFragment fragment = new EmptyFragment();
-        Fragment[] fragments = {fragment};
+        IntroFragment introFragment = new IntroFragment();
+        Fragment[] fragments = {introFragment, fragment};
         ShotEntity.ImagesBean images = mShotEntity.getImages();
         String imgUrl = !TextUtils.isEmpty(images.getHidpi()) ? images.getHidpi() : images.getNormal();
 
