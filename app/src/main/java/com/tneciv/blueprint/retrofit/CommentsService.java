@@ -12,6 +12,6 @@ import rx.Observable;
  */
 
 public interface CommentsService {
-    @GET("shots/{shotId}/comments?page=2&per_page=30")
+    @GET("shots/{shotId}/comments?page=1&per_page=30")
     Observable<CommentEntity[]> getComments(@Path("shotId") int shotId);
 }

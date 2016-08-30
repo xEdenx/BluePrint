@@ -73,9 +73,8 @@ public class ShotActivity extends AppCompatActivity {
         mToolbar = mViewpager.getToolbar();
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
-            mToolbar.setTitle("");
         }
-
+        setTitle(mShotEntity.getTitle());
         String[] titles = {"intro", "comments"};
         IntroFragment introFragment = IntroFragment.newInstance(mShotEntity);
         int mShotEntityId = mShotEntity.getId();
