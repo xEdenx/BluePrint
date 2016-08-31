@@ -58,9 +58,7 @@ public abstract class BaseActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         initView();
-
         initFragment();
-
 
     }
 

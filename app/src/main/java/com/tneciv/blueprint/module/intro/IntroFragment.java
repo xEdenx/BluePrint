@@ -3,6 +3,7 @@ package com.tneciv.blueprint.module.intro;
 
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.text.Html;
@@ -84,16 +85,23 @@ public class IntroFragment extends Fragment {
     }
 
     private void showInfo(ShotEntity entity) {
-        title.setText(checkString(entity.getTitle()));
-        createTime.setText(friendlyTime(entity.getCreated_at()));
-        desc.setText(Html.fromHtml(checkString(entity.getDescription())));
-        userName.setText(entity.getUser().getName());
-        Glide.with(this)
-                .load(entity.getUser().getAvatar_url())
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .transform(new CircleTransform(getActivity()))
-                .into(avatar);
-        userDesc.setText(Html.fromHtml(checkString(entity.getUser().getBio())));
+        try {
+            title.setText(checkString(entity.getTitle()));
+            createTime.setText(friendlyTime(entity.getCreated_at()));
+            desc.setText(Html.fromHtml(checkString(entity.getDescription())));
+            userName.setText(entity.getUser().getName());
+            Glide.with(this)
+                    .load(entity.getUser().getAvatar_url())
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .transform(new CircleTransform(getActivity()))
+                    .into(avatar);
+            userDesc.setText(Html.fromHtml(checkString(entity.getUser().getBio())));
+        } catch (Exception e) {
+            e.printStackTrace();
+            Snackbar.make(scrollView, "加载失败", Snackbar.LENGTH_SHORT).setAction("refresh", v -> {
+
+            });
+        }
 
     }
 

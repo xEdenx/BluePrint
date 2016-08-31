@@ -8,10 +8,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.tneciv.blueprint.R;
+import com.tneciv.blueprint.callback.MenuClickListener;
 import com.tneciv.blueprint.module.list.ListFragment;
 import com.tneciv.blueprint.module.list.ListPresenter;
 import com.tneciv.blueprint.module.user.PopularFragment;
@@ -31,8 +33,7 @@ public class MainFragment extends Fragment {
     @BindView(R.id.viewPager)
     ViewPager viewPager;
 
-    public MainFragment() {
-    }
+    private MenuClickListener mListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +44,9 @@ public class MainFragment extends Fragment {
         initViewPager();
 
         return view;
+    }
+
+    public MainFragment() {
     }
 
     private void initViewPager() {
@@ -83,4 +87,15 @@ public class MainFragment extends Fragment {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mListener != null) {
+            mListener.onClick(item);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void addMenuClickLitener(MenuClickListener listener) {
+        this.mListener = listener;
+    }
 }

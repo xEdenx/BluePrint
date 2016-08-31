@@ -2,7 +2,9 @@ package com.tneciv.blueprint.module.list;
 
 
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.MenuItem;
 
+import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.base.BaseListFragment;
 import com.tneciv.blueprint.entity.ShotEntity;
 
@@ -23,9 +25,6 @@ public class ListFragment extends BaseListFragment implements ListContract.View,
 
     private ListContract.Presenter mPresenter;
     private List<ShotEntity> list;
-    private ListRecyclerAdapter recyclerAdapter;
-
-    private boolean isCreated;
 
     @Override
     public void onResume() {
@@ -34,6 +33,28 @@ public class ListFragment extends BaseListFragment implements ListContract.View,
             onRefresh();
         }
     }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mPresenter.unsubscribe();
+        recyclerAdapter.removePaginationListener();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_refresh) {
+            onRefresh();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private ListRecyclerAdapter recyclerAdapter;
+
+    private boolean isCreated;
 
     public ListFragment() {
     }
@@ -45,13 +66,6 @@ public class ListFragment extends BaseListFragment implements ListContract.View,
         recyclerAdapter.addPaginationListener(this);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mPresenter.unsubscribe();
-        recyclerAdapter.removePaginationListener();
     }
 
     @Override
@@ -95,6 +109,5 @@ public class ListFragment extends BaseListFragment implements ListContract.View,
         currentPage = position / PAGE_SIZE + 1;
         mPresenter.loadMore(currentPage, PAGE_SIZE, totalRecord, SORT_TYPE_VIEWS);
     }
-
 
 }
