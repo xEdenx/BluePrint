@@ -35,8 +35,8 @@ public class ListFragment extends BaseListFragment implements ListContract.View,
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
+    public void onDestroyView() {
+        super.onDestroyView();
         mPresenter.unsubscribe();
         recyclerAdapter.removePaginationListener();
     }
