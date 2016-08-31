@@ -41,6 +41,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
         android:text="2016-08-11T17:55:02Z"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
+        android:textStyle="italic"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -55,7 +57,6 @@
         android:layout_marginStart="72dp"
         android:layout_marginTop="40dp"
         android:text="aaa"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Caption"
         app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintLeft_toLeftOf="parent"

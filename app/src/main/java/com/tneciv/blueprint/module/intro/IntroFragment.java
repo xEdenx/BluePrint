@@ -4,6 +4,7 @@ package com.tneciv.blueprint.module.intro;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.common.Constants;
 import com.tneciv.blueprint.entity.ShotEntity;
@@ -40,6 +43,10 @@ public class IntroFragment extends Fragment {
     TextView createTime;
     @BindView(R.id.userDesc)
     TextView userDesc;
+    @BindView(R.id.cardContainer)
+    CardView cardContainer;
+    @BindView(R.id.scrollView)
+    ObservableScrollView scrollView;
     private ShotEntity mShotEntity;
 
     @Override
@@ -55,6 +62,7 @@ public class IntroFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_intro, container, false);
         ButterKnife.bind(this, view);
+        MaterialViewPagerHelper.registerScrollView(getActivity(), scrollView, null);
         return view;
     }
 
