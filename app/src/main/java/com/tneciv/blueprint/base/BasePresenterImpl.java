@@ -18,7 +18,7 @@ public class BasePresenterImpl {
 
     /**
      * RxJava 取消注册，以避免内存泄露
-     * call in Activity.onDestory() or Fragment.detachView()
+     * call in Activity.onDestory() or Fragment.onDestoryView() .
      */
     protected void onUnsubscribe() {
         if (mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {

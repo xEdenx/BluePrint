@@ -41,9 +41,6 @@ public abstract class BaseListFragment extends Fragment implements SwipeRefreshL
     public int currentPage;
     public int totalRecord;
 
-    public BaseListFragment() {
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,6 +59,9 @@ public abstract class BaseListFragment extends Fragment implements SwipeRefreshL
         initRecyclerView();
 
         return view;
+    }
+
+    public BaseListFragment() {
     }
 
     protected void initView() {
