@@ -23,7 +23,7 @@ interface TrendContract {
     }
 
     interface Presenter extends BasePresenter {
-        void loadMore(int currentPage, int totalRecord, String sortType, String trendType);
+        void loadMore(int currentPage, int totalRecord, Map<String, String> option);
 
         void getShotList(Map<String, String> options);
     }

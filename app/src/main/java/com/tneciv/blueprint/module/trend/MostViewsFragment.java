@@ -4,6 +4,7 @@ package com.tneciv.blueprint.module.trend;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.tneciv.blueprint.base.BaseListFragment;
+import com.tneciv.blueprint.common.Constants;
 import com.tneciv.blueprint.entity.ShotEntity;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import static com.tneciv.blueprint.common.Constants.PAGE;
 import static com.tneciv.blueprint.common.Constants.PAGE_SIZE;
 import static com.tneciv.blueprint.common.Constants.PER_PAGE;
 import static com.tneciv.blueprint.common.Constants.SORT;
-import static com.tneciv.blueprint.common.Constants.SORT_TYPE_VIEWS;
+import static com.tneciv.blueprint.common.Constants.SORT_VIEWS;
 
 
 /**
@@ -63,7 +64,7 @@ public class MostViewsFragment extends BaseListFragment implements TrendContract
     @Override
     public void onRefresh() {
         Map<String, String> options = new HashMap<>();
-        options.put(SORT, SORT_TYPE_VIEWS);
+        options.put(SORT, SORT_VIEWS);
         options.put(PAGE, "1");
         options.put(PER_PAGE, String.valueOf(PAGE_SIZE));
         mPresenter.getShotList(options);
@@ -103,7 +104,10 @@ public class MostViewsFragment extends BaseListFragment implements TrendContract
     @Override
     public void onChange(int position) {
         currentPage = position / PAGE_SIZE + 1;
-        mPresenter.loadMore(currentPage, totalRecord, SORT, SORT_TYPE_VIEWS);
+        HashMap<String, String> map = new HashMap<>();
+        map.put(Constants.SHOTS_NAME, Constants.SORT);
+        map.put(Constants.SHOTS_TYPE, SORT_VIEWS);
+        mPresenter.loadMore(currentPage, totalRecord, map);
     }
 
 }

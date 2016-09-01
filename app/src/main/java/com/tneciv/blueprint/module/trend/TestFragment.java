@@ -15,6 +15,7 @@ import java.util.Map;
 
 public class TestFragment extends TrendFragment {
 
+
     @Override
     public RecyclerView.LayoutManager setLayoutManager(Context context) {
         return new LinearLayoutManager(context);
@@ -22,6 +23,11 @@ public class TestFragment extends TrendFragment {
 
     @Override
     public Map<String, String> initOptionMap() {
-        return defaultOptionMap(Constants.SORT, Constants.SORT_TYPE_RECENT);
+        return defaultOptionMap();
+    }
+
+    @Override
+    public Map<String, String> setOptionType() {
+        return setOptionType(Constants.SORT, Constants.SORT_RECENT);
     }
 }

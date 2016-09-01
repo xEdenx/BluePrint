@@ -1,11 +1,11 @@
 package com.tneciv.blueprint.module.trend;
 
 import com.tneciv.blueprint.base.BasePresenterImpl;
+import com.tneciv.blueprint.common.Constants;
 import com.tneciv.blueprint.entity.ShotEntity;
 import com.tneciv.blueprint.retrofit.ApiServiceFactory;
 import com.tneciv.blueprint.retrofit.ShotService;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import rx.Observable;
@@ -38,13 +38,16 @@ public class TrendPresenter extends BasePresenterImpl implements TrendContract.P
     }
 
     @Override
-    public void loadMore(int currentPage, int totalRecord, String sortType, String trendType) {
+    public void loadMore(int currentPage, int totalRecord, Map<String, String> option) {
         if (currentPage > totalRecord / PAGE_SIZE) {
-            Map<String, String> map = new HashMap<>();
-            map.put(sortType, trendType);
-            map.put(PAGE, String.valueOf(currentPage));
-            map.put(PER_PAGE, String.valueOf(PAGE_SIZE));
-            getShotList(map);
+            String shotsName = option.get(Constants.SHOTS_NAME);
+            String shotsType = option.get(Constants.SHOTS_TYPE);
+            option.put(shotsName, shotsType);
+            option.put(PAGE, String.valueOf(currentPage));
+            option.put(PER_PAGE, String.valueOf(PAGE_SIZE));
+            option.remove(Constants.SHOTS_NAME);
+            option.remove(Constants.SHOTS_TYPE);
+            getShotList(option);
         }
     }
 

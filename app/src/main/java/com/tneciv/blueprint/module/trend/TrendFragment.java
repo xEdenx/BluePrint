@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 
 import com.tneciv.blueprint.base.BaseListFragment;
+import com.tneciv.blueprint.common.Constants;
 import com.tneciv.blueprint.entity.ShotEntity;
 
 import java.util.ArrayList;
@@ -16,8 +17,6 @@ import java.util.Map;
 import static com.tneciv.blueprint.common.Constants.PAGE;
 import static com.tneciv.blueprint.common.Constants.PAGE_SIZE;
 import static com.tneciv.blueprint.common.Constants.PER_PAGE;
-import static com.tneciv.blueprint.common.Constants.SORT;
-import static com.tneciv.blueprint.common.Constants.SORT_TYPE_VIEWS;
 
 
 /**
@@ -100,7 +99,7 @@ public abstract class TrendFragment extends BaseListFragment implements TrendCon
     @Override
     public void onChange(int position) {
         currentPage = position / PAGE_SIZE + 1;
-        mPresenter.loadMore(currentPage, totalRecord, SORT, SORT_TYPE_VIEWS);
+        mPresenter.loadMore(currentPage, totalRecord, setOptionType());
     }
 
     /**
@@ -118,21 +117,24 @@ public abstract class TrendFragment extends BaseListFragment implements TrendCon
      */
     public abstract Map<String, String> initOptionMap();
 
-    /**
-     * optionMap with default pageNum , pageSize .
-     * used to return a default map for initOptionMap() .
-     *
-     * @param sortType  to get Shots
-     * @param trendType to get Shots
-     * @return default optionMap .
-     */
-    public Map<String, String> defaultOptionMap(String sortType, String trendType) {
-        Map<String, String> map = new HashMap<>();
-        //map.put(SORT, SORT_TYPE_VIEWS);
+    public Map<String, String> defaultOptionMap() {
+        Map<String, String> map = setOptionType();
+        String sortType = map.get(Constants.SHOTS_NAME);
+        String trendType = map.get(Constants.SHOTS_TYPE);
         map.put(sortType, trendType);
         map.put(PAGE, "1");
         map.put(PER_PAGE, String.valueOf(PAGE_SIZE));
+        map.remove(Constants.SHOTS_NAME);
+        map.remove(Constants.SHOTS_TYPE);
         return map;
     }
 
+    public abstract Map<String, String> setOptionType();
+
+    public Map<String, String> setOptionType(String shotName, String shotType) {
+        Map<String, String> map = new HashMap<>();
+        map.put(Constants.SHOTS_NAME, shotName);
+        map.put(Constants.SHOTS_TYPE, shotType);
+        return map;
+    }
 }
