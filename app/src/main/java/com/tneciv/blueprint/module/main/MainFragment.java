@@ -14,10 +14,9 @@ import android.view.ViewGroup;
 
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.callback.MenuClickListener;
-import com.tneciv.blueprint.module.list.ListFragment;
-import com.tneciv.blueprint.module.list.ListPresenter;
-import com.tneciv.blueprint.module.user.PopularFragment;
-import com.tneciv.blueprint.module.user.PopularPresenter;
+import com.tneciv.blueprint.module.trend.MostViewsFragment;
+import com.tneciv.blueprint.module.trend.TestFragment;
+import com.tneciv.blueprint.module.trend.TrendPresenter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -50,7 +49,7 @@ public class MainFragment extends Fragment {
     }
 
     private void initViewPager() {
-        Fragment[] fragments = {new ListFragment(), new PopularFragment()};
+        Fragment[] fragments = {new MostViewsFragment(), new TestFragment()};
         List<Fragment> fragmentList = Arrays.asList(fragments);
         int[] tabIcons = {R.drawable.ic_explore, R.drawable.ic_extension};
         PagerAdapter pagerAdapter = new PagerAdapter(getChildFragmentManager(), fragmentList);
@@ -63,8 +62,8 @@ public class MainFragment extends Fragment {
             tabLayout.getTabAt(i).setIcon(tabIcons[i]);
         }
 
-        new ListPresenter((ListFragment) pagerAdapter.getItem(0));
-        new PopularPresenter((PopularFragment) pagerAdapter.getItem(1));
+        new TrendPresenter((MostViewsFragment) pagerAdapter.getItem(0));
+        new TrendPresenter((TestFragment) pagerAdapter.getItem(1));
     }
 
     class PagerAdapter extends FragmentStatePagerAdapter {

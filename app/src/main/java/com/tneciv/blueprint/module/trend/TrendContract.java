@@ -1,4 +1,4 @@
-package com.tneciv.blueprint.module.list;
+package com.tneciv.blueprint.module.trend;
 
 import com.tneciv.blueprint.BasePresenter;
 import com.tneciv.blueprint.BaseView;
@@ -11,7 +11,7 @@ import java.util.Map;
  * on 2016-08-14 16:00 .
  */
 
-interface ListContract {
+interface TrendContract {
     interface View extends BaseView<Presenter> {
         void showList(ShotEntity[] shotEntities);
 
@@ -19,11 +19,11 @@ interface ListContract {
 
         void hideLoading();
 
-        void showError();
+        void showError(Throwable e);
     }
 
     interface Presenter extends BasePresenter {
-        void loadMore(int currentPage, int pageSize, int totalRecord, String sortType);
+        void loadMore(int currentPage, int totalRecord, String sortType, String trendType);
 
         void getShotList(Map<String, String> options);
     }

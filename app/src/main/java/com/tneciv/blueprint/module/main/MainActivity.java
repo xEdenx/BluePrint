@@ -3,8 +3,8 @@ package com.tneciv.blueprint.module.main;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.tneciv.blueprint.R;
@@ -12,7 +12,7 @@ import com.tneciv.blueprint.base.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 
-    private static final int PERMISSION_REQUEST_CODE = 000;
+    private static final int PERMISSION_REQUEST_CODE = 1000;
 
     @Override
     protected void initFragment() {
@@ -29,9 +29,10 @@ public class MainActivity extends BaseActivity {
 
     private void askForPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(
-                    Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED
-                    || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+            if (checkSelfPermission(Manifest.permission.INTERNET)
+                    != PackageManager.PERMISSION_GRANTED
+                    || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED
                     ) {
                 requestPermissions(new String[]{
                         Manifest.permission.INTERNET,
@@ -46,25 +47,23 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                           int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         if (requestCode == PERMISSION_REQUEST_CODE) {
             int count = 0;
 
             for (int grantResult : grantResults) {
                 if (grantResult == PackageManager.PERMISSION_GRANTED) {
                     count++;
-                    Log.d("BaseActivity", "permissions count:" + count);
                     if (count == grantResults.length) {
-                        start();
+                        //start();
                     }
                 } else {
-                    Log.e("MainActivity", "PERMISSION REQUEST FAILED !!!");
                     Toast.makeText(this, "权限被拒绝，将不能缓存本地数据.", Toast.LENGTH_SHORT)
                             .show();
                 }
             }
-
+            start();
         }
     }
 

@@ -1,4 +1,4 @@
-package com.tneciv.blueprint.module.list;
+package com.tneciv.blueprint.module.trend;
 
 import android.content.Context;
 import android.content.Intent;
@@ -35,9 +35,9 @@ import static com.tneciv.blueprint.common.CheckUtils.friendlyTime;
  * on 2016-08-19 15:05 .
  */
 
-class ListRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, ListRecyclerAdapter.ItemViewHolder> {
+class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, TrendRecyclerAdapter.ItemViewHolder> {
 
-    ListRecyclerAdapter(Context context, List<ShotEntity> entities) {
+    TrendRecyclerAdapter(Context context, List<ShotEntity> entities) {
         super(context, entities);
     }
 

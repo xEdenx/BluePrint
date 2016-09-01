@@ -1,9 +1,9 @@
-package com.tneciv.blueprint.module.user;
+package com.tneciv.blueprint.module.popular;
 
 import com.tneciv.blueprint.base.BasePresenterImpl;
-import com.tneciv.blueprint.retrofit.UserService;
-import com.tneciv.blueprint.retrofit.ApiServiceFactory;
 import com.tneciv.blueprint.entity.UserEntity;
+import com.tneciv.blueprint.retrofit.ApiServiceFactory;
+import com.tneciv.blueprint.retrofit.UserService;
 
 import rx.Observable;
 import rx.Subscriber;

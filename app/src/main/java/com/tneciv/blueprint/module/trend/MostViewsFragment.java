@@ -1,18 +1,21 @@
-package com.tneciv.blueprint.module.list;
+package com.tneciv.blueprint.module.trend;
 
 
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.MenuItem;
 
-import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.base.BaseListFragment;
 import com.tneciv.blueprint.entity.ShotEntity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import static com.tneciv.blueprint.common.Constants.PAGE;
 import static com.tneciv.blueprint.common.Constants.PAGE_SIZE;
+import static com.tneciv.blueprint.common.Constants.PER_PAGE;
+import static com.tneciv.blueprint.common.Constants.SORT;
 import static com.tneciv.blueprint.common.Constants.SORT_TYPE_VIEWS;
 
 
@@ -21,9 +24,9 @@ import static com.tneciv.blueprint.common.Constants.SORT_TYPE_VIEWS;
  * on 2016-08-14 16:00 .
  * A fragment to show shots list .
  */
-public class ListFragment extends BaseListFragment implements ListContract.View, ListRecyclerAdapter.PaginationListener {
+public class MostViewsFragment extends BaseListFragment implements TrendContract.View, TrendRecyclerAdapter.PaginationListener {
 
-    private ListContract.Presenter mPresenter;
+    private TrendContract.Presenter mPresenter;
     private List<ShotEntity> list;
 
     @Override
@@ -41,28 +44,17 @@ public class ListFragment extends BaseListFragment implements ListContract.View,
         recyclerAdapter.removePaginationListener();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_refresh) {
-            onRefresh();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    private ListRecyclerAdapter recyclerAdapter;
+    private TrendRecyclerAdapter recyclerAdapter;
 
     private boolean isCreated;
 
-    public ListFragment() {
+    public MostViewsFragment() {
     }
 
     @Override
     protected void initRecyclerView() {
         list = new ArrayList<>();
-        recyclerAdapter = new ListRecyclerAdapter(getActivity(), list);
+        recyclerAdapter = new TrendRecyclerAdapter(getActivity(), list);
         recyclerAdapter.addPaginationListener(this);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -70,11 +62,15 @@ public class ListFragment extends BaseListFragment implements ListContract.View,
 
     @Override
     public void onRefresh() {
-        mPresenter.subscribe();
+        Map<String, String> options = new HashMap<>();
+        options.put(SORT, SORT_TYPE_VIEWS);
+        options.put(PAGE, "1");
+        options.put(PER_PAGE, String.valueOf(PAGE_SIZE));
+        mPresenter.getShotList(options);
     }
 
     @Override
-    public void setPresenter(ListContract.Presenter presenter) {
+    public void setPresenter(TrendContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -101,13 +97,13 @@ public class ListFragment extends BaseListFragment implements ListContract.View,
     }
 
     @Override
-    public void showError() {
+    public void showError(Throwable throwable) {
     }
 
     @Override
     public void onChange(int position) {
         currentPage = position / PAGE_SIZE + 1;
-        mPresenter.loadMore(currentPage, PAGE_SIZE, totalRecord, SORT_TYPE_VIEWS);
+        mPresenter.loadMore(currentPage, totalRecord, SORT, SORT_TYPE_VIEWS);
     }
 
 }
