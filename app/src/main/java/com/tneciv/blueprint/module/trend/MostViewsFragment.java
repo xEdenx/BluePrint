@@ -55,7 +55,7 @@ public class MostViewsFragment extends BaseListFragment implements TrendContract
     @Override
     protected void initRecyclerView() {
         list = new ArrayList<>();
-        recyclerAdapter = new TrendRecyclerAdapter(getActivity(), list);
+        recyclerAdapter = new TrendRecyclerAdapter(this, list);
         recyclerAdapter.addPaginationListener(this);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

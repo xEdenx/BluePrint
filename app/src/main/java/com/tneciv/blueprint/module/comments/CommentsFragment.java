@@ -54,7 +54,7 @@ public class CommentsFragment extends Fragment implements CommentsContract.View 
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_comments, container, false);
         ButterKnife.bind(this, view);
-        adapter = new CommentsAdapter(getActivity(), mEntityList);
+        adapter = new CommentsAdapter(this, mEntityList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //recyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());

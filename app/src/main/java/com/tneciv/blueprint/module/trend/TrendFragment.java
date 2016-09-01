@@ -2,6 +2,7 @@ package com.tneciv.blueprint.module.trend;
 
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 
 import com.tneciv.blueprint.base.BaseListFragment;
@@ -54,11 +55,13 @@ public abstract class TrendFragment extends BaseListFragment implements TrendCon
     @Override
     protected void initRecyclerView() {
         list = new ArrayList<>();
-        recyclerAdapter = new TrendRecyclerAdapter(getActivity(), list);
+        recyclerAdapter = new TrendRecyclerAdapter(setViewType(), list);
         recyclerAdapter.addPaginationListener(this);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(setLayoutManager(getActivity()));
     }
+
+    protected abstract Fragment setViewType();
 
     @Override
     public void onRefresh() {

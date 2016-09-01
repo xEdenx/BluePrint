@@ -1,6 +1,6 @@
 package com.tneciv.blueprint.module.comments;
 
-import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.View;
@@ -26,10 +26,10 @@ import butterknife.ButterKnife;
  * on 2016-08-21 23:18 .
  */
 
-public class CommentsAdapter extends BaseRecyclerAdapter<CommentEntity, CommentsAdapter.CommentsViewHolder> {
+class CommentsAdapter extends BaseRecyclerAdapter<CommentEntity, CommentsAdapter.CommentsViewHolder> {
 
-    CommentsAdapter(Context context, List<CommentEntity> entities) {
-        super(context, entities);
+    CommentsAdapter(Fragment fragment, List<CommentEntity> entities) {
+        super(fragment, entities);
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.tneciv.blueprint.module.trend;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
@@ -35,60 +35,83 @@ import static com.tneciv.blueprint.common.CheckUtils.friendlyTime;
  * on 2016-08-19 15:05 .
  */
 
-class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, TrendRecyclerAdapter.ItemViewHolder> {
+class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecyclerView.ViewHolder> {
 
-    TrendRecyclerAdapter(Context context, List<ShotEntity> entities) {
-        super(context, entities);
+    private enum ViewType {
+        VIEW, RECENT
+    }
+
+    TrendRecyclerAdapter(Fragment fragment, List<ShotEntity> entities) {
+        super(fragment, entities);
     }
 
     @Override
-    protected void bindItemView(ItemViewHolder holder, int position) {
+    protected void bindItemView(RecyclerView.ViewHolder holder, int position) {
         ShotEntity entity = dataList.get(position);
-        String imageHidpi = entity.getImages().getHidpi();
-        String imageNormal = entity.getImages().getNormal();
-        String avatarUrl = entity.getUser().getAvatar_url();
-        String updatedAt = friendlyTime(entity.getUpdated_at());
-        int attachmentsCount = entity.getAttachments_count();
+        if (holder instanceof ViewHolder) {
+            ViewHolder viewHolder = (ViewHolder) holder;
+            String imageHidpi = entity.getImages().getHidpi();
+            String imageNormal = entity.getImages().getNormal();
+            String avatarUrl = entity.getUser().getAvatar_url();
+            String updatedAt = friendlyTime(entity.getUpdated_at());
+            int attachmentsCount = entity.getAttachments_count();
 
-        if (attachmentsCount == 0) {
-            holder.attachImg.setVisibility(View.GONE);
-            holder.attactCount.setVisibility(View.GONE);
-        } else {
-            holder.attachImg.setVisibility(View.VISIBLE);
-            holder.attactCount.setVisibility(View.VISIBLE);
-            holder.attactCount.setText(checkInteger(attachmentsCount));
+            if (attachmentsCount == 0) {
+                viewHolder.attachImg.setVisibility(View.GONE);
+                viewHolder.attactCount.setVisibility(View.GONE);
+            } else {
+                viewHolder.attachImg.setVisibility(View.VISIBLE);
+                viewHolder.attactCount.setVisibility(View.VISIBLE);
+                viewHolder.attactCount.setText(checkInteger(attachmentsCount));
+            }
+
+            viewHolder.title.setText(checkString(entity.getTitle()));
+            viewHolder.name.setText(checkString(entity.getUser().getName()));
+            viewHolder.updateTime.setText(checkString(updatedAt));
+            viewHolder.comments.setText(checkInteger(entity.getComments_count()));
+            viewHolder.likes.setText(checkInteger(entity.getLikes_count()));
+            viewHolder.views.setText(checkInteger(entity.getViews_count()));
+            if (!TextUtils.isEmpty(avatarUrl)) {
+                Glide.with(mContext)
+                        .load(avatarUrl)
+                        .error(R.drawable.dribbble)
+                        .transform(new CircleTransform(mContext))
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into(viewHolder.userAvatar);
+            }
+            if (!TextUtils.isEmpty(imageNormal)) {
+                Glide.with(mContext)
+                        .load(TextUtils.isEmpty(imageHidpi) ? imageNormal : imageHidpi)
+                        .error(R.drawable.dribbble)
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into(new GlideDrawableImageViewTarget(viewHolder.shotImageContent, 5));
+            }
         }
 
-        holder.title.setText(checkString(entity.getTitle()));
-        holder.name.setText(checkString(entity.getUser().getName()));
-        holder.updateTime.setText(checkString(updatedAt));
-        holder.comments.setText(checkInteger(entity.getComments_count()));
-        holder.likes.setText(checkInteger(entity.getLikes_count()));
-        holder.views.setText(checkInteger(entity.getViews_count()));
-        if (!TextUtils.isEmpty(avatarUrl)) {
-            Glide.with(mContext)
-                    .load(avatarUrl)
-                    .error(R.drawable.dribbble)
-                    .transform(new CircleTransform(mContext))
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .into(holder.userAvatar);
+        if (holder instanceof RecentHolder) {
+            RecentHolder recentHolder = (RecentHolder) holder;
+
         }
-        if (!TextUtils.isEmpty(imageNormal)) {
-            Glide.with(mContext)
-                    .load(TextUtils.isEmpty(imageHidpi) ? imageNormal : imageHidpi)
-                    .error(R.drawable.dribbble)
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .into(new GlideDrawableImageViewTarget(holder.shotImageContent, 5));
-        }
+
     }
 
     @Override
-    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = inflateItemView(R.layout.layout_shot_item, parent);
-        return new ItemViewHolder(itemView);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        if (viewType == ViewType.VIEW.ordinal()) {
+            View itemView = inflateItemView(R.layout.layout_shot_item, parent);
+            return new ViewHolder(itemView);
+        }
+
+        if (viewType == ViewType.RECENT.ordinal()) {
+            View itemView = inflateItemView(R.layout.layout_comment_item, parent);
+            return new RecentHolder(itemView);
+        }
+
+        return null;
     }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.userAvatar)
         ImageView userAvatar;
@@ -111,7 +134,7 @@ class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, TrendRecycler
         @BindView(R.id.attactCount)
         TextView attactCount;
 
-        ItemViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -129,4 +152,23 @@ class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, TrendRecycler
 
     }
 
+    class RecentHolder extends RecyclerView.ViewHolder {
+
+        RecentHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+
+        if (mFragment instanceof ViewFragment) {
+            return ViewType.VIEW.ordinal();
+        }
+        if (mFragment instanceof RecentFragment) {
+            return ViewType.RECENT.ordinal();
+        }
+
+        return super.getItemViewType(position);
+    }
 }
