@@ -4,9 +4,12 @@ import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.tneciv.blueprint.common.Constants;
+import com.tneciv.blueprint.entity.ShotCatagory;
 
 import java.util.Map;
+
+import static com.tneciv.blueprint.entity.ShotCatagory.getShotsName;
+import static com.tneciv.blueprint.entity.ShotCatagory.getShotsType;
 
 /**
  * Created by Tneciv
@@ -28,6 +31,6 @@ public class TestFragment extends TrendFragment {
 
     @Override
     public Map<String, String> setOptionType() {
-        return setOptionType(Constants.SORT, Constants.SORT_RECENT);
+        return setOptionType(getShotsName(ShotCatagory.Name.SORT), getShotsType(ShotCatagory.Sort.RECENTS));
     }
 }
