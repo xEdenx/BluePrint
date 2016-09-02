@@ -165,6 +165,7 @@ class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecyclerView.
         if (mFragment instanceof ViewFragment) {
             return ViewType.VIEW.ordinal();
         }
+
         if (mFragment instanceof RecentFragment) {
             return ViewType.RECENT.ordinal();
         }

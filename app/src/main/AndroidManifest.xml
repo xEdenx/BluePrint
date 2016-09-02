@@ -53,7 +53,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".test.CustActivity">
+            android:name=".test.CustActivity"
+            android:label="Cust">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
