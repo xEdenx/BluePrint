@@ -48,14 +48,14 @@ class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecyclerView.
     @Override
     protected void bindItemView(RecyclerView.ViewHolder holder, int position) {
         ShotEntity entity = dataList.get(position);
+        String imageHidpi = entity.getImages().getHidpi();
+        String imageNormal = entity.getImages().getNormal();
+        String avatarUrl = entity.getUser().getAvatar_url();
+        String updatedAt = friendlyTime(entity.getUpdated_at());
+        int attachmentsCount = entity.getAttachments_count();
+
         if (holder instanceof ViewHolder) {
             ViewHolder viewHolder = (ViewHolder) holder;
-            String imageHidpi = entity.getImages().getHidpi();
-            String imageNormal = entity.getImages().getNormal();
-            String avatarUrl = entity.getUser().getAvatar_url();
-            String updatedAt = friendlyTime(entity.getUpdated_at());
-            int attachmentsCount = entity.getAttachments_count();
-
             if (attachmentsCount == 0) {
                 viewHolder.attachImg.setVisibility(View.GONE);
                 viewHolder.attactCount.setVisibility(View.GONE);
@@ -72,17 +72,19 @@ class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecyclerView.
             viewHolder.likes.setText(checkInteger(entity.getLikes_count()));
             viewHolder.views.setText(checkInteger(entity.getViews_count()));
             if (!TextUtils.isEmpty(avatarUrl)) {
-                Glide.with(mContext)
+                Glide.with(mFragment)
                         .load(avatarUrl)
+                        .placeholder(R.drawable.dribbble)
                         .error(R.drawable.dribbble)
                         .transform(new CircleTransform(mContext))
                         .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .into(viewHolder.userAvatar);
             }
             if (!TextUtils.isEmpty(imageNormal)) {
-                Glide.with(mContext)
+                Glide.with(mFragment)
                         .load(TextUtils.isEmpty(imageHidpi) ? imageNormal : imageHidpi)
-                        .error(R.drawable.dribbble)
+                        .placeholder(R.drawable.ic_error_light)
+                        .error(R.drawable.ic_error_light)
                         .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .into(new GlideDrawableImageViewTarget(viewHolder.shotImageContent, 5));
             }
@@ -90,7 +92,14 @@ class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecyclerView.
 
         if (holder instanceof RecentHolder) {
             RecentHolder recentHolder = (RecentHolder) holder;
-
+            if (!TextUtils.isEmpty(imageNormal)) {
+                Glide.with(mFragment)
+                        .load(TextUtils.isEmpty(imageHidpi) ? imageNormal : imageHidpi)
+                        .placeholder(R.drawable.ic_error_light)
+                        .error(R.drawable.ic_error_light)
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into(new GlideDrawableImageViewTarget(recentHolder.imgContent, 5));
+            }
         }
 
     }
@@ -99,12 +108,12 @@ class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecyclerView.
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         if (viewType == ViewType.VIEW.ordinal()) {
-            View itemView = inflateItemView(R.layout.layout_shot_item, parent);
+            View itemView = inflateItemView(R.layout.layout_view_item, parent);
             return new ViewHolder(itemView);
         }
 
         if (viewType == ViewType.RECENT.ordinal()) {
-            View itemView = inflateItemView(R.layout.layout_comment_item, parent);
+            View itemView = inflateItemView(R.layout.layout_recent_item, parent);
             return new RecentHolder(itemView);
         }
 
@@ -141,22 +150,25 @@ class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecyclerView.
 
         @OnClick(R.id.cardView)
         void gotoDetail(View view) {
-            int position = getLayoutPosition();
-            ShotEntity entity = dataList.get(position);
-            Intent intent = new Intent(view.getContext(), ShotActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putParcelable(Constants.SHOT_ENTITY, entity);
-            intent.putExtras(bundle);
-            view.getContext().startActivity(intent);
+            goToDetail(view, this);
         }
 
     }
 
     class RecentHolder extends RecyclerView.ViewHolder {
-
         RecentHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
+
+        @BindView(R.id.imgContent)
+        ImageView imgContent;
+
+        @OnClick(R.id.imgContent)
+        void onClick(View view) {
+            goToDetail(view, this);
+        }
+
     }
 
     @Override
@@ -172,4 +184,15 @@ class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecyclerView.
 
         return super.getItemViewType(position);
     }
+
+    private void goToDetail(View view, RecyclerView.ViewHolder viewHolder) {
+        int position = viewHolder.getLayoutPosition();
+        ShotEntity entity = dataList.get(position);
+        Intent intent = new Intent(view.getContext(), ShotActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(Constants.SHOT_ENTITY, entity);
+        intent.putExtras(bundle);
+        view.getContext().startActivity(intent);
+    }
+
 }

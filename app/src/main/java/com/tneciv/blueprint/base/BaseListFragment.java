@@ -50,8 +50,8 @@ public abstract class BaseListFragment extends Fragment implements SwipeRefreshL
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         ButterKnife.bind(this, view);
 
-        int colorAccent = ContextCompat.getColor(getActivity(), R.color.colorAccent);
         int colorPrimary = ContextCompat.getColor(getActivity(), R.color.colorPrimary);
+        int colorAccent = ContextCompat.getColor(getActivity(), R.color.colorAccent);
         int colorPrimaryDark = ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark);
         refreshLayout.setColorSchemeColors(colorAccent, colorPrimary, colorPrimaryDark);
 

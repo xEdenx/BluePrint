@@ -134,6 +134,12 @@ public abstract class TrendFragment extends BaseListFragment implements TrendCon
 
     public abstract Map<String, String> setOptionType();
 
+    /**
+     * set shotname & shotType for option map .
+     * @param shotName
+     * @param shotType
+     * @return
+     */
     public Map<String, String> setOptionType(String shotName, String shotType) {
         Map<String, String> map = new HashMap<>();
         map.put(Constants.SHOTS_NAME, shotName);
