@@ -26,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.tneciv.blueprint.common.CheckUtils.checkString;
-import static com.tneciv.blueprint.common.CheckUtils.friendlyTime;
+import static com.tneciv.blueprint.common.CheckUtils.convert2LocalTime;
 
 /**
  * A fragment to show shot info in ShotActivity .
@@ -87,11 +87,13 @@ public class IntroFragment extends Fragment {
     private void showInfo(ShotEntity entity) {
         try {
             title.setText(checkString(entity.getTitle()));
-            createTime.setText(friendlyTime(entity.getCreated_at()));
+            createTime.setText(convert2LocalTime(entity.getCreated_at()));
             desc.setText(Html.fromHtml(checkString(entity.getDescription())));
             userName.setText(entity.getUser().getName());
             Glide.with(this)
                     .load(entity.getUser().getAvatar_url())
+                    .placeholder(R.drawable.dribbble)
+                    .error(R.drawable.dribbble)
                     .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                     .transform(new CircleTransform(getActivity()))
                     .into(avatar);

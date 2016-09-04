@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/margin_8dp"
-    android:layout_marginTop="@dimen/margin_8dp">
+    android:layout_marginTop="@dimen/margin_8dp"
+    app:cardCornerRadius="0dp">
 
     <android.support.constraint.ConstraintLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -36,7 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="280dp"
             android:layout_marginTop="72dp"
-            android:background="@color/primaryLight"
             android:scaleType="centerCrop"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"

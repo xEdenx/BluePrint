@@ -156,13 +156,14 @@ class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecyclerView.
     }
 
     class RecentHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.imgContent)
+        ImageView imgContent;
+
         RecentHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
-
-        @BindView(R.id.imgContent)
-        ImageView imgContent;
 
         @OnClick(R.id.imgContent)
         void onClick(View view) {

@@ -40,6 +40,8 @@ class CommentsAdapter extends BaseRecyclerAdapter<CommentEntity, CommentsAdapter
         holder.name.setText(entity.getUser().getName());
         Glide.with(mContext)
                 .load(entity.getUser().getAvatar_url())
+                .placeholder(R.drawable.dribbble)
+                .error(R.drawable.dribbble)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .transform(new CircleTransform(mContext))
                 .into(holder.avatr);
@@ -51,7 +53,8 @@ class CommentsAdapter extends BaseRecyclerAdapter<CommentEntity, CommentsAdapter
         return new CommentsViewHolder(view);
     }
 
-    static class CommentsViewHolder extends RecyclerView.ViewHolder {
+    class CommentsViewHolder extends RecyclerView.ViewHolder {
+
         @BindView(R.id.avatr)
         ImageView avatr;
         @BindView(R.id.name)
