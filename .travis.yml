@@ -21,6 +21,9 @@ android:
     - extra-android-m2repository
     - extra-android-support
 
+    - add-on
+    - extra
+
   licenses:
     - 'android-sdk-license-.+'
     - 'android-sdk-preview-license-.+'
@@ -29,8 +32,14 @@ android:
 notifications:
   email: false
 
+before_script:
+  - chmod +x gradlew
+
 script:
   - ./gradlew assembleRelease
+
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 
 cache:
   directories:
