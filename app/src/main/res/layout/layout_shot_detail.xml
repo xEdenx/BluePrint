@@ -60,6 +60,7 @@
         android:layout_marginStart="16dp"
         android:text="userName"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:textColor="@color/primaryText"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/avatr"
@@ -99,14 +100,14 @@
         android:id="@+id/divider"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:background="@color/divider"
-        app:layout_constraintTop_toBottomOf="@+id/desc"
-        android:layout_marginStart="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/desc"/>
+        android:layout_marginStart="8dp"
+        android:background="@color/divider"
+        app:layout_constraintBottom_toBottomOf="@+id/desc"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desc"/>
 
 </android.support.constraint.ConstraintLayout>
