@@ -1,4 +1,4 @@
-package com.tneciv.blueprint.module.intro;
+package com.tneciv.blueprint.module.info;
 
 
 import android.os.Bundle;

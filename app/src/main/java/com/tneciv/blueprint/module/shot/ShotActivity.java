@@ -17,7 +17,7 @@ import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.common.Constants;
 import com.tneciv.blueprint.entity.ShotEntity;
 import com.tneciv.blueprint.module.comments.CommentsFragment;
-import com.tneciv.blueprint.module.intro.IntroFragment;
+import com.tneciv.blueprint.module.info.IntroFragment;
 
 import java.util.Arrays;
 import java.util.List;
