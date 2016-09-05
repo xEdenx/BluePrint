@@ -32,9 +32,9 @@
         android:layout_marginTop="16dp"
         android:autoLink="web"
         android:text="desc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is heredesc is here"
-        android:textColor="@color/secondaryText"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textColor="@color/secondaryText"
+        app:layout_constraintHorizontal_bias="0.66"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"/>
@@ -71,9 +71,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:textStyle="italic"
         android:layout_marginTop="8dp"
         android:text="createTime"
+        android:textStyle="italic"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/desc"/>
 
@@ -94,5 +94,19 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/avatr"
         app:layout_constraintTop_toBottomOf="@+id/userName"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/divider"
+        app:layout_constraintTop_toBottomOf="@+id/desc"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/desc"/>
 
 </android.support.constraint.ConstraintLayout>
