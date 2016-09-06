@@ -1,1 +1,1 @@
-include ':app', ':widget', ':materialviewpager', ':depModule'
+include ':app', ':widget', ':materialviewpager', ':dep'
