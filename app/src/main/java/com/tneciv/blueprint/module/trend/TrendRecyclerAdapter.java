@@ -29,6 +29,8 @@ import butterknife.OnClick;
 import static com.tneciv.blueprint.common.CheckUtils.checkInteger;
 import static com.tneciv.blueprint.common.CheckUtils.checkString;
 import static com.tneciv.blueprint.common.CheckUtils.friendlyTime;
+import static com.tneciv.blueprint.entity.ViewHolderType.RECENT;
+import static com.tneciv.blueprint.entity.ViewHolderType.VIEW;
 
 /**
  * Created by Tneciv
@@ -36,10 +38,6 @@ import static com.tneciv.blueprint.common.CheckUtils.friendlyTime;
  */
 
 class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecyclerView.ViewHolder> {
-
-    private enum ViewType {
-        VIEW, RECENT
-    }
 
     TrendRecyclerAdapter(Fragment fragment, List<ShotEntity> entities) {
         super(fragment, entities);
@@ -107,12 +105,12 @@ class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecyclerView.
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        if (viewType == ViewType.VIEW.ordinal()) {
+        if (viewType == VIEW.ordinal()) {
             View itemView = inflateItemView(R.layout.layout_view_item, parent);
             return new ViewHolder(itemView);
         }
 
-        if (viewType == ViewType.RECENT.ordinal()) {
+        if (viewType == RECENT.ordinal()) {
             View itemView = inflateItemView(R.layout.layout_recent_item, parent);
             return new RecentHolder(itemView);
         }
@@ -176,11 +174,11 @@ class TrendRecyclerAdapter extends BaseRecyclerAdapter<ShotEntity, RecyclerView.
     public int getItemViewType(int position) {
 
         if (mFragment instanceof ViewFragment) {
-            return ViewType.VIEW.ordinal();
+            return VIEW.ordinal();
         }
 
         if (mFragment instanceof RecentFragment) {
-            return ViewType.RECENT.ordinal();
+            return RECENT.ordinal();
         }
 
         return super.getItemViewType(position);
