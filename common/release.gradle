@@ -38,7 +38,7 @@ ext.getVersionCode = {
         }
         return versionCode
     } else {
-        throw new GradleException("Could not find version.properties!")
+        throw new Exception("Could not find version.properties!")
     }
 
 }
