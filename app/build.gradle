@@ -21,13 +21,13 @@ android {
         debug {
         }
         release {
+            getSigningProperties()
             storeFile
             storePassword
             keyAlias
             keyPassword
         }
     }
-    getSigningProperties()
 
     buildTypes {
         release {
@@ -35,16 +35,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        // def app name
-        project.archivesBaseName = "BluePrint";
+        debug {
+            applicationIdSuffix '.debug'
+        }
 
-        // add versionname to apk
+        // edit output apk
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
-                def oldFile = output.outputFile
-                output.outputFile = new File(oldFile.parent, oldFile.name.replace(".apk", "-" + defaultConfig.versionName + "-" + defaultConfig.versionCode + ".apk"))
+                def apkFile = new File(
+                        output.outputFile.getParent(),
+                        "BluePrint-v${variant.versionName}-${variant.versionCode}.apk")
+                output.outputFile = apkFile
             }
         }
+
     }
 
     compileOptions {

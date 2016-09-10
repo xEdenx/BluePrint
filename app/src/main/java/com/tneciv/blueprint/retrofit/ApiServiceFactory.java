@@ -86,8 +86,9 @@ public class ApiServiceFactory {
                     // Cache Size
                     Cache cache = new Cache(httpCacheDirectory, 20 * 1024 * 1024);
                     builder.addNetworkInterceptor(cacheInterceptor);
+                    builder.cache(cache);
 
-                    OkHttpClient okHttpClient = builder.cache(cache).build();
+                    OkHttpClient okHttpClient = builder.build();
                     defaultInstance = new Retrofit.Builder()
                             .baseUrl(BASE_API_URL)
                             .addConverterFactory(GsonConverterFactory.create())
