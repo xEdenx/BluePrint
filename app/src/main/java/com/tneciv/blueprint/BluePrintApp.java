@@ -4,6 +4,9 @@ import android.app.Application;
 
 import com.squareup.leakcanary.LeakCanary;
 import com.tneciv.blueprint.common.IMMLeaks;
+import com.tneciv.blueprint.common.OkhttpUtil;
+
+import okhttp3.OkHttpClient;
 
 /**
  * Created by Tneciv
@@ -11,10 +14,19 @@ import com.tneciv.blueprint.common.IMMLeaks;
  */
 
 public class BluePrintApp extends Application {
+
+    private static OkHttpClient.Builder builder;
+
     @Override
     public void onCreate() {
         super.onCreate();
         LeakCanary.install(this);
+        builder = OkhttpUtil.getInstance(getApplicationContext());
         IMMLeaks.fixFocusedViewLeak(this);
     }
+
+    public static OkHttpClient.Builder getOkhttpBuilder() {
+        return BluePrintApp.builder;
+    }
+
 }
