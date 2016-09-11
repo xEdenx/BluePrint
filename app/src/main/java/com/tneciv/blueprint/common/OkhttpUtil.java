@@ -2,8 +2,6 @@ package com.tneciv.blueprint.common;
 
 import android.content.Context;
 import android.os.Environment;
-import android.text.TextUtils;
-import android.util.Log;
 
 import com.tneciv.blueprint.BuildConfig;
 
@@ -11,6 +9,7 @@ import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -32,6 +31,7 @@ public class OkhttpUtil {
     }
 
     public static OkHttpClient.Builder getInstance(Context context) {
+
         if (defaultInstance == null) {
             synchronized (OkHttpClient.Builder.class) {
                 if (defaultInstance == null) {
@@ -52,39 +52,63 @@ public class OkhttpUtil {
              * Okhttp 缓存拦截器
              */
             Interceptor cacheInterceptor = chain -> {
-                Request request = chain.request();
-                if (BuildConfig.DEBUG) Log.i("ApiServiceFactory", "request=" + request);
-                Response response = chain.proceed(request);
-                if (BuildConfig.DEBUG) Log.i("Cache", "response=" + response);
 
-                String cacheControl = request.cacheControl().toString();
-                if (TextUtils.isEmpty(cacheControl)) {
-                    cacheControl = "public, max-age=60";
+                Request request = chain.request();
+                if (!SystemUtil.isNetworkReachable(context)) {
+                    request = request.newBuilder()
+                            .cacheControl(CacheControl.FORCE_CACHE)
+                            .build();
                 }
-                return response.newBuilder()
-                        .header("Cache-Control", cacheControl)
-                        .removeHeader("Pragma")
-                        .build();
+
+                Response response = chain.proceed(request);
+                Response responseLast;
+                if (SystemUtil.isNetworkReachable(context)) {
+                    int maxAge = 0;
+                    // when net available , set cache out of date time to 0 .
+                    responseLast = response.newBuilder()
+                            .header("Cache-Control", "public, max-age=" + maxAge)
+                            .removeHeader("Pragma")// 清除头信息，因为服务器如果不支持，会返回一些干扰信息，不清除下面无法生效
+                            .build();
+                } else {
+                    int maxStale = 60 * 60 * 24 * 28;
+                    //  when net not available , set cache out of date time to 4 weeks .
+                    responseLast = response.newBuilder()
+                            .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
+                            .removeHeader("Pragma")
+                            .build();
+                }
+
+                return responseLast;
+
             };
 
             // Cache Path
             File httpCacheDirectory = new File(getDiskCachePath(context), "responses");
             // Cache Size
             Cache cache = new Cache(httpCacheDirectory, 20 * 1024 * 1024);
-            defaultInstance.addNetworkInterceptor(cacheInterceptor);
-            defaultInstance.connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS);
             defaultInstance.cache(cache);
 
+            defaultInstance.connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS);
+            defaultInstance.readTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS);
+            defaultInstance.writeTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS);
+            defaultInstance.addInterceptor(cacheInterceptor);
+            defaultInstance.addNetworkInterceptor(cacheInterceptor);
+            defaultInstance.retryOnConnectionFailure(true);
+
         }
+
         return defaultInstance;
+
     }
 
     private static String getDiskCachePath(Context context) {
+
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable()) {
             return context.getExternalCacheDir().getPath();
         } else {
             return context.getCacheDir().getPath();
         }
+
     }
 
 }

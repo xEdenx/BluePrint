@@ -4,8 +4,8 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
-import android.widget.Toast;
 
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.base.BaseActivity;
@@ -33,10 +33,13 @@ public class MainActivity extends BaseActivity {
                     != PackageManager.PERMISSION_GRANTED
                     || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED
+                    || checkSelfPermission(Manifest.permission.ACCESS_NETWORK_STATE)
+                    != PackageManager.PERMISSION_GRANTED
                     ) {
                 requestPermissions(new String[]{
                         Manifest.permission.INTERNET,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.ACCESS_NETWORK_STATE
                 }, PERMISSION_REQUEST_CODE);
             } else {
                 start();
@@ -59,7 +62,8 @@ public class MainActivity extends BaseActivity {
                         //start();
                     }
                 } else {
-                    Toast.makeText(this, "权限被拒绝，将不能缓存本地数据.", Toast.LENGTH_SHORT)
+                    Snackbar.make(contentFrame, getString(R.string.permission_notice), Snackbar.LENGTH_SHORT)
+                            .setAction("empower", v -> askForPermissions())
                             .show();
                 }
             }
