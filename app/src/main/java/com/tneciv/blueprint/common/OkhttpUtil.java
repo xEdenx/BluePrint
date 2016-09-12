@@ -1,7 +1,6 @@
 package com.tneciv.blueprint.common;
 
 import android.content.Context;
-import android.os.Environment;
 
 import com.tneciv.blueprint.BuildConfig;
 
@@ -15,6 +14,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
+
+import static com.tneciv.blueprint.common.SystemUtil.getDiskCachePath;
+import static com.tneciv.blueprint.common.SystemUtil.isNetworkReachable;
 
 /**
  * Created by Tneciv
@@ -54,7 +56,7 @@ public class OkhttpUtil {
             Interceptor cacheInterceptor = chain -> {
 
                 Request request = chain.request();
-                if (!SystemUtil.isNetworkReachable(context)) {
+                if (!isNetworkReachable(context)) {
                     request = request.newBuilder()
                             .cacheControl(CacheControl.FORCE_CACHE)
                             .build();
@@ -62,12 +64,12 @@ public class OkhttpUtil {
 
                 Response response = chain.proceed(request);
                 Response responseLast;
-                if (SystemUtil.isNetworkReachable(context)) {
+                if (isNetworkReachable(context)) {
                     int maxAge = 0;
                     // when net available , set cache out of date time to 0 .
                     responseLast = response.newBuilder()
                             .header("Cache-Control", "public, max-age=" + maxAge)
-                            .removeHeader("Pragma")// 清除头信息，因为服务器如果不支持，会返回一些干扰信息，不清除下面无法生效
+                            .removeHeader("Pragma")
                             .build();
                 } else {
                     int maxStale = 60 * 60 * 24 * 28;
@@ -98,16 +100,6 @@ public class OkhttpUtil {
         }
 
         return defaultInstance;
-
-    }
-
-    private static String getDiskCachePath(Context context) {
-
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable()) {
-            return context.getExternalCacheDir().getPath();
-        } else {
-            return context.getCacheDir().getPath();
-        }
 
     }
 

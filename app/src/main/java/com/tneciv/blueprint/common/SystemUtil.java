@@ -3,6 +3,7 @@ package com.tneciv.blueprint.common;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Environment;
 
 /**
  * Created by Tneciv
@@ -16,6 +17,14 @@ public class SystemUtil {
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo current = cm.getActiveNetworkInfo();
         return current != null && (current.isAvailable());
+    }
+
+    public static String getDiskCachePath(Context context) {
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable()) {
+            return context.getExternalCacheDir().getPath();
+        } else {
+            return context.getCacheDir().getPath();
+        }
     }
 
 }
