@@ -2,6 +2,8 @@ package com.tneciv.blueprint.module.trend;
 
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 
@@ -31,11 +33,9 @@ public abstract class TrendFragment extends BaseListFragment implements TrendCon
     private List<ShotEntity> list;
 
     @Override
-    public void onResume() {
-        super.onResume();
-        if (!isCreated) {
-            onRefresh();
-        }
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        onRefresh();
     }
 
     @Override
@@ -46,8 +46,6 @@ public abstract class TrendFragment extends BaseListFragment implements TrendCon
     }
 
     private TrendRecyclerAdapter recyclerAdapter;
-
-    private boolean isCreated;
 
     public TrendFragment() {
     }
@@ -75,7 +73,6 @@ public abstract class TrendFragment extends BaseListFragment implements TrendCon
 
     @Override
     public void showList(ShotEntity[] shotEntities) {
-        isCreated = true;
         if (currentPage == 1) {
             list.clear();
             totalRecord = 0;
