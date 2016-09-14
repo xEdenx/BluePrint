@@ -8,12 +8,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.tneciv.blueprint.R;
-import com.tneciv.blueprint.callback.MenuClickListener;
 import com.tneciv.blueprint.module.trend.RecentFragment;
 import com.tneciv.blueprint.module.trend.TrendPresenter;
 import com.tneciv.blueprint.module.trend.ViewFragment;
@@ -31,8 +29,6 @@ public class MainFragment extends Fragment {
     TabLayout tabLayout;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
-
-    private MenuClickListener mListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,15 +82,4 @@ public class MainFragment extends Fragment {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (mListener != null) {
-            mListener.onClick(item);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void addMenuClickLitener(MenuClickListener listener) {
-        this.mListener = listener;
-    }
 }

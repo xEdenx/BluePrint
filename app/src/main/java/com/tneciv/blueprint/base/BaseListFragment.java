@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.hwangjr.rxbus.RxBus;
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.widget.BluePrintRecyclerView;
 
@@ -33,13 +34,13 @@ import butterknife.ButterKnife;
 public abstract class BaseListFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.recyclerView)
-    public BluePrintRecyclerView recyclerView;
+    public BluePrintRecyclerView mRecyclerView;
     @BindView(R.id.refreshLayout)
-    public SwipeRefreshLayout refreshLayout;
+    public SwipeRefreshLayout mRefreshLayout;
     @BindView(R.id.emptyView)
-    public RelativeLayout emptyView;
+    public RelativeLayout mEmptyView;
     @BindView(R.id.btnEmpty)
-    public Button btnEmpty;
+    public Button mEmptyBtn;
 
     public int currentPage;
     public int totalRecord;
@@ -49,14 +50,15 @@ public abstract class BaseListFragment extends Fragment implements SwipeRefreshL
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         ButterKnife.bind(this, view);
+        RxBus.get().register(this);
 
         int colorPrimary = ContextCompat.getColor(getActivity(), R.color.colorPrimary);
         int colorAccent = ContextCompat.getColor(getActivity(), R.color.colorAccent);
         int colorPrimaryDark = ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark);
-        refreshLayout.setColorSchemeColors(colorAccent, colorPrimary, colorPrimaryDark);
+        mRefreshLayout.setColorSchemeColors(colorAccent, colorPrimary, colorPrimaryDark);
 
-        refreshLayout.setOnRefreshListener(this);
-        recyclerView.setHasFixedSize(true);
+        mRefreshLayout.setOnRefreshListener(this);
+        mRecyclerView.setHasFixedSize(true);
 
         initView();
         initRecyclerView();
@@ -68,9 +70,9 @@ public abstract class BaseListFragment extends Fragment implements SwipeRefreshL
     }
 
     protected void initView() {
-        recyclerView.setEmptyView(emptyView);
-        btnEmpty.setText("loading ...");
-        btnEmpty.setOnClickListener(view -> Toast.makeText(getActivity(), "oh ...", Toast.LENGTH_SHORT).show());
+        mRecyclerView.setEmptyView(mEmptyView);
+        mEmptyBtn.setText("loading ...");
+        mEmptyBtn.setOnClickListener(view -> Toast.makeText(getActivity(), "oh ...", Toast.LENGTH_SHORT).show());
     }
 
     protected ActionBar getToolbar(Activity activity) {
@@ -95,4 +97,12 @@ public abstract class BaseListFragment extends Fragment implements SwipeRefreshL
         inflater.inflate(R.menu.base, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        RxBus.get().unregister(this);
+    }
 }
+
+

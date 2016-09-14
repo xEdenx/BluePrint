@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.hwangjr.rxbus.annotation.Subscribe;
+import com.tneciv.blueprint.entity.ClickType;
 import com.tneciv.blueprint.entity.ShotCatagory;
 
 import java.util.Map;
@@ -35,4 +37,19 @@ public class ViewFragment extends TrendFragment {
     public Map<String, String> setOptionType() {
         return setOptionType(getShotsName(ShotCatagory.Name.SORT), getShotsType(ShotCatagory.Sort.VIEWS));
     }
+
+    @Subscribe
+    public void onClicked(ClickType type) {
+        switch (type) {
+            case BACK:
+                doubleBack2Exit();
+                break;
+            case REFRESH:
+                onRefresh();
+                break;
+            default:
+                break;
+        }
+    }
+
 }

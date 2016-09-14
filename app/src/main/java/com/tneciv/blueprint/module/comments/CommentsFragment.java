@@ -57,7 +57,7 @@ public class CommentsFragment extends Fragment implements CommentsContract.View 
         adapter = new CommentsAdapter(this, mEntityList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        //recyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
+        //mRecyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
         MaterialViewPagerHelper.registerScrollView(getActivity(), mScrollView, null);
         return view;
     }

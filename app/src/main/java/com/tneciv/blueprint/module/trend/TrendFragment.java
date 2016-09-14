@@ -55,8 +55,8 @@ public abstract class TrendFragment extends BaseListFragment implements TrendCon
         list = new ArrayList<>();
         recyclerAdapter = new TrendRecyclerAdapter(setViewType(), list);
         recyclerAdapter.addPaginationListener(this);
-        recyclerView.setAdapter(recyclerAdapter);
-        recyclerView.setLayoutManager(setLayoutManager(getActivity()));
+        mRecyclerView.setAdapter(recyclerAdapter);
+        mRecyclerView.setLayoutManager(setLayoutManager(getActivity()));
     }
 
     protected abstract Fragment setViewType();
@@ -84,12 +84,12 @@ public abstract class TrendFragment extends BaseListFragment implements TrendCon
 
     @Override
     public void showLoading() {
-        refreshLayout.setRefreshing(true);
+        mRefreshLayout.setRefreshing(true);
     }
 
     @Override
     public void hideLoading() {
-        refreshLayout.setRefreshing(false);
+        mRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -133,6 +133,7 @@ public abstract class TrendFragment extends BaseListFragment implements TrendCon
 
     /**
      * set shotname & shotType for option map .
+     *
      * @param shotName
      * @param shotType
      * @return
@@ -143,4 +144,16 @@ public abstract class TrendFragment extends BaseListFragment implements TrendCon
         map.put(Constants.SHOTS_TYPE, shotType);
         return map;
     }
+
+    protected long exitTime = 0;
+
+    protected void doubleBack2Exit() {
+        if ((System.currentTimeMillis() - exitTime) > 3000) {
+            mRecyclerView.smoothScrollToPosition(0);
+            exitTime = System.currentTimeMillis();
+        } else {
+            getActivity().finish();
+        }
+    }
+
 }

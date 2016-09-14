@@ -18,7 +18,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.hwangjr.rxbus.RxBus;
+import com.hwangjr.rxbus.annotation.Produce;
+import com.hwangjr.rxbus.thread.EventThread;
 import com.tneciv.blueprint.R;
+import com.tneciv.blueprint.entity.ClickType;
 import com.tneciv.blueprint.module.main.MainFragment;
 
 import butterknife.BindView;
@@ -45,6 +49,7 @@ public abstract class BaseActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         ButterKnife.bind(this);
+        RxBus.get().register(this);
 
         setSupportActionBar(toolbar);
 
@@ -60,6 +65,12 @@ public abstract class BaseActivity extends AppCompatActivity
         initView();
         initFragment();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RxBus.get().unregister(this);
     }
 
     protected void initView() {
@@ -83,7 +94,7 @@ public abstract class BaseActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            onPressed(ClickType.BACK);
         }
     }
 
@@ -96,6 +107,9 @@ public abstract class BaseActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+        if (id == R.id.action_refresh) {
+            onPressed(ClickType.REFRESH);
+        }
 
         return id == R.id.action_settings || super.onOptionsItemSelected(item);
 
@@ -133,6 +147,11 @@ public abstract class BaseActivity extends AppCompatActivity
                 .replace(R.id.contentFrame, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
+    }
+
+    @Produce(thread = EventThread.MAIN_THREAD)
+    private void onPressed(ClickType type) {
+        RxBus.get().post(type);
     }
 
 }
