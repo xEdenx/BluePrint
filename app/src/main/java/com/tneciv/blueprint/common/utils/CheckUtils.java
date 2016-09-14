@@ -1,4 +1,4 @@
-package com.tneciv.blueprint.common;
+package com.tneciv.blueprint.common.utils;
 
 import android.text.TextUtils;
 

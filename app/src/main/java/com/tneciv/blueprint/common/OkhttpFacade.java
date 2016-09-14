@@ -15,20 +15,20 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 
-import static com.tneciv.blueprint.common.SystemUtil.getDiskCachePath;
-import static com.tneciv.blueprint.common.SystemUtil.isNetworkReachable;
+import static com.tneciv.blueprint.common.utils.SystemUtil.getDiskCachePath;
+import static com.tneciv.blueprint.common.utils.SystemUtil.isNetworkReachable;
 
 /**
  * Created by Tneciv
  * on 2016-09-11 15:24 .
  */
 
-public class OkhttpUtil {
+public class OkhttpFacade {
 
     private static volatile OkHttpClient.Builder defaultInstance;
     private static final int TIMEOUT_SECONDS = 30;
 
-    private OkhttpUtil() throws InstantiationException {
+    private OkhttpFacade() throws InstantiationException {
         throw new InstantiationException("This class is not for instantiation");
     }
 

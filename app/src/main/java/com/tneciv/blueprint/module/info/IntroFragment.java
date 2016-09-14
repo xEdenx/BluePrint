@@ -25,8 +25,8 @@ import com.tneciv.blueprint.widget.CircleTransform;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.tneciv.blueprint.common.CheckUtils.checkString;
-import static com.tneciv.blueprint.common.CheckUtils.convert2LocalTime;
+import static com.tneciv.blueprint.common.utils.CheckUtils.checkString;
+import static com.tneciv.blueprint.common.utils.CheckUtils.convert2LocalTime;
 
 /**
  * A fragment to show shot info in ShotActivity .

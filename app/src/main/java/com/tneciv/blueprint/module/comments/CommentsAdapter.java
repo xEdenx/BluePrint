@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.base.BaseRecyclerAdapter;
-import com.tneciv.blueprint.common.CheckUtils;
+import com.tneciv.blueprint.common.utils.CheckUtils;
 import com.tneciv.blueprint.entity.CommentEntity;
 import com.tneciv.blueprint.widget.CircleTransform;
 

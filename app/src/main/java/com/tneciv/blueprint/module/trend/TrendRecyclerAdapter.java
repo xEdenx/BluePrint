@@ -26,9 +26,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.tneciv.blueprint.common.CheckUtils.checkInteger;
-import static com.tneciv.blueprint.common.CheckUtils.checkString;
-import static com.tneciv.blueprint.common.CheckUtils.friendlyTime;
+import static com.tneciv.blueprint.common.utils.CheckUtils.checkInteger;
+import static com.tneciv.blueprint.common.utils.CheckUtils.checkString;
+import static com.tneciv.blueprint.common.utils.CheckUtils.friendlyTime;
 import static com.tneciv.blueprint.entity.ViewHolderType.RECENT;
 import static com.tneciv.blueprint.entity.ViewHolderType.VIEW;
 
