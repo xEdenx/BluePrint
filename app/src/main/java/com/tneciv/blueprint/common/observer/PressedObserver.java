@@ -6,5 +6,5 @@ package com.tneciv.blueprint.common.observer;
  */
 
 public interface PressedObserver {
-    void update();
+    void onBackPressed();
 }
