@@ -35,11 +35,20 @@ public class MainActivity extends BaseActivity {
                     != PackageManager.PERMISSION_GRANTED
                     || checkSelfPermission(Manifest.permission.ACCESS_NETWORK_STATE)
                     != PackageManager.PERMISSION_GRANTED
+                    || checkSelfPermission(Manifest.permission.ACCESS_WIFI_STATE)
+                    != PackageManager.PERMISSION_GRANTED
+                    || checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
+                    != PackageManager.PERMISSION_GRANTED
+                    || checkSelfPermission(Manifest.permission.READ_LOGS)
+                    != PackageManager.PERMISSION_GRANTED
                     ) {
                 requestPermissions(new String[]{
                         Manifest.permission.INTERNET,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.ACCESS_NETWORK_STATE
+                        Manifest.permission.ACCESS_NETWORK_STATE,
+                        Manifest.permission.ACCESS_WIFI_STATE,
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.READ_LOGS
                 }, PERMISSION_REQUEST_CODE);
             } else {
                 start();

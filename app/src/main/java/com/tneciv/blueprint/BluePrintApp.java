@@ -3,6 +3,7 @@ package com.tneciv.blueprint;
 import android.app.Application;
 
 import com.squareup.leakcanary.LeakCanary;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.tneciv.blueprint.common.OkhttpFacade;
 import com.tneciv.blueprint.common.utils.IMMLeaks;
 
@@ -21,6 +22,7 @@ public class BluePrintApp extends Application {
     public void onCreate() {
         super.onCreate();
         LeakCanary.install(this);
+        CrashReport.initCrashReport(getApplicationContext(), "900053273", BuildConfig.DEBUG);
         sBuilder = OkhttpFacade.getInstance(getApplicationContext());
         IMMLeaks.fixFocusedViewLeak(this);
     }
