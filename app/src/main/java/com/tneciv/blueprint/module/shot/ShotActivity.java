@@ -2,6 +2,7 @@ package com.tneciv.blueprint.module.shot;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -13,6 +14,7 @@ import android.util.Log;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
+import com.jude.swipbackhelper.SwipeBackHelper;
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.common.Constants;
 import com.tneciv.blueprint.entity.ShotEntity;
@@ -38,7 +40,7 @@ public class ShotActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         ButterKnife.bind(this);
-
+        SwipeBackHelper.onCreate(this);
         handleIntent();
         initView();
     }
@@ -46,11 +48,13 @@ public class ShotActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        SwipeBackHelper.onDestroy(this);
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        SwipeBackHelper.onPostCreate(this);
     }
 
     private void handleIntent() {
