@@ -1,6 +1,5 @@
 package com.tneciv.blueprint.module.main;
 
-import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -9,6 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.base.BaseActivity;
+import com.tneciv.blueprint.common.utils.SystemUtil;
 
 public class MainActivity extends BaseActivity {
 
@@ -29,30 +29,7 @@ public class MainActivity extends BaseActivity {
 
     private void askForPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.INTERNET)
-                    != PackageManager.PERMISSION_GRANTED
-                    || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED
-                    || checkSelfPermission(Manifest.permission.ACCESS_NETWORK_STATE)
-                    != PackageManager.PERMISSION_GRANTED
-                    || checkSelfPermission(Manifest.permission.ACCESS_WIFI_STATE)
-                    != PackageManager.PERMISSION_GRANTED
-                    || checkSelfPermission(Manifest.permission.READ_PHONE_STATE)
-                    != PackageManager.PERMISSION_GRANTED
-                    || checkSelfPermission(Manifest.permission.READ_LOGS)
-                    != PackageManager.PERMISSION_GRANTED
-                    ) {
-                requestPermissions(new String[]{
-                        Manifest.permission.INTERNET,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.ACCESS_NETWORK_STATE,
-                        Manifest.permission.ACCESS_WIFI_STATE,
-                        Manifest.permission.READ_PHONE_STATE,
-                        Manifest.permission.READ_LOGS
-                }, PERMISSION_REQUEST_CODE);
-            } else {
-                start();
-            }
+            SystemUtil.checkPermissions(this, PERMISSION_REQUEST_CODE);
         } else {
             start();
         }
@@ -62,19 +39,16 @@ public class MainActivity extends BaseActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         if (requestCode == PERMISSION_REQUEST_CODE) {
-            int count = 0;
-
+            int count = 1;
             for (int grantResult : grantResults) {
                 if (grantResult == PackageManager.PERMISSION_GRANTED) {
                     count++;
-                    if (count == grantResults.length) {
-                        //start();
-                    }
-                } else {
-                    Snackbar.make(contentFrame, getString(R.string.permission_notice), Snackbar.LENGTH_SHORT)
-                            .setAction("empower", v -> askForPermissions())
-                            .show();
                 }
+            }
+            if (count != grantResults.length) {
+                Snackbar.make(contentFrame, getString(R.string.permission_notice), Snackbar.LENGTH_SHORT)
+                        .setAction("empower", v -> askForPermissions())
+                        .show();
             }
             start();
         }

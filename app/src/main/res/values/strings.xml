@@ -9,5 +9,5 @@
     <string name="action_settings">Settings</string>
     <string name="action_refresh">Refresh</string>
 
-    <string name="permission_notice">Permission denied , cannot cache anything .</string>
+    <string name="permission_notice">Permission denied , cannot cache or report bugs .</string>
 </resources>
