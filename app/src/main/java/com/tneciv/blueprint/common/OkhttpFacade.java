@@ -95,7 +95,7 @@ public class OkhttpFacade {
             defaultInstance.writeTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS);
             defaultInstance.addInterceptor(cacheInterceptor);
             defaultInstance.addNetworkInterceptor(cacheInterceptor);
-            defaultInstance.retryOnConnectionFailure(true);
+            defaultInstance.retryOnConnectionFailure(false);
 
         }
 
