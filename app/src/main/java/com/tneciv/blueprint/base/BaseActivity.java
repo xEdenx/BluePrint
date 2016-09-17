@@ -111,7 +111,7 @@ public abstract class BaseActivity extends AppCompatActivity
             onPressed(ClickType.REFRESH);
         }
 
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
+        return true;
 
     }
 
