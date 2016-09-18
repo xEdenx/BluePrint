@@ -18,4 +18,7 @@ public class Constants {
     public static final String SHOTS_TYPE = "SHOTS_TYPE";
     public static final String SHOT_ENTITY = "ShotEntity";
     public static final String SHOT_ID = "ShotId";
+    public static final String CLIENT_ID = "ShotId";
+    public static final String CLIENT_SECRET = "ShotId";
+    public static final String REDIRECT_URI = "ShotId";
 }
