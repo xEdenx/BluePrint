@@ -94,6 +94,5 @@ dependencies {
     compile 'com.jude:swipebackhelper:3.1.2'
 
     compile 'com.tencent.bugly:crashreport:latest.release'
-    compile 'com.wilddog.client:wilddog-auth-android:2.0.0'
 
 }
