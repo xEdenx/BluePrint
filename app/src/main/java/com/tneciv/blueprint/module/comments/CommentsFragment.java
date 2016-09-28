@@ -14,6 +14,7 @@ import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.tneciv.blueprint.R;
 import com.tneciv.blueprint.common.Constants;
+import com.tneciv.blueprint.common.utils.CheckUtils;
 import com.tneciv.blueprint.entity.CommentEntity;
 
 import java.util.ArrayList;
@@ -112,6 +113,6 @@ public class CommentsFragment extends Fragment implements CommentsContract.View 
 
     @Override
     public void handleError(Throwable e) {
-        Snackbar.make(mScrollView, e.getMessage() + "", Snackbar.LENGTH_SHORT).setAction("refresh", v -> onResume()).show();
+        Snackbar.make(mScrollView, CheckUtils.checkString(e.getMessage()), Snackbar.LENGTH_SHORT).setAction("refresh", v -> onResume()).show();
     }
 }

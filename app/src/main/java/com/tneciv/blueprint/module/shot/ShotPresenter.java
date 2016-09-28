@@ -1,6 +1,6 @@
 package com.tneciv.blueprint.module.shot;
 
-import com.tneciv.blueprint.base.BasePresenterImpl;
+import com.tneciv.blueprint.base.BaseRxImpl;
 import com.tneciv.blueprint.entity.ShotEntity;
 import com.tneciv.blueprint.retrofit.ApiServiceFactory;
 import com.tneciv.blueprint.retrofit.ShotService;
@@ -13,7 +13,7 @@ import rx.Subscriber;
  * on 2016-08-23 21:41 .
  */
 
-class ShotPresenter extends BasePresenterImpl implements ShotContract.Presenter {
+class ShotPresenter extends BaseRxImpl implements ShotContract.Presenter {
     private ShotContract.View mView;
 
     ShotPresenter(ShotContract.View mView) {

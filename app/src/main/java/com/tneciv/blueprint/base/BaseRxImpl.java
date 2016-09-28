@@ -12,7 +12,7 @@ import rx.subscriptions.CompositeSubscription;
  * Presenter 公共方法及属性集合，与 BasePresenter 无关，供 *Presenter 继承
  */
 
-public class BasePresenterImpl {
+public class BaseRxImpl {
 
     private CompositeSubscription mCompositeSubscription;
 

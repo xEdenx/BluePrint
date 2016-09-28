@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.tneciv.blueprint.base.BaseListFragment;
 import com.tneciv.blueprint.common.Constants;
+import com.tneciv.blueprint.common.utils.CheckUtils;
 import com.tneciv.blueprint.entity.ShotEntity;
 
 import java.util.ArrayList;
@@ -96,6 +97,8 @@ public abstract class TrendFragment extends BaseListFragment implements TrendCon
 
     @Override
     public void showError(Throwable throwable) {
+        String msg = CheckUtils.checkString(throwable.getMessage());
+        mEmptyBtn.setText(msg);
     }
 
     @Override

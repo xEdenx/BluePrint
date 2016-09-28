@@ -1,6 +1,6 @@
 package com.tneciv.blueprint.module.trend;
 
-import com.tneciv.blueprint.base.BasePresenterImpl;
+import com.tneciv.blueprint.base.BaseRxImpl;
 import com.tneciv.blueprint.common.Constants;
 import com.tneciv.blueprint.entity.ShotEntity;
 import com.tneciv.blueprint.retrofit.ApiServiceFactory;
@@ -19,7 +19,7 @@ import static com.tneciv.blueprint.common.Constants.PER_PAGE;
  * Created by Tneciv
  * on 2016-08-17 18:20 .
  */
-public class TrendPresenter extends BasePresenterImpl implements TrendContract.Presenter {
+public class TrendPresenter extends BaseRxImpl implements TrendContract.Presenter {
 
     private TrendContract.View mView;
 

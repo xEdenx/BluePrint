@@ -1,6 +1,6 @@
 package com.tneciv.blueprint.module.comments;
 
-import com.tneciv.blueprint.base.BasePresenterImpl;
+import com.tneciv.blueprint.base.BaseRxImpl;
 import com.tneciv.blueprint.entity.CommentEntity;
 import com.tneciv.blueprint.retrofit.ApiServiceFactory;
 import com.tneciv.blueprint.retrofit.CommentsService;
@@ -13,7 +13,7 @@ import rx.Subscriber;
  * on 2016-08-30 14:47 .
  */
 
-class CommentsPresenter extends BasePresenterImpl implements CommentsContract.Presenter {
+class CommentsPresenter extends BaseRxImpl implements CommentsContract.Presenter {
     private CommentsContract.View mView;
 
     CommentsPresenter(CommentsContract.View mView) {

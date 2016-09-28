@@ -15,11 +15,7 @@ import java.util.Date;
 public class CheckUtils {
 
     public static String checkString(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return "NA";
-        } else {
-            return str;
-        }
+        return TextUtils.isEmpty(str) ? str + "" : str;
     }
 
     /**
