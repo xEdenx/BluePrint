@@ -37,7 +37,7 @@ public class CommentsFragment extends Fragment implements CommentsContract.View 
 
     private int shotId;
     private List<CommentEntity> mEntityList;
-    private CommentsAdapter adapter;
+    private CommentsAdapter mAdapter;
     private CommentsContract.Presenter mPresenter;
 
     @Override
@@ -55,8 +55,8 @@ public class CommentsFragment extends Fragment implements CommentsContract.View 
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_comments, container, false);
         ButterKnife.bind(this, view);
-        adapter = new CommentsAdapter(this, mEntityList);
-        recyclerView.setAdapter(adapter);
+        mAdapter = new CommentsAdapter(this, mEntityList);
+        recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //mRecyclerView.addItemDecoration(new MaterialViewPagerHeaderDecorator());
         MaterialViewPagerHelper.registerScrollView(getActivity(), mScrollView, null);
@@ -108,7 +108,7 @@ public class CommentsFragment extends Fragment implements CommentsContract.View 
     public void showResult(CommentEntity[] entities) {
         mEntityList.clear();
         mEntityList.addAll(Arrays.asList(entities));
-        adapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
